@@ -2,180 +2,193 @@
   "lectures": [
     {
       "id": 1,
-      "title": "Surah Al-Fatiha: The Opening Chapter",
-      "author": "Dr. Yasir Qadhi",
-      "authorId": "yasir-qadhi",
-      "category": "Quran Tafsir",
-      "categoryId": "quran",
-      "duration": "45:30",
+      "title": "The Importance of Patience in Islam",
+      "author": "Mufti Menk",
+      "category": "Spirituality",
+      "categoryId": "spirituality",
+      "description": "A beautiful lecture on developing patience and perseverance in daily life according to Islamic teachings.",
+      "duration": "45:22",
       "size": "42 MB",
-      "description": "Deep tafsir of the opening chapter of the Quran, understanding its profound meanings and significance in daily prayers.",
-      "fileId": "129RglCfVK7JJmqj4bZGEn1QfZ1E5kP1z",
-      "color": "#006769",
-      "plays": "124K",
       "date": "2024-01-15",
-      "tags": ["quran", "tafsir", "prayer", "beginner"]
+      "color": "#4A90E2",
+      "fileId": "1abc123def456",
+      "tags": ["patience", "spirituality", "character"]
     },
     {
       "id": 2,
-      "title": "The Life of Prophet Muhammad (PBUH) - Part 1",
-      "author": "Omar Suleiman",
-      "authorId": "omar-suleiman",
-      "category": "Seerah & History",
-      "categoryId": "seerah",
-      "duration": "52:15",
-      "size": "48 MB",
-      "description": "Early life of the Prophet, his character, and the beginning of revelation in Mecca.",
-      "fileId": "SAMPLE_ID_2",
-      "color": "#40A578",
-      "plays": "89K",
-      "date": "2024-01-14",
-      "tags": ["prophet", "history", "biography", "mecca"]
+      "title": "Understanding the Quran for Beginners",
+      "author": "Nouman Ali Khan",
+      "category": "Quran",
+      "categoryId": "quran",
+      "description": "Step by step guidance on how to approach and understand the Quran effectively.",
+      "duration": "38:15",
+      "size": "36 MB",
+      "date": "2024-01-20",
+      "color": "#50C878",
+      "fileId": "2def456abc789",
+      "tags": ["quran", "beginners", "understanding"]
     },
     {
       "id": 3,
-      "title": "Understanding Prayer (Salah) - Complete Guide",
-      "author": "Mufti Menk",
-      "authorId": "mufti-menk",
-      "category": "Fiqh & Jurisprudence",
-      "categoryId": "fiqh",
-      "duration": "61:30",
-      "size": "56 MB",
-      "description": "Step-by-step guide to proper prayer, including sunnah acts and common mistakes.",
-      "fileId": "SAMPLE_ID_3",
-      "color": "#9DDE8B",
-      "plays": "156K",
-      "date": "2024-01-13",
-      "tags": ["prayer", "salah", "worship", "how-to"]
+      "title": "The Life of Prophet Muhammad (PBUH)",
+      "author": "Yasir Qadhi",
+      "category": "Seerah",
+      "categoryId": "seerah",
+      "description": "Detailed account of the life and teachings of the final Prophet.",
+      "duration": "120:45",
+      "size": "115 MB",
+      "date": "2024-01-10",
+      "color": "#FF6B6B",
+      "fileId": "3ghi789jkl012",
+      "tags": ["prophet", "seerah", "biography"]
     },
     {
       "id": 4,
-      "title": "Patience in Times of Difficulty",
-      "author": "Nouman Ali Khan",
-      "authorId": "nouman-ali-khan",
-      "category": "Spirituality",
-      "categoryId": "spirituality",
-      "duration": "38:20",
-      "size": "35 MB",
-      "description": "Quranic perspective on patience, trials, and finding strength through faith.",
-      "fileId": "SAMPLE_ID_4",
-      "color": "#E6FF94",
-      "plays": "78K",
-      "date": "2024-01-12",
-      "tags": ["patience", "trials", "faith", "emotional"]
+      "title": "Fiqh of Salah - Complete Guide",
+      "author": "Abu Taymiyyah",
+      "category": "Fiqh",
+      "categoryId": "fiqh",
+      "description": "Comprehensive guide to performing Salah correctly according to authentic sources.",
+      "duration": "89:30",
+      "size": "85 MB",
+      "date": "2024-01-18",
+      "color": "#9370DB",
+      "fileId": "4jkl012mno345",
+      "tags": ["salah", "prayer", "fiqh"]
     },
     {
       "id": 5,
-      "title": "Islamic Finance & Halal Investments",
-      "author": "Islamic Finance Council",
-      "authorId": "islamic-finance",
-      "category": "Fiqh & Jurisprudence",
-      "categoryId": "fiqh",
-      "duration": "49:10",
-      "size": "45 MB",
-      "description": "Principles of Islamic finance, halal investment opportunities, and avoiding riba.",
-      "fileId": "SAMPLE_ID_5",
-      "color": "#40A578",
-      "plays": "45K",
-      "date": "2024-01-11",
-      "tags": ["finance", "money", "investing", "halal"]
+      "title": "Overcoming Depression with Faith",
+      "author": "Mufti Menk",
+      "category": "Spirituality",
+      "categoryId": "spirituality",
+      "description": "Practical Islamic advice for dealing with depression and anxiety.",
+      "duration": "52:18",
+      "size": "49 MB",
+      "date": "2024-01-22",
+      "color": "#4A90E2",
+      "fileId": "5mno345pqr678",
+      "tags": ["depression", "mental health", "healing"]
     },
     {
       "id": 6,
-      "title": "40 Hadith on Good Character",
-      "author": "Dr. Bilal Philips",
-      "authorId": "bilal-philips",
-      "category": "Hadith Studies",
-      "categoryId": "hadith",
-      "duration": "55:25",
-      "size": "51 MB",
-      "description": "Collection of prophetic traditions focusing on moral excellence and good character.",
-      "fileId": "SAMPLE_ID_6",
-      "color": "#006769",
-      "plays": "92K",
-      "date": "2024-01-10",
-      "tags": ["hadith", "character", "ethics", "morals"]
+      "title": "Tafseer of Surah Al-Kahf",
+      "author": "Nouman Ali Khan",
+      "category": "Quran",
+      "categoryId": "quran",
+      "description": "Detailed explanation of Surah Al-Kahf and its relevance to modern times.",
+      "duration": "75:45",
+      "size": "72 MB",
+      "date": "2024-01-12",
+      "color": "#50C878",
+      "fileId": "6pqr678stu901",
+      "tags": ["tafseer", "surah", "quran"]
+    },
+    {
+      "id": 7,
+      "title": "The Companions of the Prophet",
+      "author": "Yasir Qadhi",
+      "category": "History",
+      "categoryId": "history",
+      "description": "Stories and lessons from the lives of the Sahaba.",
+      "duration": "68:20",
+      "size": "65 MB",
+      "date": "2024-01-25",
+      "color": "#FFA500",
+      "fileId": "7stu901vwx234",
+      "tags": ["companions", "sahaba", "history"]
+    },
+    {
+      "id": 8,
+      "title": "Zakat Calculation Made Easy",
+      "author": "Abu Taymiyyah",
+      "category": "Fiqh",
+      "categoryId": "fiqh",
+      "description": "Step-by-step guide to calculating and giving Zakat properly.",
+      "duration": "41:15",
+      "size": "39 MB",
+      "date": "2024-01-14",
+      "color": "#9370DB",
+      "fileId": "8vwx234yza567",
+      "tags": ["zakat", "charity", "obligation"]
     }
   ],
   "categories": [
     {
       "id": "quran",
-      "name": "Quran Tafsir",
-      "description": "In-depth explanation and interpretation of the Holy Quran",
-      "count": 48,
+      "name": "Quran",
+      "description": "Lectures about Quran recitation, understanding and tafseer",
       "icon": "book-quran"
-    },
-    {
-      "id": "hadith",
-      "name": "Hadith Studies",
-      "description": "Sayings and teachings of Prophet Muhammad (PBUH)",
-      "count": 32,
-      "icon": "book-open"
-    },
-    {
-      "id": "fiqh",
-      "name": "Fiqh & Jurisprudence",
-      "description": "Islamic law and legal rulings",
-      "count": 41,
-      "icon": "balance-scale"
-    },
-    {
-      "id": "seerah",
-      "name": "Seerah & History",
-      "description": "Life of the Prophet and Islamic history",
-      "count": 27,
-      "icon": "mosque"
-    },
-    {
-      "id": "aqeedah",
-      "name": "Aqeedah & Belief",
-      "description": "Islamic creed and theology",
-      "count": 19,
-      "icon": "star-and-crescent"
     },
     {
       "id": "spirituality",
       "name": "Spirituality",
-      "description": "Purification of the heart and soul",
-      "count": 23,
+      "description": "Lectures on iman, ihsan, and spiritual development",
       "icon": "heart"
+    },
+    {
+      "id": "seerah",
+      "name": "Seerah",
+      "description": "Life and teachings of Prophet Muhammad (PBUH)",
+      "icon": "user"
+    },
+    {
+      "id": "fiqh",
+      "name": "Fiqh",
+      "description": "Islamic jurisprudence and rulings",
+      "icon": "balance-scale"
+    },
+    {
+      "id": "history",
+      "name": "Islamic History",
+      "description": "Historical events and figures in Islam",
+      "icon": "history"
+    },
+    {
+      "id": "family",
+      "name": "Family & Society",
+      "description": "Islamic guidance for family and social life",
+      "icon": "home"
+    },
+    {
+      "id": "ethics",
+      "name": "Ethics & Character",
+      "description": "Building good character and Islamic manners",
+      "icon": "star"
+    },
+    {
+      "id": "contemporary",
+      "name": "Contemporary Issues",
+      "description": "Modern issues from an Islamic perspective",
+      "icon": "globe"
     }
   ],
   "scholars": [
     {
-      "id": "yasir-qadhi",
-      "name": "Dr. Yasir Qadhi",
-      "description": "Islamic scholar and lecturer",
-      "lecturesCount": 24,
-      "color": "#006769"
-    },
-    {
-      "id": "omar-suleiman",
-      "name": "Omar Suleiman",
-      "description": "Imam, scholar, and civil rights activist",
-      "lecturesCount": 18,
-      "color": "#40A578"
-    },
-    {
-      "id": "mufti-menk",
+      "id": "muftimenk",
       "name": "Mufti Menk",
-      "description": "Islamic scholar from Zimbabwe",
-      "lecturesCount": 32,
-      "color": "#9DDE8B"
+      "description": "Islamic scholar known for motivational lectures",
+      "lectures": [1, 5]
     },
     {
-      "id": "nouman-ali-khan",
+      "id": "nouman",
       "name": "Nouman Ali Khan",
-      "description": "Founder of Bayyinah Institute",
-      "lecturesCount": 28,
-      "color": "#E6FF94"
+      "description": "Quranic Arabic expert and founder of Bayyinah Institute",
+      "lectures": [2, 6]
     },
     {
-      "id": "bilal-philips",
-      "name": "Dr. Bilal Philips",
-      "description": "Islamic scholar and author",
-      "lecturesCount": 15,
-      "color": "#006769"
+      "id": "yasir",
+      "name": "Yasir Qadhi",
+      "description": "Islamic theologian and lecturer on seerah and history",
+      "lectures": [3, 7]
+    },
+    {
+      "id": "abutaymiyyah",
+      "name": "Abu Taymiyyah",
+      "description": "Fiqh scholar specializing in practical Islamic rulings",
+      "lectures": [4, 8]
     }
   ]
-} 
+}
+
+
