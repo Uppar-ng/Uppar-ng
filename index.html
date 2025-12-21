@@ -7,23 +7,56 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #ffffff;
-            --secondary: #f8f9fa;
-            --accent: #006769;
-            --accent-light: #40A578;
-            --text: #1a1a1a;
-            --text-secondary: #666666;
-            --text-light: #888888;
-            --border: #e1e5e9;
-            --card-bg: #ffffff;
-            --hover-bg: #f0f2f5;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.1);
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --sidebar-width: 280px;
+            /* Light Theme */
+            --primary-light: #ffffff;
+            --secondary-light: #f8f9fa;
+            --accent-light: #006769;
+            --accent-light-hover: #0a7c7e;
+            --accent-secondary-light: #FF6B6B;
+            --text-light: #1a1a1a;
+            --text-secondary-light: #666666;
+            --text-light-light: #888888;
+            --border-light: #e1e5e9;
+            --card-bg-light: #ffffff;
+            --hover-bg-light: #f0f2f5;
+            --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.05);
+            --shadow-hover-light: 0 6px 20px rgba(0, 0, 0, 0.08);
+            
+            /* Dark Theme */
+            --primary-dark: #121212;
+            --secondary-dark: #1e1e1e;
+            --accent-dark: #40A578;
+            --accent-dark-hover: #4db58a;
+            --accent-secondary-dark: #FF8E53;
+            --text-dark: #ffffff;
+            --text-secondary-dark: #b3b3b3;
+            --text-light-dark: #888888;
+            --border-dark: #333333;
+            --card-bg-dark: #1e1e1e;
+            --hover-bg-dark: #2d2d2d;
+            --shadow-dark: 0 2px 10px rgba(0, 0, 0, 0.3);
+            --shadow-hover-dark: 0 6px 20px rgba(0, 0, 0, 0.4);
+            
+            /* Current Theme (Default: Light) */
+            --primary: var(--primary-light);
+            --secondary: var(--secondary-light);
+            --accent: var(--accent-light);
+            --accent-hover: var(--accent-light-hover);
+            --accent-secondary: var(--accent-secondary-light);
+            --text: var(--text-light);
+            --text-secondary: var(--text-secondary-light);
+            --text-light: var(--text-light-light);
+            --border: var(--border-light);
+            --card-bg: var(--card-bg-light);
+            --hover-bg: var(--hover-bg-light);
+            --shadow: var(--shadow-light);
+            --shadow-hover: var(--shadow-hover-light);
+            
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --sidebar-width: 240px;
         }
 
         * {
@@ -40,10 +73,37 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Segoe UI', Helvetica, Arial, sans-serif;
             background: var(--primary);
             color: var(--text);
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
             min-height: 100vh;
-            font-size: 15px;
+            font-size: 14px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            z-index: 1000;
+            box-shadow: var(--shadow-hover);
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: var(--accent-hover);
         }
 
         /* Header */
@@ -52,8 +112,8 @@
             top: 0;
             background: var(--primary);
             border-bottom: 1px solid var(--border);
-            padding: 0 32px;
-            height: 72px;
+            padding: 0 20px;
+            height: 64px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -65,64 +125,111 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             text-decoration: none;
+            cursor: pointer;
         }
 
         .logo-icon {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             position: relative;
         }
 
         .logo-outer {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             border: 2px solid var(--accent);
             border-radius: 50%;
             position: absolute;
         }
 
         .logo-inner {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             border: 2px solid var(--accent);
             border-radius: 50%;
             position: absolute;
-            top: 8px;
-            left: 8px;
+            top: 7px;
+            left: 7px;
         }
 
         .logo-text {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 700;
             color: var(--accent);
             letter-spacing: -0.5px;
         }
 
         .logo-tagline {
-            font-size: 12px;
-            color: var(--text-light);
+            font-size: 11px;
+            color: var(--text-secondary);
             font-weight: 400;
             margin-top: -2px;
+        }
+
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--secondary);
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .action-btn:hover {
+            background: var(--hover-bg);
+            transform: translateY(-2px);
+        }
+
+        .action-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .action-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent-secondary);
+            color: white;
+            font-size: 9px;
+            padding: 2px 5px;
+            border-radius: 10px;
+            min-width: 16px;
+            text-align: center;
+            font-weight: 600;
         }
 
         /* Search */
         .search-container {
             flex: 1;
-            max-width: 600px;
-            margin: 0 32px;
+            max-width: 500px;
+            margin: 0 20px;
             position: relative;
         }
 
         .search-input {
             width: 100%;
-            padding: 12px 20px 12px 48px;
+            padding: 10px 16px 10px 40px;
             background: var(--secondary);
             border: 1px solid var(--border);
             border-radius: var(--radius-sm);
             color: var(--text);
-            font-size: 15px;
+            font-size: 14px;
             transition: var(--transition);
             font-weight: 400;
         }
@@ -136,10 +243,10 @@
 
         .search-icon {
             position: absolute;
-            left: 16px;
+            left: 12px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-light);
+            color: var(--text-secondary);
             pointer-events: none;
         }
 
@@ -163,8 +270,8 @@
         .search-result-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
+            gap: 10px;
+            padding: 10px 14px;
             cursor: pointer;
             transition: var(--transition);
             border-bottom: 1px solid var(--border);
@@ -179,33 +286,33 @@
         }
 
         .search-result-icon {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            background: var(--accent-light);
+            background: var(--accent);
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .search-result-info h4 {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             margin-bottom: 2px;
             color: var(--text);
         }
 
         .search-result-info p {
-            font-size: 12px;
-            color: var(--text-light);
+            font-size: 11px;
+            color: var(--text-secondary);
         }
 
         .search-result-type {
-            font-size: 11px;
-            padding: 2px 8px;
-            background: var(--accent-light);
+            font-size: 10px;
+            padding: 2px 6px;
+            background: var(--accent);
             color: white;
             border-radius: 4px;
             margin-left: auto;
@@ -214,7 +321,7 @@
         /* Main Layout */
         .main-container {
             display: flex;
-            min-height: calc(100vh - 72px);
+            min-height: calc(100vh - 64px);
         }
 
         /* Sidebar */
@@ -222,40 +329,40 @@
             width: var(--sidebar-width);
             background: var(--secondary);
             border-right: 1px solid var(--border);
-            padding: 32px 0;
+            padding: 20px 0;
             position: sticky;
-            top: 72px;
-            height: calc(100vh - 72px);
+            top: 64px;
+            height: calc(100vh - 64px);
             overflow-y: auto;
         }
 
         .sidebar-section {
-            margin-bottom: 32px;
+            margin-bottom: 24px;
         }
 
         .sidebar-title {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            color: var(--text-light);
-            padding: 0 24px 12px;
-            margin-bottom: 12px;
+            color: var(--text-secondary);
+            padding: 0 20px 10px;
+            margin-bottom: 10px;
             border-bottom: 1px solid var(--border);
         }
 
         .sidebar-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 24px;
+            gap: 10px;
+            padding: 10px 20px;
             color: var(--text);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             transition: var(--transition);
             border-radius: var(--radius-sm);
-            margin: 4px 12px;
+            margin: 2px 10px;
             cursor: pointer;
         }
 
@@ -270,18 +377,18 @@
         }
 
         .sidebar-item i {
-            width: 20px;
+            width: 18px;
             text-align: center;
-            font-size: 16px;
+            font-size: 14px;
         }
 
         .item-count {
             margin-left: auto;
-            font-size: 12px;
-            color: var(--text-light);
+            font-size: 11px;
+            color: var(--text-secondary);
             background: rgba(0, 0, 0, 0.05);
-            padding: 2px 8px;
-            border-radius: 10px;
+            padding: 2px 6px;
+            border-radius: 8px;
         }
 
         .sidebar-item.active .item-count {
@@ -292,37 +399,173 @@
         /* Main Content */
         .main-content {
             flex: 1;
-            padding: 32px;
+            padding: 20px;
+        }
+
+        /* Categories Row */
+        .categories-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            overflow-x: auto;
+            padding: 4px 0;
+        }
+
+        .categories-row::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .categories-row::-webkit-scrollbar-track {
+            background: var(--secondary);
+        }
+
+        .categories-row::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 2px;
+        }
+
+        .category-btn {
+            padding: 6px 12px;
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .category-btn:hover {
+            background: var(--hover-bg);
+            border-color: var(--accent);
+        }
+
+        .category-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
         }
 
         /* Page Header */
         .page-header {
-            margin-bottom: 32px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .back-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            background: var(--hover-bg);
+            transform: translateX(-2px);
         }
 
         .page-title {
-            font-size: 32px;
+            font-size: 24px;
             font-weight: 700;
             color: var(--text);
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             letter-spacing: -0.5px;
         }
 
         .page-description {
-            font-size: 16px;
+            font-size: 14px;
             color: var(--text-secondary);
             max-width: 600px;
+        }
+
+        /* Section Header */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .see-all {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .see-all:hover {
+            gap: 8px;
+        }
+
+        /* New Badge */
+        .new-badge {
+            background: linear-gradient(135deg, var(--accent-secondary) 0%, #FF8E53 100%);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .new-badge-small {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent-secondary);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: bold;
+            z-index: 2;
         }
 
         /* Content Grid */
         .content-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-            margin-bottom: 48px;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
         }
 
-        /* Lecture Card */
+        /* Lecture Card (Smaller) */
         .lecture-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -330,56 +573,70 @@
             overflow: hidden;
             transition: var(--transition);
             position: relative;
+            cursor: pointer;
         }
 
         .lecture-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-hover);
-            border-color: var(--accent-light);
+            border-color: var(--accent);
         }
 
         .card-header {
-            height: 160px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            height: 120px;
             position: relative;
             overflow: hidden;
         }
 
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--card-color, var(--accent)) 0%, 
+                                        var(--card-color-light, var(--accent-hover)) 100%);
+            opacity: 0.9;
+        }
+
         .card-category {
             position: absolute;
-            top: 16px;
-            left: 16px;
+            top: 12px;
+            left: 12px;
             background: rgba(255, 255, 255, 0.95);
             color: var(--accent);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 10px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            z-index: 2;
         }
 
         .card-duration {
             position: absolute;
-            bottom: 16px;
-            right: 16px;
+            bottom: 12px;
+            right: 12px;
             background: rgba(0, 0, 0, 0.7);
             color: white;
-            padding: 4px 10px;
+            padding: 3px 8px;
             border-radius: 4px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
+            z-index: 2;
         }
 
         .card-content {
-            padding: 20px;
+            padding: 16px;
         }
 
         .card-title {
-            font-size: 18px;
+            font-size: 15px;
             font-weight: 600;
-            line-height: 1.4;
-            margin-bottom: 8px;
+            line-height: 1.3;
+            margin-bottom: 6px;
             color: var(--text);
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -390,32 +647,32 @@
         .card-author {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 12px;
-            font-size: 14px;
+            gap: 6px;
+            margin-bottom: 10px;
+            font-size: 12px;
             color: var(--text-secondary);
         }
 
         .author-avatar {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
-            background: var(--accent-light);
+            background: var(--accent);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 600;
         }
 
         .card-description {
-            font-size: 14px;
-            color: var(--text-light);
-            line-height: 1.5;
-            margin-bottom: 16px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            margin-bottom: 12px;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -424,39 +681,39 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 12px;
-            color: var(--text-light);
-            padding-top: 16px;
+            font-size: 11px;
+            color: var(--text-secondary);
+            padding-top: 12px;
             border-top: 1px solid var(--border);
         }
 
         .card-actions {
             display: flex;
-            gap: 8px;
+            gap: 6px;
         }
 
         .card-btn {
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: var(--radius-sm);
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             border: none;
         }
 
-        .play-btn {
+        .download-btn {
             background: var(--accent);
             color: white;
             border: 1px solid var(--accent);
         }
 
-        .play-btn:hover {
-            background: var(--accent-light);
-            border-color: var(--accent-light);
+        .download-btn:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
         }
 
         .info-btn {
@@ -467,15 +724,27 @@
 
         .info-btn:hover {
             background: var(--hover-bg);
-            border-color: var(--text-light);
+            border-color: var(--text-secondary);
         }
 
-        /* Scholar Card */
+        .trending-badge {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #333;
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-size: 9px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        /* Scholar Card (Smaller) */
         .scholar-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
-            padding: 24px;
+            padding: 16px;
             text-align: center;
             transition: var(--transition);
             cursor: pointer;
@@ -484,41 +753,230 @@
         .scholar-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-hover);
-            border-color: var(--accent-light);
+            border-color: var(--accent);
         }
 
         .scholar-avatar {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            margin: 0 auto 16px;
+            background: var(--accent);
+            margin: 0 auto 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 600;
         }
 
         .scholar-name {
-            font-size: 18px;
+            font-size: 15px;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: var(--text);
         }
 
         .scholar-description {
-            font-size: 14px;
-            color: var(--text-light);
-            margin-bottom: 12px;
-            line-height: 1.4;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            line-height: 1.3;
         }
 
         .scholar-stats {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--accent);
             font-weight: 500;
+        }
+
+        /* Download List Page */
+        .download-list-page {
+            display: none;
+        }
+
+        .download-list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .download-list-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .download-list-btn {
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .download-list-btn.secondary {
+            background: transparent;
+            color: var(--text);
+        }
+
+        .download-list-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .download-list-items {
+            min-height: 200px;
+        }
+
+        .download-list-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+
+        .download-list-empty i {
+            font-size: 36px;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+
+        .download-list-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            margin-bottom: 8px;
+            transition: var(--transition);
+        }
+
+        .download-list-item:hover {
+            background: var(--hover-bg);
+            border-color: var(--accent);
+        }
+
+        .download-list-item-index {
+            font-size: 12px;
+            color: var(--text-secondary);
+            min-width: 24px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .download-list-item-content {
+            flex: 1;
+        }
+
+        .download-list-item-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+
+        .download-list-item-meta {
+            display: flex;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .download-list-item-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .download-item-btn {
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .download-item-btn:hover {
+            background: var(--hover-bg);
+        }
+
+        .download-item-btn.primary {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .download-item-btn.primary:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Recommendations Section */
+        .recommendations-section {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 32px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .recommendations-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(80px, -80px);
+        }
+
+        .recommendations-content h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .recommendations-content p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 16px;
+            max-width: 500px;
+        }
+
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        /* Related Lectures */
+        .related-lectures-section {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
         }
 
         /* Modal */
@@ -559,49 +1017,49 @@
         }
 
         .modal-header {
-            padding: 24px 24px 16px;
+            padding: 20px 20px 12px;
             border-bottom: 1px solid var(--border);
         }
 
         .modal-title {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
             color: var(--text);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .modal-subtitle {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-secondary);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .modal-body {
-            padding: 24px;
+            padding: 20px;
         }
 
         .lecture-info {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .info-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-            font-size: 14px;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 13px;
         }
 
         .info-item i {
-            width: 20px;
+            width: 18px;
             color: var(--accent);
         }
 
         .info-label {
-            color: var(--text-light);
-            min-width: 80px;
+            color: var(--text-secondary);
+            min-width: 70px;
         }
 
         .info-value {
@@ -612,49 +1070,49 @@
         .description-box {
             background: var(--secondary);
             border-radius: var(--radius-sm);
-            padding: 16px;
-            margin-top: 16px;
+            padding: 12px;
+            margin-top: 12px;
         }
 
         .description-box h4 {
-            font-size: 14px;
-            color: var(--text-light);
-            margin-bottom: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
             font-weight: 500;
         }
 
         .description-box p {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text);
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         .modal-footer {
-            padding: 16px 24px;
+            padding: 12px 20px;
             border-top: 1px solid var(--border);
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .download-btn {
+        .modal-download-btn {
             flex: 1;
             background: var(--accent);
             color: white;
             border: none;
-            padding: 14px;
+            padding: 12px;
             border-radius: var(--radius-sm);
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
         }
 
-        .download-btn:hover {
-            background: var(--accent-light);
+        .modal-download-btn:hover {
+            background: var(--accent-hover);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 103, 105, 0.2);
         }
@@ -663,9 +1121,9 @@
             background: transparent;
             color: var(--text);
             border: 1px solid var(--border);
-            padding: 14px;
+            padding: 12px;
             border-radius: var(--radius-sm);
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 500;
             cursor: pointer;
             transition: var(--transition);
@@ -675,104 +1133,1636 @@
             background: var(--hover-bg);
         }
 
-        /* Empty State */
-        .empty-state {
+        /* Loading */
+        .loading {
+            display: none;
             text-align: center;
-            padding: 64px 32px;
-            grid-column: 1 / -1;
+            padding: 48px;
         }
 
-        .empty-state i {
-            font-size: 48px;
-            color: var(--border);
-            margin-bottom: 16px;
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 12px;
         }
 
-        .empty-state h3 {
-            font-size: 18px;
-            color: var(--text);
-            margin-bottom: 8px;
-            font-weight: 600;
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
-        .empty-state p {
-            color: var(--text-light);
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
             max-width: 400px;
-            margin: 0 auto;
-        }
-
-        /* Playlist */
-        .playlist-section {
-            background: var(--secondary);
-            border-radius: var(--radius-md);
-            padding: 24px;
-            margin-top: 32px;
-            border: 1px solid var(--border);
-        }
-
-        .playlist-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .playlist-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .playlist-controls {
-            display: flex;
-            gap: 8px;
-        }
-
-        .playlist-btn {
-            padding: 8px 16px;
-            border-radius: var(--radius-sm);
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 1px solid var(--border);
             background: var(--primary);
-            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 12px;
+            box-shadow: var(--shadow-hover);
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            animation: slideUp 0.3s ease forwards;
         }
 
-        .playlist-btn:hover {
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notification-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .notification-message {
+            flex: 1;
+        }
+
+        .notification-message strong {
+            display: block;
+            margin-bottom: 2px;
+            color: var(--text);
+            font-size: 13px;
+        }
+
+        .notification-message p {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 14px;
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        .notification-close:hover {
             background: var(--hover-bg);
         }
 
-        .playlist-items {
-            min-height: 60px;
-            border: 2px dashed var(--border);
-            border-radius: var(--radius-sm);
-            padding: 16px;
-        }
-
-        .playlist-empty {
+        /* Footer */
+        .footer {
+            margin-top: 48px;
+            padding: 24px;
+            border-top: 1px solid var(--border);
+            background: var(--secondary);
             text-align: center;
-            color: var(--text-light);
-            font-size: 14px;
-            padding: 20px;
         }
 
-        .playlist-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px;
-            background: var(--primary);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            margin-bottom: 8px;
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .playlist-item:last-child {
-            margin-bottom: 0;
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 12px;
         }
 
-        .playlist-item-index {
-            font-size: 14px;
-            color: var
+        .copyright {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 16px;
+            }
+            
+            .content-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 0 16px;
+                height: 60px;
+            }
+            
+            .logo-text span {
+                display: none;
+            }
+            
+            .search-container {
+                margin: 0 12px;
+                max-width: 300px;
+            }
+            
+            .main-content {
+                padding: 16px;
+            }
+            
+            .content-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+            
+            .page-title {
+                font-size: 20px;
+            }
+            
+            .recommendations-section {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 0 12px;
+            }
+            
+            .logo-icon {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .logo-outer {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .logo-inner {
+                width: 16px;
+                height: 16px;
+                top: 6px;
+                left: 6px;
+            }
+            
+            .search-input {
+                padding: 8px 12px 8px 36px;
+                font-size: 13px;
+            }
+            
+            .search-icon {
+                left: 10px;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .theme-toggle {
+                bottom: 70px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo" onclick="showHome()">
+            <div class="logo-icon">
+                <div class="logo-outer"></div>
+                <div class="logo-inner"></div>
+            </div>
+            <div>
+                <div class="logo-text">Tabsr Studio</div>
+                <div class="logo-tagline">Islamic Audio Platform</div>
+            </div>
+        </div>
+        
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input 
+                type="text" 
+                class="search-input" 
+                placeholder="Search lectures, scholars, topics..."
+                id="search-input"
+            >
+            <div class="search-results" id="search-results"></div>
+        </div>
+
+        <div class="header-actions">
+            <button class="action-btn" id="download-list-btn" onclick="showDownloadList()" title="Download List">
+                <i class="fas fa-download"></i>
+                <span class="action-badge" id="download-count">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Browse</div>
+                <div class="sidebar-item active" onclick="showHome()">
+                    <i class="fas fa-home"></i>
+                    Home
+                </div>
+                <div class="sidebar-item" onclick="showAllLectures()">
+                    <i class="fas fa-headphones"></i>
+                    All Lectures
+                </div>
+                <div class="sidebar-item" onclick="showScholars()">
+                    <i class="fas fa-users"></i>
+                    Scholars
+                </div>
+            </div>
+            
+            <div class="sidebar-section" id="categories-section">
+                <div class="sidebar-title">Categories</div>
+                <!-- Categories will be loaded here -->
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content" id="main-content">
+            <!-- Home Page -->
+            <div id="home-page">
+                <!-- Categories Row -->
+                <div class="categories-row" id="categories-row">
+                    <!-- Category buttons will load here -->
+                </div>
+
+                <!-- Recommendations Section -->
+                <div class="recommendations-section" id="recommendations-section" style="display: none;">
+                    <div class="recommendations-content">
+                        <h2><i class="fas fa-star"></i> Recommended For You</h2>
+                        <p>Based on your download history and preferences</p>
+                        <div id="recommendations-grid" class="recommendations-grid">
+                            <!-- Recommendations will load here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trending This Week -->
+                <div class="section-header">
+                    <h2><i class="fas fa-fire"></i> Trending This Week</h2>
+                    <a href="#" class="see-all" onclick="showTrendingPage()">
+                        View All <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div id="trending-grid" class="content-grid">
+                    <!-- Trending lectures will be loaded here -->
+                </div>
+
+                <!-- Recently Added -->
+                <div class="section-header">
+                    <h2><i class="fas fa-bolt"></i> Recently Added</h2>
+                    <span class="new-badge" id="new-badge-count">NEW</span>
+                </div>
+                
+                <div id="recent-grid" class="content-grid">
+                    <!-- Recent lectures will be loaded here -->
+                </div>
+
+                <!-- Featured Categories -->
+                <div class="section-header">
+                    <h2><i class="fas fa-star"></i> Featured Categories</h2>
+                    <a href="#" class="see-all" onclick="showAllLectures()">
+                        Browse All <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div id="featured-grid" class="content-grid">
+                    <!-- Featured lectures will be loaded here -->
+                </div>
+            </div>
+
+            <!-- All Lectures Page -->
+            <div id="lectures-page" style="display: none;">
+                <div class="page-header">
+                    <button class="back-btn" onclick="showHome()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div>
+                        <h1 class="page-title">All Lectures</h1>
+                        <p class="page-description">Browse our complete collection of Islamic lectures.</p>
+                    </div>
+                </div>
+                
+                <div id="all-lectures-grid" class="content-grid">
+                    <!-- All lectures will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Scholars Page -->
+            <div id="scholars-page" style="display: none;">
+                <div class="page-header">
+                    <button class="back-btn" onclick="showHome()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div>
+                        <h1 class="page-title">Scholars</h1>
+                        <p class="page-description">Learn from respected Islamic scholars and teachers.</p>
+                    </div>
+                </div>
+                
+                <div id="scholars-grid" class="content-grid">
+                    <!-- Scholars will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Category Page -->
+            <div id="category-page" style="display: none;">
+                <div class="page-header">
+                    <button class="back-btn" onclick="showHome()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div>
+                        <h1 class="page-title" id="category-title"></h1>
+                        <p class="page-description" id="category-description"></p>
+                    </div>
+                </div>
+                
+                <div id="category-grid" class="content-grid">
+                    <!-- Category lectures will be loaded here -->
+                </div>
+                
+                <!-- Related Lectures Section -->
+                <div class="related-lectures-section" id="related-lectures-section" style="display: none;">
+                    <div class="section-header">
+                        <h2><i class="fas fa-random"></i> Related Lectures</h2>
+                    </div>
+                    <div id="related-grid" class="content-grid">
+                        <!-- Related lectures will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Download List Page -->
+            <div id="download-list-page" class="download-list-page">
+                <div class="page-header">
+                    <button class="back-btn" onclick="showHome()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div>
+                        <h1 class="page-title"><i class="fas fa-download"></i> Download List</h1>
+                        <p class="page-description">Your personal collection of lectures to download</p>
+                    </div>
+                </div>
+                
+                <div class="download-list-controls">
+                    <button class="download-list-btn secondary" onclick="clearDownloadList()">
+                        <i class="fas fa-trash"></i> Clear All
+                    </button>
+                    <button class="download-list-btn" onclick="downloadAllQueue()">
+                        <i class="fas fa-download"></i> Download Queue
+                    </button>
+                </div>
+                
+                <div class="download-list-items" id="download-list-items">
+                    <!-- Download list items will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Loading -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Loading content...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lecture Modal -->
+    <div class="modal" id="lecture-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-lecture-title"></h3>
+                <div class="modal-subtitle">
+                    <i class="fas fa-user"></i>
+                    <span id="modal-lecture-author"></span>
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <div class="lecture-info">
+                    <div class="info-item">
+                        <i class="fas fa-folder"></i>
+                        <span class="info-label">Category:</span>
+                        <span class="info-value" id="modal-lecture-category"></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <span class="info-label">Duration:</span>
+                        <span class="info-value" id="modal-lecture-duration"></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-database"></i>
+                        <span class="info-label">Size:</span>
+                        <span class="info-value" id="modal-lecture-size"></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-download"></i>
+                        <span class="info-label">Downloads:</span>
+                        <span class="info-value" id="modal-lecture-downloads"></span>
+                    </div>
+                </div>
+                
+                <div class="description-box">
+                    <h4>Description</h4>
+                    <p id="modal-lecture-description"></p>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="modal-download-btn" id="modal-download-btn">
+                    <i class="fas fa-download"></i> Download Now
+                </button>
+                <button class="close-btn" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="logo" style="justify-content: center; margin-bottom: 12px;">
+                <div class="logo-icon">
+                    <div class="logo-outer"></div>
+                    <div class="logo-inner"></div>
+                </div>
+                <div>
+                    <div class="logo-text">Tabsr Studio</div>
+                    <div class="logo-tagline">Islamic Audio Platform</div>
+                </div>
+            </div>
+            <p class="footer-text">
+                A premium platform for authentic Islamic knowledge. Direct downloads from verified sources.
+            </p>
+            <p class="copyright">
+                © 2024 Tabsr Studio. All content is property of their respective scholars and organizations.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // ======================
+        // THEME MANAGEMENT
+        // ======================
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.style.setProperty('--primary', 'var(--primary-dark)');
+                document.documentElement.style.setProperty('--secondary', 'var(--secondary-dark)');
+                document.documentElement.style.setProperty('--accent', 'var(--accent-dark)');
+                document.documentElement.style.setProperty('--accent-hover', 'var(--accent-dark-hover)');
+                document.documentElement.style.setProperty('--accent-secondary', 'var(--accent-secondary-dark)');
+                document.documentElement.style.setProperty('--text', 'var(--text-dark)');
+                document.documentElement.style.setProperty('--text-secondary', 'var(--text-secondary-dark)');
+                document.documentElement.style.setProperty('--text-light', 'var(--text-light-dark)');
+                document.documentElement.style.setProperty('--border', 'var(--border-dark)');
+                document.documentElement.style.setProperty('--card-bg', 'var(--card-bg-dark)');
+                document.documentElement.style.setProperty('--hover-bg', 'var(--hover-bg-dark)');
+                document.documentElement.style.setProperty('--shadow', 'var(--shadow-dark)');
+                document.documentElement.style.setProperty('--shadow-hover', 'var(--shadow-hover-dark)');
+                
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.style.setProperty('--primary', 'var(--primary-light)');
+                document.documentElement.style.setProperty('--secondary', 'var(--secondary-light)');
+                document.documentElement.style.setProperty('--accent', 'var(--accent-light)');
+                document.documentElement.style.setProperty('--accent-hover', 'var(--accent-light-hover)');
+                document.documentElement.style.setProperty('--accent-secondary', 'var(--accent-secondary-light)');
+                document.documentElement.style.setProperty('--text', 'var(--text-light)');
+                document.documentElement.style.setProperty('--text-secondary', 'var(--text-secondary-light)');
+                document.documentElement.style.setProperty('--text-light', 'var(--text-light-light)');
+                document.documentElement.style.setProperty('--border', 'var(--border-light)');
+                document.documentElement.style.setProperty('--card-bg', 'var(--card-bg-light)');
+                document.documentElement.style.setProperty('--hover-bg', 'var(--hover-bg-light)');
+                document.documentElement.style.setProperty('--shadow', 'var(--shadow-light)');
+                document.documentElement.style.setProperty('--shadow-hover', 'var(--shadow-hover-light)');
+                
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        
+        function toggleTheme() {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        }
+        
+        // Initialize theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+        themeToggle.addEventListener('click', toggleTheme);
+        
+        // ======================
+        // APP STATE
+        // ======================
+        let appData = {
+            lectures: [],
+            categories: [],
+            scholars: [],
+            downloadList: JSON.parse(localStorage.getItem('tabsr_download_list')) || [],
+            downloadQueue: JSON.parse(localStorage.getItem('tabsr_download_queue')) || [],
+            downloadStats: JSON.parse(localStorage.getItem('tabsr_download_stats')) || {},
+            searchHistory: JSON.parse(localStorage.getItem('tabsr_search_history')) || [],
+            downloadHistory: JSON.parse(localStorage.getItem('tabsr_download_history')) || [],
+            currentPage: 'home',
+            currentLecture: null,
+            lastVisit: localStorage.getItem('lastVisit') || null
+        };
+
+        // ======================
+        // DOM ELEMENTS
+        // ======================
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+        const homePage = document.getElementById('home-page');
+        const lecturesPage = document.getElementById('lectures-page');
+        const scholarsPage = document.getElementById('scholars-page');
+        const categoryPage = document.getElementById('category-page');
+        const downloadListPage = document.getElementById('download-list-page');
+        const downloadListBtn = document.getElementById('download-list-btn');
+        const downloadCountBadge = document.getElementById('download-count');
+        const trendingGrid = document.getElementById('trending-grid');
+        const recentGrid = document.getElementById('recent-grid');
+        const featuredGrid = document.getElementById('featured-grid');
+        const allLecturesGrid = document.getElementById('all-lectures-grid');
+        const scholarsGrid = document.getElementById('scholars-grid');
+        const categoryGrid = document.getElementById('category-grid');
+        const relatedGrid = document.getElementById('related-grid');
+        const relatedSection = document.getElementById('related-lectures-section');
+        const categoryTitle = document.getElementById('category-title');
+        const categoryDescription = document.getElementById('category-description');
+        const loading = document.getElementById('loading');
+        const lectureModal = document.getElementById('lecture-modal');
+        const modalTitle = document.getElementById('modal-lecture-title');
+        const modalAuthor = document.getElementById('modal-lecture-author');
+        const modalCategory = document.getElementById('modal-lecture-category');
+        const modalDuration = document.getElementById('modal-lecture-duration');
+        const modalSize = document.getElementById('modal-lecture-size');
+        const modalDownloads = document.getElementById('modal-lecture-downloads');
+        const modalDescription = document.getElementById('modal-lecture-description');
+        const modalDownloadBtn = document.getElementById('modal-download-btn');
+        const downloadListItems = document.getElementById('download-list-items');
+        const categoriesSection = document.getElementById('categories-section');
+        const categoriesRow = document.getElementById('categories-row');
+        const recommendationsSection = document.getElementById('recommendations-section');
+        const recommendationsGrid = document.getElementById('recommendations-grid');
+        const newBadgeCount = document.getElementById('new-badge-count');
+
+        // ======================
+        // INITIALIZATION
+        // ======================
+        async function initApp() {
+            showLoading(true);
+            
+            try {
+                const response = await fetch('data.json');
+                if (!response.ok) throw new Error('Failed to load data.json');
+                
+                const data = await response.json();
+                appData.lectures = data.lectures || [];
+                appData.categories = data.categories || [];
+                appData.scholars = data.scholars || [];
+                
+                // Initialize download stats if empty
+                if (Object.keys(appData.downloadStats).length === 0) {
+                    appData.lectures.forEach(lecture => {
+                        appData.downloadStats[lecture.id] = 0;
+                    });
+                    saveDownloadStats();
+                }
+                
+                updateUI();
+                renderCategories();
+                renderCategoriesRow();
+                renderHomePage();
+                checkForRecommendations();
+                updateDownloadListBadge();
+                
+                setupEventListeners();
+                setupLastVisit();
+                
+                showLoading(false);
+            } catch (error) {
+                console.error('Error loading data:', error);
+                showLoading(false);
+                featuredGrid.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: var(--text-secondary);">
+                        <i class="fas fa-exclamation-circle" style="font-size: 48px; margin-bottom: 16px;"></i>
+                        <h3>Error Loading Content</h3>
+                        <p>Please check if data.json file exists.</p>
+                        <p style="font-size: 12px;">Error: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // ======================
+        // SEARCH FUNCTIONALITY
+        // ======================
+        function performSearch(query) {
+            if (!query.trim()) {
+                searchResults.style.display = 'none';
+                return;
+            }
+            
+            // Add to search history
+            addToSearchHistory(query);
+            
+            const results = {
+                lectures: [],
+                scholars: [],
+                categories: []
+            };
+            
+            // Search in lectures
+            results.lectures = appData.lectures.filter(lecture => 
+                lecture.title.toLowerCase().includes(query.toLowerCase()) ||
+                lecture.author.toLowerCase().includes(query.toLowerCase()) ||
+                lecture.description.toLowerCase().includes(query.toLowerCase()) ||
+                (lecture.tags && lecture.tags.some(tag => 
+                    tag.toLowerCase().includes(query.toLowerCase())
+                ))
+            ).slice(0, 5);
+            
+            // Search in scholars
+            results.scholars = appData.scholars.filter(scholar =>
+                scholar.name.toLowerCase().includes(query.toLowerCase()) ||
+                scholar.description.toLowerCase().includes(query.toLowerCase())
+            ).slice(0, 3);
+            
+            // Search in categories
+            results.categories = appData.categories.filter(category =>
+                category.name.toLowerCase().includes(query.toLowerCase()) ||
+                category.description.toLowerCase().includes(query.toLowerCase())
+            ).slice(0, 2);
+            
+            renderSearchResults(results);
+        }
+        
+        function addToSearchHistory(query) {
+            const history = appData.searchHistory;
+            // Remove if already exists
+            const index = history.indexOf(query);
+            if (index > -1) history.splice(index, 1);
+            
+            // Add to beginning
+            history.unshift(query);
+            
+            // Keep only last 20 searches
+            if (history.length > 20) history.pop();
+            
+            localStorage.setItem('tabsr_search_history', JSON.stringify(history));
+        }
+        
+        function renderSearchResults(results) {
+            let html = '';
+            let hasResults = false;
+            
+            // Lectures
+            if (results.lectures.length > 0) {
+                html += `
+                    <div class="search-result-section">
+                        <div class="search-result-header">Lectures</div>
+                        ${results.lectures.map(lecture => `
+                            <div class="search-result-item" onclick="showLectureModal(${lecture.id})">
+                                <div class="search-result-icon">
+                                    <i class="fas fa-headphones"></i>
+                                </div>
+                                <div class="search-result-info">
+                                    <h4>${lecture.title}</h4>
+                                    <p>${lecture.author} • ${lecture.category}</p>
+                                </div>
+                                <span class="search-result-type">Lecture</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                hasResults = true;
+            }
+            
+            // Scholars
+            if (results.scholars.length > 0) {
+                html += `
+                    <div class="search-result-section">
+                        <div class="search-result-header">Scholars</div>
+                        ${results.scholars.map(scholar => `
+                            <div class="search-result-item" onclick="showScholarLectures('${scholar.id}')">
+                                <div class="search-result-icon">
+                                    ${scholar.name.split(' ').map(n => n[0]).join('')}
+                                </div>
+                                <div class="search-result-info">
+                                    <h4>${scholar.name}</h4>
+                                    <p>${scholar.description.substring(0, 50)}...</p>
+                                </div>
+                                <span class="search-result-type">Scholar</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                hasResults = true;
+            }
+            
+            // Categories
+            if (results.categories.length > 0) {
+                html += `
+                    <div class="search-result-section">
+                        <div class="search-result-header">Categories</div>
+                        ${results.categories.map(category => `
+                            <div class="search-result-item" onclick="showCategory('${category.id}')">
+                                <div class="search-result-icon">
+                                    <i class="fas fa-${category.icon || 'folder'}"></i>
+                                </div>
+                                <div class="search-result-info">
+                                    <h4>${category.name}</h4>
+                                    <p>${category.description.substring(0, 50)}...</p>
+                                </div>
+                                <span class="search-result-type">Category</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                hasResults = true;
+            }
+            
+            if (!hasResults) {
+                html = `
+                    <div class="search-result-item" style="justify-content: center; padding: 20px;">
+                        <i class="fas fa-search" style="margin-right: 10px;"></i>
+                        No results found for "${searchInput.value}"
+                    </div>
+                `;
+            }
+            
+            searchResults.innerHTML = html;
+            searchResults.style.display = 'block';
+        }
+        
+        function showScholarLectures(scholarId) {
+            const scholar = appData.scholars.find(s => s.id === scholarId);
+            if (!scholar) return;
+            
+            const scholarLectures = appData.lectures.filter(l => l.author === scholar.name);
+            
+            categoryTitle.textContent = scholar.name;
+            categoryDescription.textContent = scholar.description;
+            renderLecturesGrid(categoryGrid, scholarLectures);
+            
+            showPage('category');
+            searchResults.style.display = 'none';
+            searchInput.value = '';
+        }
+
+        // ======================
+        // RECOMMENDATIONS SYSTEM
+        // ======================
+        function checkForRecommendations() {
+            if (appData.downloadHistory.length === 0) {
+                recommendationsSection.style.display = 'none';
+                return;
+            }
+            
+            const recommendations = getRecommendations();
+            
+            if (recommendations.length > 0) {
+                recommendationsSection.style.display = 'block';
+                renderRecommendations(recommendations);
+            } else {
+                recommendationsSection.style.display = 'none';
+            }
+        }
+        
+        function getRecommendations() {
+            const history = appData.downloadHistory;
+            
+            if (history.length === 0) {
+                return getPopularLectures().slice(0, 4);
+            }
+            
+            // Get user's preferred categories from history
+            const categoryCount = {};
+            const authorCount = {};
+            
+            history.forEach(record => {
+                const lecture = appData.lectures.find(l => l.id === record.lectureId);
+                if (lecture) {
+                    categoryCount[lecture.category] = (categoryCount[lecture.category] || 0) + 1;
+                    authorCount[lecture.author] = (authorCount[lecture.author] || 0) + 1;
+                }
+            });
+            
+            // Get top categories and authors
+            const topCategories = Object.entries(categoryCount)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 2)
+                .map(([category]) => category);
+            
+            const topAuthors = Object.entries(authorCount)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 2)
+                .map(([author]) => author);
+            
+            // Get recommendations based on preferences
+            const recommendations = appData.lectures.filter(lecture => {
+                // Not already downloaded
+                if (history.some(h => h.lectureId === lecture.id)) return false;
+                
+                // Match preferred categories or authors
+                return topCategories.includes(lecture.category) || 
+                       topAuthors.includes(lecture.author);
+            });
+            
+            // If not enough recommendations, add popular ones
+            if (recommendations.length < 4) {
+                const popular = getPopularLectures()
+                    .filter(l => !recommendations.some(r => r.id === l.id) && 
+                                 !history.some(h => h.lectureId === l.id))
+                    .slice(0, 4 - recommendations.length);
+                
+                recommendations.push(...popular);
+            }
+            
+            return recommendations.slice(0, 4);
+        }
+        
+        function getPopularLectures() {
+            return [...appData.lectures]
+                .sort((a, b) => {
+                    const aDownloads = appData.downloadStats[a.id] || 0;
+                    const bDownloads = appData.downloadStats[b.id] || 0;
+                    return bDownloads - aDownloads;
+                })
+                .slice(0, 10);
+        }
+        
+        function renderRecommendations(lectures) {
+            if (lectures.length === 0) return;
+            
+            let html = '';
+            
+            lectures.forEach(lecture => {
+                const initials = lecture.author.split(' ').map(n => n[0]).join('');
+                const downloads = appData.downloadStats[lecture.id] || 0;
+                
+                html += `
+                    <div class="lecture-card" onclick="showLectureModal(${lecture.id})" style="border-color: rgba(255,255,255,0.2);">
+                        <div class="card-header" 
+                             style="--card-color: ${lightenColor(lecture.color, 30)}; 
+                                    --card-color-light: ${lightenColor(lecture.color, 50)};">
+                            <div class="card-category" style="background: rgba(255,255,255,0.9);">${lecture.category}</div>
+                            <div class="card-duration">${lecture.duration}</div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title" style="color: white;">${lecture.title}</h3>
+                            <div class="card-author" style="color: rgba(255,255,255,0.8);">
+                                <div class="author-avatar">${initials}</div>
+                                ${lecture.author}
+                            </div>
+                            <div class="card-meta" style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.7);">
+                                <div>
+                                    <i class="fas fa-download"></i> ${downloads} downloads
+                                </div>
+                                <div class="card-actions">
+                                    <button class="card-btn download-btn" onclick="event.stopPropagation(); addToDownloadList(${lecture.id})">
+                                        <i class="fas fa-plus"></i> Add
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            recommendationsGrid.innerHTML = html;
+        }
+
+        // ======================
+        // DOWNLOAD HISTORY
+        // ======================
+        function addToDownloadHistory(lectureId) {
+            const lecture = appData.lectures.find(l => l.id === lectureId);
+            if (!lecture) return;
+            
+            const record = {
+                id: Date.now(),
+                lectureId: lectureId,
+                title: lecture.title,
+                author: lecture.author,
+                category: lecture.category,
+                date: new Date().toISOString(),
+                size: lecture.size
+            };
+            
+            appData.downloadHistory.unshift(record);
+            
+            // Keep only last 100 records
+            if (appData.downloadHistory.length > 100) {
+                appData.downloadHistory.pop();
+            }
+            
+            localStorage.setItem('tabsr_download_history', JSON.stringify(appData.downloadHistory));
+            
+            // Check for recommendations after download
+            setTimeout(() => checkForRecommendations(), 100);
+        }
+
+        // ======================
+        // TRENDING SYSTEM
+        // ======================
+        function getTrendingLectures() {
+            return [...appData.lectures]
+                .sort((a, b) => {
+                    const aDownloads = appData.downloadStats[a.id] || 0;
+                    const bDownloads = appData.downloadStats[b.id] || 0;
+                    return bDownloads - aDownloads;
+                })
+                .slice(0, 6);
+        }
+
+        function trackDownload(lectureId) {
+            // Increment download count
+            appData.downloadStats[lectureId] = (appData.downloadStats[lectureId] || 0) + 1;
+            saveDownloadStats();
+            
+            // Add to download history
+            addToDownloadHistory(lectureId);
+            
+            // Update UI
+            updateUI();
+        }
+
+        function saveDownloadStats() {
+            localStorage.setItem('tabsr_download_stats', JSON.stringify(appData.downloadStats));
+        }
+
+        // ======================
+        // DOWNLOAD LIST SYSTEM
+        // ======================
+        function addToDownloadList(lectureId) {
+            if (appData.downloadList.includes(lectureId)) return;
+            
+            appData.downloadList.push(lectureId);
+            saveDownloadList();
+            updateDownloadListBadge();
+            showNotification(`Added to Download List`, 'fas fa-check-circle');
+            
+            if (appData.currentPage === 'download-list') {
+                renderDownloadList();
+            }
+        }
+
+        function removeFromDownloadList(lectureId) {
+            appData.downloadList = appData.downloadList.filter(id => id !== lectureId);
+            saveDownloadList();
+            updateDownloadListBadge();
+            showNotification(`Removed from Download List`, 'fas fa-trash');
+            
+            if (appData.currentPage === 'download-list') {
+                renderDownloadList();
+            }
+        }
+
+        function clearDownloadList() {
+            if (appData.downloadList.length === 0) {
+                showNotification('Download List is already empty', 'fas fa-info-circle');
+                return;
+            }
+            
+            if (confirm(`Clear all ${appData.downloadList.length} items from your Download List?`)) {
+                appData.downloadList = [];
+                saveDownloadList();
+                updateDownloadListBadge();
+                renderDownloadList();
+                showNotification('Download List cleared', 'fas fa-trash');
+            }
+        }
+
+        function saveDownloadList() {
+            localStorage.setItem('tabsr_download_list', JSON.stringify(appData.downloadList));
+        }
+
+        function updateDownloadListBadge() {
+            downloadCountBadge.textContent = appData.downloadList.length;
+            downloadCountBadge.style.display = appData.downloadList.length > 0 ? 'flex' : 'none';
+        }
+
+        // ======================
+        // DOWNLOAD QUEUE SYSTEM
+        // ======================
+        async function downloadAllQueue() {
+            if (appData.downloadList.length === 0) {
+                showNotification('Your Download List is empty', 'fas fa-info-circle');
+                return;
+            }
+            
+            showNotification(`Starting download of ${appData.downloadList.length} items...`, 'fas fa-download');
+            
+            // Process each download with delay
+            for (let i = 0; i < appData.downloadList.length; i++) {
+                const lectureId = appData.downloadList[i];
+                const lecture = appData.lectures.find(l => l.id === lectureId);
+                
+                if (lecture) {
+                    showNotification(`Downloading (${i + 1}/${appData.downloadList.length}): ${lecture.title}`, 'fas fa-download', 2000);
+                    await downloadLecture(lecture);
+                    removeFromDownloadList(lectureId);
+                    
+                    // Small delay between downloads
+                    if (i < appData.downloadList.length - 1) {
+                        await new Promise(resolve => setTimeout(resolve, 1000));
+                    }
+                }
+            }
+            
+            showNotification('All downloads completed!', 'fas fa-check-circle', 3000);
+        }
+         // ======================
+// LECTURE DOWNLOAD - FIXED FOR GOOGLE DRIVE
+// ======================
+async function downloadLecture(lecture) {
+    return new Promise((resolve) => {
+        try {
+            const fileId = lecture.fileId;
+            
+            if (!fileId) {
+                console.error('No fileId found for lecture:', lecture);
+                showNotification('Download failed: No file ID', 'fas fa-exclamation-circle');
+                resolve(false);
+                return;
+            }
+            
+            // Direct download link for Google Drive
+            const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+            
+            // Method 1: Create a direct download link
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = `${lecture.title.replace(/[^a-z0-9]/gi, '_')}.mp3`;
+            link.target = '_blank';
+            
+            // Try to trigger download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Also open in new tab as backup
+            window.open(downloadUrl, '_blank');
+            
+            // Track download
+            trackDownload(lecture.id);
+            
+            // Show success notification
+            showNotification(`Download started: ${lecture.title}`, 'fas fa-download', 2000);
+            
+            resolve(true);
+            
+        } catch (error) {
+            console.error('Download failed:', error);
+            
+            // Fallback: Show direct link
+            const directUrl = `https://drive.google.com/uc?export=download&id=${lecture.fileId}`;
+            showNotification(
+                `Click to download: <a href="${directUrl}" target="_blank" style="color: white; text-decoration: underline;">${lecture.title}</a>`, 
+                'fas fa-external-link-alt',
+                5000
+            );
+            
+            // Still track as downloaded
+            trackDownload(lecture.id);
+            resolve(true);
+        }
+    });
+}
+
+        // ======================
+        // RENDER FUNCTIONS
+        // ======================
+        function updateUI() {
+            updateWhatsNewStats();
+            if (appData.currentPage === 'home') {
+                renderHomePage();
+            }
+        }
+
+        function updateWhatsNewStats() {
+            // Count new lectures (uploaded in last 7 days)
+            const oneWeekAgo = new Date();
+            oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+            
+            const newLectures = appData.lectures.filter(lecture => 
+                new Date(lecture.date) >= oneWeekAgo
+            );
+            
+            newBadgeCount.textContent = `${newLectures.length} NEW`;
+        }
+
+        function renderCategories() {
+            if (!categoriesSection) return;
+            
+            let categoriesHTML = '<div class="sidebar-title">Categories</div>';
+            
+            appData.categories.forEach(category => {
+                const lectureCount = appData.lectures.filter(l => l.categoryId === category.id).length;
+                categoriesHTML += `
+                    <div class="sidebar-item" onclick="showCategory('${category.id}')">
+                        <i class="fas fa-${category.icon || 'folder'}"></i>
+                        ${category.name}
+                        <span class="item-count">${lectureCount}</span>
+                    </div>
+                `;
+            });
+            
+            categoriesSection.innerHTML = categoriesHTML;
+        }
+
+        function renderCategoriesRow() {
+            if (!categoriesRow) return;
+            
+            let categoriesHTML = '';
+            
+            // Show top 8 categories
+            const topCategories = appData.categories.slice(0, 8);
+            
+            topCategories.forEach(category => {
+                categoriesHTML += `
+                    <button class="category-btn" onclick="showCategory('${category.id}')">
+                        <i class="fas fa-${category.icon || 'folder'}"></i>
+                        ${category.name}
+                    </button>
+                `;
+            });
+            
+            // Add "All Categories" button
+            categoriesHTML += `
+                <button class="category-btn" onclick="showAllLectures()">
+                    <i class="fas fa-layer-group"></i>
+                    All Categories
+                </button>
+            `;
+            
+            categoriesRow.innerHTML = categoriesHTML;
+        }
+
+        function renderHomePage() {
+            renderTrendingSection();
+            renderRecentSection();
+            renderFeaturedSection();
+        }
+
+        function renderTrendingSection() {
+            const trendingLectures = getTrendingLectures();
+            renderLecturesGrid(trendingGrid, trendingLectures, true);
+        }
+
+        function renderRecentSection() {
+            const oneWeekAgo = new Date();
+            oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+            
+            const recentLectures = appData.lectures
+                .filter(lecture => new Date(lecture.date) >= oneWeekAgo)
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 6);
+            
+            renderLecturesGrid(recentGrid, recentLectures, false, true);
+        }
+
+        function renderFeaturedSection() {
+            const featuredLectures = appData.lectures.slice(0, 6);
+            renderLecturesGrid(featuredGrid, featuredLectures);
+        }
+
+        function renderLecturesGrid(container, lectures, showTrending = false, showNewBadges = false) {
+            if (!container) return;
+            
+            if (lectures.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 20px; color: var(--text-secondary);">
+                        <i class="fas fa-search" style="font-size: 24px; margin-bottom: 8px;"></i>
+                        <h4>No lectures found</h4>
+                        <p style="font-size: 12px;">Try different filters or check back later.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            
+            lectures.forEach(lecture => {
+                const initials = lecture.author.split(' ').map(n => n[0]).join('');
+                const downloads = appData.downloadStats[lecture.id] || 0;
+                const isInDownloadList = appData.downloadList.includes(lecture.id);
+                
+                // Check if lecture is new (within 7 days)
+                const isNew = (new Date() - new Date(lecture.date)) < 7 * 24 * 60 * 60 * 1000;
+                
+                html += `
+                    <div class="lecture-card" onclick="showLectureModal(${lecture.id})">
+                        <div class="card-header" 
+                             style="--card-color: ${lecture.color}; 
+                                    --card-color-light: ${lightenColor(lecture.color, 20)};">
+                            ${isNew && showNewBadges ? '<div class="new-badge-small">NEW</div>' : ''}
+                            <div class="card-category">${lecture.category}</div>
+                            <div class="card-duration">${lecture.duration}</div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">${lecture.title}</h3>
+                            <div class="card-author">
+                                <div class="author-avatar">${initials}</div>
+                                ${lecture.author}
+                            </div>
+                            <p class="card-description">${lecture.description}</p>
+                            <div class="card-meta">
+                                <div>
+                                    <i class="fas fa-download"></i> ${downloads}
+                                    ${showTrending && downloads > 10 ? 
+                                        '<span class="trending-badge"><i class="fas fa-fire"></i> Trending</span>' : ''}
+                                </div>
+                                <div class="card-actions">
+                                    <button class="card-btn info-btn" onclick="event.stopPropagation(); showLectureModal(${lecture.id})">
+                                        <i class="fas fa-info-circle"></i> Info
+                                    </button>
+                                    <button class="card-btn download-btn" onclick="event.stopPropagation(); downloadLecture(${JSON.stringify(lecture).replace(/"/g, '&quot;')})">
+    <i class="fas fa-download"></i> Download
+</button>
+                                        <i class="fas fa-${isInDownloadList ? 'check' : 'plus'}"></i> ${isInDownloadList ? 'Added' : 'Add'}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function renderScholarsGrid() {
+            if (!scholarsGrid) return;
+            
+            let html = '';
+            
+            appData.scholars.forEach(scholar => {
+                const lectureCount = appData.lectures.filter(l => l.author === scholar.name).length;
+                
+                html += `
+                    <div class="scholar-card" onclick="showScholarLectures('${scholar.id}')">
+                        <div class="scholar-avatar">
+                            ${scholar.name.split(' ').map(n => n[0]).join('')}
+                        </div>
+                        <div class="scholar-name">${scholar.name}</div>
+                        <div class="scholar-description">${scholar.description.substring(0, 80)}...</div>
+                        <div class="scholar-stats">
+                            <i class="fas fa-headphones"></i> ${lectureCount} lectures
+                        </div>
+                    </div>
+                `;
+            });
+            
+            scholarsGrid.innerHTML = html;
+        }
+
+        function renderDownloadList() {
+            if (appData.downloadList.length === 0) {
+                downloadListItems.innerHTML = `
+                    <div class="download-list-empty">
+                        <i class="fas fa-download"></i>
+                        <h3>Your Download List is empty</h3>
+                        <p>Add lectures to create your personal download collection.</p>
+                        <button class="download-list-btn" onclick="showAllLectures()" style="margin-top: 16px;">
+                            <i class="fas fa-headphones"></i> Browse Lectures
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            
+            appData.downloadList.forEach((lectureId, index) => {
+                const lecture = appData.lectures.find(l => l.id === lectureId);
+                if (!lecture) return;
+                
+                const initials = lecture.author.split(' ').map(n => n[0]).join('');
+                
+                html += `
+                    <div class="download-list-item">
+                        <div class="download-list-item-index">${index + 1}</div>
+                        <div class="download-list-item-content">
+                            <div class="download-list-item-title">${lecture.title}</div>
+                            <div class="download-list-item-meta">
+                                <span><i class="fas fa-user"></i> ${lecture.author}</span>
+                                <span><i class="fas fa-clock"></i> ${lecture.duration}</span>
+                                <span><i class="fas fa-database"></i> ${lecture.size}</span>
+                            </div>
+                        </div>
+                        <div class="download-list-item-actions">
+                            <button class="download-item-btn" onclick="removeFromDownloadList(${lecture.id})">
+                                <i class="fas fa-times"></i> Remove
+                            </button>
+                            <button class="download-item-btn primary" onclick="downloadLecture(${JSON.stringify(lecture).replace(/"/g, '&quot;')}); removeFromDownloadList(${lecture.id})">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            downloadListItems.innerHTML = html;
+        }
+
+        // ======================
+        // RELATED LECTURES
+        // ======================
+        function getRelatedLectures(lectureId) {
+            const current = appData.lectures.find(l => l.id === lectureId);
+            if (!current) return [];
+            
+            return appData.lectures
+                .filter(l => l.id !== lectureId)
+                .filter(l => l.categoryId === current.categoryId || 
+                           (l.tags && current.tags && l.tags.some(tag => current.tags.includes(tag))))
+                .sort((a, b) => (appData.downloadStats[b.id] || 0) - (appData.downloadStats[a.id] || 0))
+                .slice(0, 4);
+        }
+
+        function showRelatedLectures(lectureId) {
+            const related = getRelatedLectures(lectureId);
+            
+            if (related.length > 0) {
+                relatedSection.style.display = 'block';
+                renderLecturesGrid(relatedGrid, related);
+            } else {
+                relatedSection.style.display = 'none';
+            }
+        }
+
+        // ======================
+        // MODAL FUNCTIONS
+        // ======================
+        function showLectureModal(lectureId) {
+            const lecture = appData.lectures.find(l => l.id === lectureId);
+            if (!lecture) return;
+            
+            appData.currentLecture = lecture;
+            const downloads = appData.downloadStats[lecture.id] || 0;
+            
+            modalTitle.textContent = lecture.title;
+            modalAuthor.textContent = lecture.author;
+            modalCategory.textContent = lecture.category;
+            modalDuration.textContent = lecture.duration;
+            modalSize.textContent = lecture.size;
+            modalDownloads.textContent = downloads.toLocaleString();
+            modalDescription.textContent = lecture.description;
+            
+            modalDownloadBtn.onclick = () => {
+                downloadLecture(lecture);
+                closeModal();
+            };
+            
+            lectureModal.style.display = 'flex';
+            
+            // Show related lectures
+            showRelatedLectures(lectureId);
+        }
+
+        function closeModal() {
+            lectureModal.style.display = 'none';
+            appData.currentLecture = null;
+        }
+
+        // ======================
+        // NAVIGATION
+        // ======================
+        function showHome() {
+            showPage('home');
+            renderHomePage();
+            checkForRecommendations();
+        }
+
+        function showAllLectures() {
+            showPage('lectures');
+            renderLecturesGrid(allLecturesGrid, appData.lectures);
+        }
+
+        function showScholars() {
+            showPage('scholars');
+            renderScholarsGrid();
+        }
+
+        function showCategory(categoryId) {
+            const category = appData.categories.find(c => c.id === categoryId);
+            if (!category) return;
+            
+            categoryTitle.textContent = category.name;
+            categoryDescription.textContent = category.description;
+            
+            const categoryLectures = appData.lectures.filter(l => l.categoryId === categoryId);
+            renderLecturesGrid(categoryGrid, categoryLectures);
+            
+            showPage('category');
+            if (categoryLectures.length > 0) {
+                showRelatedLectures(categoryLectures[0].id);
+            }
+        }
+
+        function showDownloadList() {
+            showPage('download-list');
+            renderDownloadList();
+        }
+
+        function showTrendingPage() {
+            const trendingLectures = getTrendingLectures();
+            categoryTitle.textContent = 'Trending This Week';
+            categoryDescription.textContent = 'Most downloaded lectures in the past 7 days';
+            renderLecturesGrid(categoryGrid, trendingLectures, true);
+            showPage('category');
+        }
+
+        function showPage(page) {
+            appData.currentPage = page;
+            
+            // Hide all pages
+            homePage.style.display = 'none';
+            lecturesPage.style.display = 'none';
+            scholarsPage.style.display = 'none';
+            categoryPage.style.display = 'none';
+            downloadListPage.style.display = 'none';
+            
+            // Remove active from all buttons
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show active page
+            document.getElementById(`${page}-page`).style.display = 'block';
+            
+            // Update sidebar active state
+            if (page === 'home') {
+                document.querySelector('.sidebar-item:nth-child(2)').classList.add('active');
+            } else if (page === 'lectures') {
+                document.querySelector('.sidebar-item:nth-child(3)').classList.add('active');
+            } else if (page === 'scholars') {
+                document.querySelector('.sidebar-item:nth-child(4)').classList.add('active');
+            }
+            
+            // Hide search results
+            searchResults.style.display = 'none';
+        }
+
+        // ======================
+        // NOTIFICATION SYSTEM
+        // ======================
+        function showNotification(message, icon = 'fas fa-info-circle', duration = 3000) {
+            // Remove existing notification
+            const existing = document.querySelector('.notification');
+            if (existing) existing.remove();
+            
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <div class="notification-icon">
+                        <i class="${icon}"></i>
+                    </div>
+                    <div class="notification-message">
+                        <strong>Notification</strong>
+                        <p>${message}</p>
+                    </div>
+                    <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, duration);
+        }
+
+        // ======================
+        // UTILITY FUNCTIONS
+        // ======================
+        function showLoading(show) {
+            loading.style.display = show ? 'block' : 'none';
+        }
+
+        function lightenColor(color, percent) {
+            const num = parseInt(color.replace("#", ""), 16);
+            const amt = Math.round(2.55 * percent);
+            const R = (num >> 16) + amt;
+            const G = (num >> 8 & 0x00FF) + amt;
+            const B = (num & 0x0000FF) + amt;
+            return `#${(
+                0x1000000 +
+                (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                (B < 255 ? B < 1 ? 0 : B : 255)
+            ).toString(16).slice(1)}`;
+        }
+
+        function setupLastVisit() {
+            const now = new Date().toISOString();
+            if (!appData.lastVisit) {
+                appData.lastVisit = now;
+                localStorage.setItem('lastVisit', now);
+            }
+        }
+
+        // ======================
+        // EVENT LISTENERS
+        // ======================
+        function setupEventListeners() {
+            // Search input
+            let searchTimeout;
+            searchInput.addEventListener('input', (e) => {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    performSearch(e.target.value);
+                }, 300);
+            });
+            
+            searchInput.addEventListener('focus', () => {
+                if (searchInput.value.trim() && searchResults.innerHTML.trim()) {
+                    searchResults.style.display = 'block';
+                }
+            });
+            
+            // Click outside to close search results
+            document.addEventListener('click', (e) => {
+                if (!searchResults.contains(e.target) && !searchInput.contains(e.target)) {
+                    searchResults.style.display = 'none';
+                }
+            });
+            
+            // Modal close on outside click
+            lectureModal.addEventListener('click', (e) => {
+                if (e.target === lectureModal) closeModal();
+            });
+            
+            // Escape key to close modal
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'Enter' && searchInput === document.activeElement) {
+                    performSearch(searchInput.value);
+                }
+            });
+            
+            // Search on Enter
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch(searchInput.value);
+                }
+            });
+        }
+
+        // ======================
+        // INITIALIZE APP
+        // ======================
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
