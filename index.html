@@ -87,7 +87,7 @@
             right: 20px;
             width: 50px;
             height: 50px;
-            border-radius: 50%;
+            border-radius: 50%;--
             background: var(--accent);
             color: white;
             border: none;
@@ -402,26 +402,19 @@
             padding: 20px;
         }
 
-        /* Categories Row */
+        /* Categories Row - FIXED FOR 2 ROWS */
         .categories-row {
             display: flex;
             gap: 8px;
             margin-bottom: 24px;
-            overflow-x: auto;
+            flex-wrap: wrap;
+            width: 100%;
+            overflow-x: hidden;
             padding: 4px 0;
         }
 
         .categories-row::-webkit-scrollbar {
-            height: 4px;
-        }
-
-        .categories-row::-webkit-scrollbar-track {
-            background: var(--secondary);
-        }
-
-        .categories-row::-webkit-scrollbar-thumb {
-            background: var(--border);
-            border-radius: 2px;
+            display: none;
         }
 
         .category-btn {
@@ -435,6 +428,13 @@
             cursor: pointer;
             transition: var(--transition);
             white-space: nowrap;
+            flex: 0 0 calc(50% - 4px);
+            box-sizing: border-box;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
 
         .category-btn:hover {
@@ -447,7 +447,7 @@
             color: white;
             border-color: var(--accent);
         }
-
+        
         /* Page Header */
         .page-header {
             margin-bottom: 24px;
@@ -1253,98 +1253,376 @@
             color: var(--text-secondary);
         }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .sidebar {
-                display: none;
-            }
-            
-            .main-content {
-                margin-left: 0;
-                padding: 16px;
-            }
-            
-            .content-grid {
-                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            }
-        }
+        /* ======================
+   RESPONSIVE DESIGN
+   ====================== */
 
-        @media (max-width: 768px) {
-            .header {
-                padding: 0 16px;
-                height: 60px;
-            }
-            
-            .logo-text span {
-                display: none;
-            }
-            
-            .search-container {
-                margin: 0 12px;
-                max-width: 300px;
-            }
-            
-            .main-content {
-                padding: 16px;
-            }
-            
-            .content-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            }
-            
-            .page-title {
-                font-size: 20px;
-            }
-            
-            .recommendations-section {
-                padding: 20px;
-            }
-        }
+/* Tablet & Small Laptop */
+@media (max-width: 1024px) {
+    .sidebar {
+        display: none;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        padding: 16px;
+    }
+    
+    .content-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 12px;
+    }
+    
+    .search-container {
+        max-width: 400px;
+        margin: 0 12px;
+    }
+}
 
-        @media (max-width: 480px) {
-            .header {
-                padding: 0 12px;
-            }
-            
-            .logo-icon {
-                width: 28px;
-                height: 28px;
-            }
-            
-            .logo-outer {
-                width: 28px;
-                height: 28px;
-            }
-            
-            .logo-inner {
-                width: 16px;
-                height: 16px;
-                top: 6px;
-                left: 6px;
-            }
-            
-            .search-input {
-                padding: 8px 12px 8px 36px;
-                font-size: 13px;
-            }
-            
-            .search-icon {
-                left: 10px;
-            }
-            
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .modal-footer {
-                flex-direction: column;
-            }
-            
-            .theme-toggle {
-                bottom: 70px;
-                right: 20px;
-            }
-        }
+/* Large Mobile */
+@media (max-width: 768px) {
+    .header {
+        padding: 0 12px;
+        height: 60px;
+        flex-wrap: wrap;
+    }
+    
+    .logo-text {
+        font-size: 16px;
+    }
+    
+    .logo-tagline {
+        font-size: 10px;
+    }
+    
+    .search-container {
+        order: 3;
+        max-width: 100%;
+        margin: 8px 0 0 0;
+        width: 100%;
+    }
+    
+    .header-actions {
+        margin-left: auto;
+    }
+    
+    .main-content {
+        padding: 12px;
+    }
+    
+    .content-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 12px;
+    }
+    
+    /* FIXED: Categories row for mobile */
+    .categories-row {
+        flex-wrap: wrap;
+        overflow-x: hidden;
+        padding: 8px 0;
+        margin: 0 0 16px 0;
+    }
+    
+    .categories-row::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .category-btn {
+        flex: 0 0 calc(50% - 4px);
+        font-size: 11px;
+        padding: 6px 8px;
+    }
+    
+    .page-title {
+        font-size: 20px;
+    }
+    
+    .page-description {
+        font-size: 13px;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+    
+    .section-header h2 {
+        font-size: 16px;
+    }
+    
+    .see-all {
+        font-size: 12px;
+    }
+    
+    .recommendations-section {
+        padding: 16px;
+        margin: 0 -12px 24px -12px;
+        border-radius: 0;
+    }
+    
+    .recommendations-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+    }
+    
+    .download-list-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .download-list-controls {
+        width: 100%;
+    }
+    
+    .download-list-btn {
+        flex: 1;
+        justify-content: center;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .header {
+        height: 56px;
+        padding: 0 10px;
+    }
+    
+    .logo {
+        gap: 6px;
+    }
+    
+    .logo-icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .logo-outer {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .logo-inner {
+        width: 16px;
+        height: 16px;
+        top: 6px;
+        left: 6px;
+    }
+    
+    .logo-text {
+        font-size: 14px;
+    }
+    
+    .action-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+    
+    .search-input {
+        padding: 8px 12px 8px 36px;
+        font-size: 13px;
+    }
+    
+    .search-icon {
+        left: 10px;
+        font-size: 12px;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .lecture-card {
+        margin: 0;
+    }
+    
+    .card-header {
+        height: 100px;
+    }
+    
+    .card-title {
+        font-size: 14px;
+    }
+    
+    .card-description {
+        font-size: 11px;
+        -webkit-line-clamp: 2;
+    }
+    
+    .card-btn {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+    
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .back-btn {
+        align-self: flex-start;
+    }
+    
+    .modal-content {
+        margin: 10px;
+        max-height: 85vh;
+    }
+    
+    .modal-header {
+        padding: 16px;
+    }
+    
+    .modal-body {
+        padding: 16px;
+    }
+    
+    .modal-footer {
+        padding: 16px;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .modal-download-btn,
+    .close-btn {
+        width: 100%;
+    }
+    
+    .download-list-item {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+    
+    .download-list-item-index {
+        align-self: flex-start;
+    }
+    
+    .download-list-item-meta {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .download-list-item-actions {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .theme-toggle {
+        bottom: 60px;
+        right: 15px;
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+    }
+    
+    .footer {
+        padding: 16px;
+        margin-top: 32px;
+    }
+    
+    .footer-text {
+        font-size: 12px;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+    .header {
+        padding: 0 8px;
+    }
+    
+    .logo-text {
+        font-size: 13px;
+    }
+    
+    .search-input {
+        font-size: 12px;
+    }
+    
+    .content-grid {
+        gap: 8px;
+    }
+    
+    .card-header {
+        height: 90px;
+    }
+    
+    .card-category {
+        font-size: 9px;
+        padding: 2px 6px;
+    }
+    
+    .card-duration {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+    
+    .card-content {
+        padding: 12px;
+    }
+    
+    .card-meta {
+        font-size: 10px;
+    }
+    
+    .card-actions {
+        gap: 4px;
+    }
+    
+    .card-btn {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+    
+    .new-badge-small {
+        width: 18px;
+        height: 18px;
+        font-size: 8px;
+        top: 8px;
+        right: 8px;
+    }
+}
+
+/* Fix for mobile header layout */
+@media (max-width: 768px) {
+    .header {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas: 
+            "logo actions actions"
+            "search search search";
+        gap: 8px;
+        padding: 8px 12px;
+        height: auto;
+        min-height: 64px;
+    }
+    
+    .logo {
+        grid-area: logo;
+        align-self: center;
+    }
+    
+    .header-actions {
+        grid-area: actions;
+        justify-self: end;
+        align-self: center;
+    }
+    
+    .search-container {
+        grid-area: search;
+        margin: 0;
+    }
+    
+    .main-container {
+        min-height: calc(100vh - 80px);
+    }
+}
     </style>
 </head>
 <body>
@@ -2316,7 +2594,7 @@ async function downloadLecture(lecture) {
             
             let categoriesHTML = '';
             
-            // Show top 8 categories
+            // Show exactly 8 categories (4 per row × 2 rows)
             const topCategories = appData.categories.slice(0, 8);
             
             topCategories.forEach(category => {
@@ -2417,9 +2695,7 @@ async function downloadLecture(lecture) {
                                     <button class="card-btn info-btn" onclick="event.stopPropagation(); showLectureModal(${lecture.id})">
                                         <i class="fas fa-info-circle"></i> Info
                                     </button>
-                                    <button class="card-btn download-btn" onclick="event.stopPropagation(); downloadLecture(${JSON.stringify(lecture).replace(/"/g, '&quot;')})">
-    <i class="fas fa-download"></i> Download
-</button>
+                                    <button class="card-btn download-btn" onclick="event.stopPropagation(); addToDownloadList(${lecture.id})">
                                         <i class="fas fa-${isInDownloadList ? 'check' : 'plus'}"></i> ${isInDownloadList ? 'Added' : 'Add'}
                                     </button>
                                 </div>
