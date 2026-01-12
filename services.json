@@ -1,0 +1,74 @@
+[
+  {
+    "id": "moving",
+    "title": "Home Moving",
+    "description": "Professional home moving and relocation services",
+    "icon": "truck-moving",
+    "hasCounter": false,
+    "counterLabel": "",
+    "minItems": 0,
+    "maxItems": 0,
+    "requiresAddress": true,
+    "recommendations": ["weekend", "holiday", "morning"]
+  },
+  {
+    "id": "cleaning",
+    "title": "Home Cleaning",
+    "description": "Deep cleaning and regular maintenance",
+    "icon": "broom",
+    "hasCounter": true,
+    "counterLabel": "Rooms",
+    "minItems": 1,
+    "maxItems": 10,
+    "requiresAddress": true,
+    "recommendations": ["weekday", "afternoon"]
+  },
+  {
+    "id": "laundry",
+    "title": "Laundry Service",
+    "description": "Wash, dry, and fold laundry service",
+    "icon": "tshirt",
+    "hasCounter": true,
+    "counterLabel": "Pieces",
+    "minItems": 5,
+    "maxItems": 50,
+    "requiresAddress": false,
+    "recommendations": ["weekday", "morning"]
+  },
+  {
+    "id": "packing",
+    "title": "Packing Service",
+    "description": "Professional packing and unpacking",
+    "icon": "box",
+    "hasCounter": true,
+    "counterLabel": "Boxes",
+    "minItems": 1,
+    "maxItems": 20,
+    "requiresAddress": true,
+    "recommendations": ["weekend", "holiday"]
+  },
+  {
+    "id": "repairs",
+    "title": "Home Repairs",
+    "description": "Minor repairs and maintenance",
+    "icon": "tools",
+    "hasCounter": true,
+    "counterLabel": "Items",
+    "minItems": 1,
+    "maxItems": 10,
+    "requiresAddress": true,
+    "recommendations": ["weekday", "afternoon"]
+  },
+  {
+    "id": "assembly",
+    "title": "Furniture Assembly",
+    "description": "IKEA and furniture assembly",
+    "icon": "couch",
+    "hasCounter": true,
+    "counterLabel": "Pieces",
+    "minItems": 1,
+    "maxItems": 10,
+    "requiresAddress": true,
+    "recommendations": ["weekend", "afternoon"]
+  }
+]
