@@ -1636,7 +1636,7 @@
             
             async loadData() {
                 try {
-                    const servicesResponse = await this.fetchJSON('services.json');
+                    const servicesResponse = await this.fetchJSON('https://github.com/Uppar-ng/Uppar-ng/blob/main/services.json');
                     this.services = Array.isArray(servicesResponse) ? servicesResponse : this.getDefaultServices();
                 } catch (error) {
                     console.warn('Failed to load services:', error);
@@ -1644,7 +1644,7 @@
                 }
                 
                 try {
-                    const areasResponse = await this.fetchJSON('areas.json');
+                    const areasResponse = await this.fetchJSON('https://github.com/Uppar-ng/Uppar-ng/blob/main/areas.json');
                     this.cities = areasResponse?.cities || this.getDefaultCities();
                 } catch (error) {
                     console.warn('Failed to load areas:', error);
@@ -1692,11 +1692,11 @@
                     },
                     {
                         id: 'cleaning',
-                        title: 'Home Cleaning',
+                        title: 'Special Cleaning',
                         description: 'Deep cleaning services',
-                        icon: 'broom',
+                        icon: 'brush',
                         hasCounter: true,
-                        counterLabel: 'Rooms',
+                        counterLabel: 'Items',
                         minItems: 1,
                         maxItems: 10,
                         requiresAddress: true
@@ -1713,14 +1713,14 @@
                         requiresAddress: false
                     },
                     {
-                        id: 'packing',
-                        title: 'Packing Service',
-                        description: 'Professional packing and unpacking',
+                        id: 'collection',
+                        title: 'Special Services',
+                        description: 'Professional electronic, plastic, and metals collection',
                         icon: 'box',
                         hasCounter: true,
                         counterLabel: 'Boxes',
                         minItems: 1,
-                        maxItems: 20,
+                        maxItems: 100,
                         requiresAddress: true
                     }
                 ];
@@ -1731,7 +1731,7 @@
                     {
                         id: 'kaduna',
                         name: 'Kaduna',
-                        areas: ['Barnawa', 'Sabon Tasha', 'Kawo', 'Ungwan Rimi']
+                        areas: ['Rigachikun', 'Kawo', 'Ungwan Rimi']
                     }
                 ];
             }
@@ -1832,8 +1832,8 @@
                                 <i class="fas fa-gift"></i>
                             </div>
                             <div class="promo-content">
-                                <h3>50% Off First Booking!</h3>
-                                <p>Use code: PRIMER50 • Valid this month only</p>
+                                <h3>Book & Order now!</h3>
+                                <p>See What We Do.</p>
                             </div>
                         </div>
                         
@@ -2066,14 +2066,8 @@
                                     <div class="value">${this.bookings.length}</div>
                                     <div class="label">Total Bookings</div>
                                 </div>
-                                <div class="stat-card">
-                                    <div class="value">${this.bookings.filter(b => b.status === 'completed').length}</div>
-                                    <div class="label">Completed</div>
-                                </div>
-                                <div class="stat-card">
-                                    <div class="value">${this.bookings.filter(b => b.status === 'upcoming').length}</div>
-                                    <div class="label">Upcoming</div>
-                                </div>
+                               
+                            
                                 <div class="stat-card">
                                     <div class="value">${this.bookings.filter(b => b.status === 'cancelled').length}</div>
                                     <div class="label">Cancelled</div>
@@ -2086,8 +2080,8 @@
                                     <h3>Payment Details</h3>
                                 </div>
                                 <div class="account-details">
-                                    <div class="account-number">0123456789</div>
-                                    <div class="account-name">Primer Services Ltd</div>
+                                    <div class="account-number">650 638 3747</div>
+                                    <div class="account-name"></div>
                                 </div>
                                 <p style="color: var(--text-secondary); font-size: 0.8125rem; margin-bottom: 0.75rem;">
                                     Include booking ID as reference when making payment
@@ -2103,17 +2097,18 @@
                             </div>
                             
                             <div class="contact-grid">
-                                <a href="tel:+2349012345678" class="contact-card">
+                                <a href="tel:+2348100590574" class="contact-card">
                                     <div class="contact-icon">
                                         <i class="fas fa-phone"></i>
                                     </div>
                                     <div class="contact-info">
                                         <h4>Call Support</h4>
-                                        <p>+234 901 234 5678</p>
+                                        <p>+234 810 059 0574</p>
                                     </div>
                                 </a>
                                 
-                                <a href="https://wa.me/2349012345678" target="_blank" class="contact-card">
+
+                                 <a href="https://wa.me/2348100590574" target="_blank" class="contact-card" onclick="return checkWAConnection(event)">
                                     <div class="contact-icon" style="background: rgba(37, 211, 102, 0.1);">
                                         <i class="fab fa-whatsapp" style="color: #25D366;"></i>
                                     </div>
@@ -2129,7 +2124,7 @@
                                     </div>
                                     <div class="contact-info">
                                         <h4>Email</h4>
-                                        <p>support@primer.ng</p>
+                                        <p>get.primer@proton.me</p>
                                     </div>
                                 </div>
                             </div>
@@ -2144,7 +2139,7 @@
                                     <p><strong>Location:</strong> ${userCity}</p>
                                     <p><strong>Available Areas:</strong> ${userAreas.slice(0, 3).join(', ')}${userAreas.length > 3 ? '...' : ''}</p>
                                     <p><strong>Device ID:</strong> ${this.user?.deviceId?.substring(0, 10)}...</p>
-                                    <p style="margin-top: 0.75rem; font-size: 0.75rem;">© 2024 Primer Services. All rights reserved.</p>
+                                    <p style="margin-top: 0.75rem; font-size: 0.75rem;">© 2026 Primer. All rights reserved.</p>
                                 </div>
                             </div>
                         </section>
@@ -2257,7 +2252,7 @@
             }
             
             copyAccountNumber() {
-                navigator.clipboard.writeText('0123456789').then(() => {
+                navigator.clipboard.writeText('650 638 3747').then(() => {
                     this.showAlert('Copied!', 'Account number copied to clipboard.', 'success');
                 }).catch(() => {
                     this.showAlert('Error', 'Failed to copy account number', 'error');
@@ -2274,7 +2269,7 @@
             
             showBankDetails() {
                 this.showAlert('Bank Details', 
-                    'Bank: Zenith Bank\nAccount Name: Primer Services Ltd\nAccount Number: 0123456789\nAlways include booking ID as reference.',
+                    'Bank: Opay\nAccount Number: 650 638 3747 \nAlways include booking ID as reference.',
                     'info'
                 );
             }
@@ -2322,11 +2317,12 @@
                 // Generate 30-day calendar
                 const calendarHTML = this.generate30DayCalendar();
                 
-                // Generate time slots (4-hour windows)
+                // Generate time slots (3-hour windows)
                 const timeSlots = [
-                    { start: '8:00 AM', end: '12:00 PM', value: 'morning' },
-                    { start: '12:00 PM', end: '4:00 PM', value: 'afternoon' },
-                    { start: '4:00 PM', end: '8:00 PM', value: 'evening' }
+                    { start: '8:00 AM', end: '10:00 AM', value: 'morning' },
+                    { start: '10:00 AM', end: '12:00 PM', value: 'mor_noon' },
+                    { start: '12:00 PM', end: '3:00 PM', value: 'evening' },
+                    { start: '3:00 PM', end: '5:00 PM', value: 'evening' }
                 ];
                 
                 const modalHTML = `
@@ -2768,15 +2764,13 @@
             }
             
             showStoreInfo() {
-                this.showAlert('Primer Store', 
-                    'Our store feature is coming soon!\n\nYou will be able to shop for supplies, materials, and equipment needed for your services.\n\nStay tuned for updates!',
-                    'info'
-                );
-            }
+    // Direct navigation to store page
+    window.location.href = "store.html";
+}
             
             showPromoDetails() {
-                this.showAlert('Special Offer!', 
-                    'Get 50% off your first booking with Primer!\n\nUse code: PRIMER50\nValid until end of month.\n\nTerms: Offer applies to new customers only. Maximum discount: ₦5,000.',
+                this.showAlert('What We Do:', 
+                    'We provide professional services through\nour own teams:\n<br>Our Services:\n<br>•Moving Services – Office & home relocation<br>• Repairs & Maintenance – Electrical, plumbing, handyman<br>•Special Cleaning – Carpets, shoes, deep cleaning<br>•Laundry Service – Pickup, wash, fold, delivery<br>•Waste Collection – E-waste, plastics, metals<br>•Primer Store – Cleaning & repair supplies',
                     'info'
                 );
             }
@@ -2786,7 +2780,7 @@
             }
             
             sendEmail() {
-                window.location.href = 'mailto:support@primer.ng?subject=Primer App Support';
+                window.location.href = 'mailto:get.primer@proton.me?subject=Primer App Support';
             }
             
             showAlert(title, message, type = 'info', callback = null) {
@@ -2879,5 +2873,25 @@
             window.app = new PrimerApp();
         });
     </script>
+    <script>
+function checkWAConnection(event) {
+    if (!navigator.onLine) {
+        event.preventDefault();
+        
+        // Add Font Awesome for the icon if not already included
+        if (!document.querySelector('link[href*="font-awesome"]')) {
+            const fa = document.createElement('link');
+            fa.rel = 'stylesheet';
+            fa.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css';
+            document.head.appendChild(fa);
+        }
+        
+        // Show nice modal
+        showCustomOfflineMessage();
+        return false;
+    }
+    return true;
+}
+</script>
 </body>
 </html>
