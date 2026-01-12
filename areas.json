@@ -1,0 +1,24 @@
+{
+  "cities": [
+    {
+      "id": "kaduna",
+      "name": "Kaduna",
+      "areas": ["Barnawa", "Kaduna South", "Kaduna North", "Ungwan Rimi", "Sabon Tasha", "Narayi", "Badarawa", "Ungwan Boro", "Tudun Wada", "Ungwan Dosa", "Kawo", "Malali", "Ungwan Sarki", "Ungwan Romi", "Kabala Costain"]
+    },
+    {
+      "id": "abuja",
+      "name": "Abuja",
+      "areas": ["Garki", "Wuse", "Asokoro", "Maitama", "Jabi", "Utako", "Gwarinpa", "Kubwa", "Lugbe", "Nyanya"]
+    },
+    {
+      "id": "lagos",
+      "name": "Lagos",
+      "areas": ["Victoria Island", "Ikoyi", "Lekki", "Surulere", "Ikeja", "Yaba", "Apapa", "Oshodi", "Maryland"]
+    },
+    {
+      "id": "kano",
+      "name": "Kano",
+      "areas": ["Nasarawa", "Fagge", "Dala", "Gwale", "Kumbotso", "Tarauni", "Dorayi", "Gidan Murtala"]
+    }
+  ]
+}
