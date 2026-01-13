@@ -20,5 +20,11 @@
       "name": "Kano",
       "areas": ["Nasarawa", "Fagge", "Dala", "Gwale", "Kumbotso", "Tarauni", "Dorayi", "Gidan Murtala"]
     }
+  ],
+  "moveDistances": [
+    { "id": "within_area", "label": "Within Same Area", "icon": "fa-map-marker-alt" },
+    { "id": "same_city", "label": "Within Same City", "icon": "fa-city" },
+    { "id": "neighboring", "label": "Neighboring City", "icon": "fa-road" },
+    { "id": "interstate", "label": "Interstate Move", "icon": "fa-globe-africa" }
   ]
 }
