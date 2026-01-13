@@ -1,0 +1,119 @@
+{
+  "urgencyLevels": [
+    { "id": "standard", "label": "Standard (48-72 hours)", "icon": "fa-clock" },
+    { "id": "express", "label": "Express (24 hours)", "icon": "fa-bolt" },
+    { "id": "emergency", "label": "Emergency (4 hours)", "icon": "fa-exclamation-triangle" }
+  ],
+  
+  "providerGenders": [
+    { "id": "any", "label": "Any Gender", "icon": "fa-user-friends" },
+    { "id": "male", "label": "Male Only", "icon": "fa-male" },
+    { "id": "female", "label": "Female Only", "icon": "fa-female" }
+  ],
+  
+  "paymentMethods": [
+    { "id": "cash", "label": "Cash on Delivery", "icon": "fa-money-bill-wave" },
+    { "id": "transfer", "label": "Bank Transfer", "icon": "fa-university" },
+    { "id": "pos", "label": "POS Payment", "icon": "fa-credit-card" }
+  ],
+  
+  "serviceSpecific": {
+    "moving": {
+      "moveTypes": [
+        { "id": "residential", "label": "Residential Move", "icon": "fa-home" },
+        { "id": "office", "label": "Office Move", "icon": "fa-building" },
+        { "id": "commercial", "label": "Commercial Move", "icon": "fa-store" }
+      ],
+      "largeItems": [
+        "Refrigerator",
+        "Washing Machine",
+        "Sofa (3-seater)",
+        "Sofa (2-seater)",
+        "Dining Table",
+        "Wardrobe",
+        "Bed Frame",
+        "Mattress",
+        "Television",
+        "Bookshelf"
+      ],
+      "fragileItems": [
+        { "id": "none", "label": "No Fragile Items", "icon": "fa-ban" },
+        { "id": "some", "label": "Some Fragile Items", "icon": "fa-glass-whiskey" },
+        { "id": "many", "label": "Many Fragile Items", "icon": "fa-gem" }
+      ],
+      "packingServices": [
+        { "id": "none", "label": "No Packing Needed", "icon": "fa-times" },
+        { "id": "partial", "label": "Partial Packing", "icon": "fa-box-half-full" },
+        { "id": "full", "label": "Full Packing Service", "icon": "fa-boxes" }
+      ],
+      "vehicleSizes": [
+        { "id": "small", "label": "Small Van", "icon": "fa-truck-pickup" },
+        { "id": "medium", "label": "Medium Truck", "icon": "fa-truck" },
+        { "id": "large", "label": "Large Truck", "icon": "fa-truck-moving" }
+      ]
+    },
+    
+    "repairs": {
+      "deviceTypes": [
+        { "id": "electronics", "label": "Electronics", "icon": "fa-tv" },
+        { "id": "appliances", "label": "Appliances", "icon": "fa-blender" },
+        { "id": "plumbing", "label": "Plumbing", "icon": "fa-faucet" },
+        { "id": "electrical", "label": "Electrical", "icon": "fa-bolt" }
+      ],
+      "emergencyRepair": [
+        { "id": "standard", "label": "Standard Service", "icon": "fa-clock" },
+        { "id": "emergency", "label": "Emergency Repair", "icon": "fa-exclamation-triangle" }
+      ]
+    },
+    
+    "cleaning": {
+      "cleaningTypes": [
+        { "id": "deep", "label": "Deep Cleaning", "icon": "fa-broom" },
+        { "id": "regular", "label": "Regular Cleaning", "icon": "fa-broom" }
+      ]
+    },
+    
+    "laundry": {
+      "fabricTypes": [
+        { "id": "cotton", "label": "Cotton", "icon": "fa-tshirt" },
+        { "id": "silk", "label": "Silk/Delicate", "icon": "fa-gem" },
+        { "id": "wool", "label": "Wool", "icon": "fa-snowflake" },
+        { "id": "mixed", "label": "Mixed Fabrics", "icon": "fa-layer-group" }
+      ],
+      "foldingPrefs": [
+        { "id": "folded", "label": "Folded", "icon": "fa-sort" },
+        { "id": "hanging", "label": "On Hangers", "icon": "fa-tshirt" }
+      ],
+      "ironingServices": [
+        { "id": "none", "label": "No Ironing", "icon": "fa-times" },
+        { "id": "light", "label": "Light Ironing", "icon": "fa-fire" },
+        { "id": "full", "label": "Full Ironing", "icon": "fa-fire-alt" }
+      ],
+      "deliveryTypes": [
+        { "id": "dropoff", "label": "I'll Drop Off & Pick Up", "icon": "fa-walking" },
+        { "id": "pickup", "label": "Pick Up & Deliver to Me", "icon": "fa-truck" }
+      ]
+    },
+    
+    "collection": {
+      "materialTypes": [
+        { "id": "ewaste", "label": "E-Waste", "icon": "fa-laptop" },
+        { "id": "plastic", "label": "Plastics", "icon": "fa-recycle" },
+        { "id": "metal", "label": "Metals", "icon": "fa-weight" },
+        { "id": "paper", "label": "Paper/Cardboard", "icon": "fa-file-alt" },
+        { "id": "mixed", "label": "Mixed Materials", "icon": "fa-boxes" }
+      ],
+      "hazardousOptions": [
+        { "id": "none", "label": "No Hazardous Materials", "icon": "fa-check-circle" },
+        { "id": "batteries", "label": "Contains Batteries", "icon": "fa-battery-full" },
+        { "id": "chemicals", "label": "Contains Chemicals", "icon:": "fa-flask" },
+        { "id": "oil", "label": "Contains Oil/Paint", "icon": "fa-oil-can" }
+      ],
+      "weightOptions": [
+        { "id": "light", "label": "Light (1-10 kg)", "icon": "fa-weight" },
+        { "id": "medium", "label": "Medium (11-50 kg)", "icon": "fa-weight-hanging" },
+        { "id": "heavy", "label": "Heavy (51-100 kg)", "icon": "fa-dumbbell" }
+      ]
+    }
+  }
+}
