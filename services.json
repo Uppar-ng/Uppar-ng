@@ -1,7 +1,7 @@
 [
   {
     "id": "moving",
-    "title": "Home Moving",
+    "title": "Moving Services",
     "description": "Professional home moving and relocation services",
     "icon": "truck-moving",
     "hasCounter": false,
@@ -12,14 +12,26 @@
     "recommendations": ["weekend", "holiday", "morning"]
   },
   {
-    "id": "cleaning",
-    "title": "Home Cleaning",
-    "description": "Deep cleaning and regular maintenance",
-    "icon": "broom",
-    "hasCounter": true,
-    "counterLabel": "Rooms",
+    "id": "repairs",
+    "title": "Repairs And Maintenance",
+    "description": "Minor repairs and maintenance eg. electronics.",
+    "icon": "tools",
+    "hasCounter": false,
+    "counterLabel": "Items",
     "minItems": 1,
-    "maxItems": 10,
+    "maxItems": 20,
+    "requiresAddress": true,
+    "recommendations": ["weekday", "afternoon"]
+  },
+  {
+    "id": "cleaning",
+    "title": "Special Cleaning",
+    "description": "Deep cleaning and regular care and maintenance",
+    "icon": "brush",
+    "hasCounter": true,
+    "counterLabel": "Items",
+    "minItems": 1,
+    "maxItems": 100,
     "requiresAddress": true,
     "recommendations": ["weekday", "afternoon"]
   },
@@ -31,44 +43,20 @@
     "hasCounter": true,
     "counterLabel": "Pieces",
     "minItems": 5,
-    "maxItems": 50,
-    "requiresAddress": false,
+    "maxItems": 500,
+    "requiresAddress": true,
     "recommendations": ["weekday", "morning"]
   },
   {
-    "id": "packing",
-    "title": "Packing Service",
-    "description": "Professional packing and unpacking",
+    "id": "collection",
+    "title": "Special Service",
+    "description": "Professional electronic, plastic, and metals collection",
     "icon": "box",
     "hasCounter": true,
     "counterLabel": "Boxes",
     "minItems": 1,
-    "maxItems": 20,
+    "maxItems": 100,
     "requiresAddress": true,
     "recommendations": ["weekend", "holiday"]
-  },
-  {
-    "id": "repairs",
-    "title": "Home Repairs",
-    "description": "Minor repairs and maintenance",
-    "icon": "tools",
-    "hasCounter": true,
-    "counterLabel": "Items",
-    "minItems": 1,
-    "maxItems": 10,
-    "requiresAddress": true,
-    "recommendations": ["weekday", "afternoon"]
-  },
-  {
-    "id": "assembly",
-    "title": "Furniture Assembly",
-    "description": "IKEA and furniture assembly",
-    "icon": "couch",
-    "hasCounter": true,
-    "counterLabel": "Pieces",
-    "minItems": 1,
-    "maxItems": 10,
-    "requiresAddress": true,
-    "recommendations": ["weekend", "afternoon"]
   }
 ]
