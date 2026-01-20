@@ -1,0 +1,93 @@
+
+{
+  "lastUpdated": "2024-06-15T10:30:00Z",
+  "notifications": [
+    {
+      "id": "notif_001",
+      "title": "Order Shipped",
+      "message": "Your order #ORD123456 has been shipped and is on its way",
+      "icon": "truck",
+      "type": "order_update",
+      "read": false,
+      "timestamp": "2024-06-15T09:15:00Z",
+      "action": "view_order",
+      "orderId": "ORD123456"
+    },
+    {
+      "id": "notif_002",
+      "title": "New Arrivals",
+      "message": "Check out our new collection of summer products",
+      "icon": "star",
+      "type": "promotion",
+      "read": false,
+      "timestamp": "2024-06-14T14:20:00Z",
+      "action": "browse",
+      "category": "new"
+    },
+    {
+      "id": "notif_003",
+      "title": "Price Drop Alert",
+      "message": "Wireless headphones you viewed are now 15% off",
+      "icon": "tag",
+      "type": "price_drop",
+      "read": true,
+      "timestamp": "2024-06-13T11:45:00Z",
+      "action": "view_product",
+      "productId": "prod_123"
+    },
+    {
+      "id": "notif_004",
+      "title": "Welcome to Primer Store",
+      "message": "Enjoy your shopping! Use code WELCOME10 for 10% off",
+      "icon": "gift",
+      "type": "welcome",
+      "read": true,
+      "timestamp": "2024-06-12T08:30:00Z",
+      "action": "shop",
+      "promoCode": "WELCOME10"
+    },
+    {
+      "id": "notif_005",
+      "title": "Delivery Update",
+      "message": "Your delivery is scheduled for tomorrow between 2-4 PM",
+      "icon": "calendar",
+      "type": "delivery",
+      "read": false,
+      "timestamp": "2024-06-15T10:00:00Z",
+      "action": "track_order",
+      "orderId": "ORD123456"
+    },
+    {
+      "id": "notif_006",
+      "title": "Special Offer",
+      "message": "Buy any 2 cleaning products and get 1 free",
+      "icon": "broom",
+      "type": "promotion",
+      "read": false,
+      "timestamp": "2024-06-14T16:45:00Z",
+      "action": "category",
+      "category": "cleaning"
+    },
+    {
+      "id": "notif_007",
+      "title": "Payment Successful",
+      "message": "Your payment for order #ORD789012 has been confirmed",
+      "icon": "check-circle",
+      "type": "payment",
+      "read": true,
+      "timestamp": "2024-06-13T13:20:00Z",
+      "action": "view_order",
+      "orderId": "ORD789012"
+    },
+    {
+      "id": "notif_008",
+      "title": "App Update",
+      "message": "New features available! Update now for better experience",
+      "icon": "mobile-alt",
+      "type": "app_update",
+      "read": false,
+      "timestamp": "2024-06-12T12:10:00Z",
+      "action": "update"
+    }
+  ]
+}
