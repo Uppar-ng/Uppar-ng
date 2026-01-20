@@ -1,0 +1,62 @@
+[file name]: sales.json
+[file content begin]
+{
+  "active": true,
+  "banners": [
+    {
+      "id": "summer_sale",
+      "title": "Summer Sale!",
+      "message": "Get 20% off all cleaning supplies",
+      "backgroundColor": "#FF6B6B",
+      "textColor": "#FFFFFF",
+      "action": "category",
+      "target": "cleaning",
+      "discount": "20%",
+      "expiry": "2024-08-31",
+      "priority": 1
+    },
+    {
+      "id": "free_delivery",
+      "title": "Free Delivery",
+      "message": "Free delivery on orders above ₦10,000",
+      "backgroundColor": "#4ECDC4",
+      "textColor": "#FFFFFF",
+      "action": "min_amount",
+      "minAmount": 10000,
+      "expiry": "2024-07-31",
+      "priority": 2
+    },
+    {
+      "id": "new_user",
+      "title": "Welcome Offer",
+      "message": "Get ₦1,000 off your first order",
+      "backgroundColor": "#FFD166",
+      "textColor": "#333333",
+      "action": "first_order",
+      "discount": 1000,
+      "expiry": "2024-12-31",
+      "priority": 3
+    },
+    {
+      "id": "flash_sale",
+      "title": "Flash Sale",
+      "message": "Limited time offers - Up to 50% off",
+      "backgroundColor": "#EF476F",
+      "textColor": "#FFFFFF",
+      "action": "flash_sale",
+      "expiry": "2024-06-30",
+      "priority": 4
+    },
+    {
+      "id": "electronics_sale",
+      "title": "Tech Week",
+      "message": "Biggest deals on electronics",
+      "backgroundColor": "#118AB2",
+      "textColor": "#FFFFFF",
+      "action": "category",
+      "target": "electronics",
+      "expiry": "2024-07-15",
+      "priority": 5
+    }
+  ]
+}
