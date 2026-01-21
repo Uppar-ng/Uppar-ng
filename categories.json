@@ -1,0 +1,12 @@
+{
+  "categories": [
+    { "id": "electronics", "name": "Electronics", "icon": "fa-laptop", "color": "#0066FF" },
+    { "id": "fashion", "name": "Fashion", "icon": "fa-tshirt", "color": "#10B981" },
+    { "id": "home", "name": "Home & Living", "icon": "fa-home", "color": "#F59E0B" },
+    { "id": "beauty", "name": "Beauty", "icon": "fa-spa", "color": "#EF4444" },
+    { "id": "sports", "name": "Sports", "icon": "fa-dumbbell", "color": "#8B5CF6" },
+    { "id": "books", "name": "Books", "icon": "fa-book", "color": "#EC4899" },
+    { "id": "toys", "name": "Toys", "icon": "fa-gamepad", "color": "#06B6D4" },
+    { "id": "grocery", "name": "Grocery", "icon": "fa-shopping-basket", "color": "#84CC16" }
+  ]
+}
