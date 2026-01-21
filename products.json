@@ -1,25 +1,13 @@
 {
-  "categories": [
-    { "id": "electronics", "name": "Electronics" },
-    { "id": "furniture", "name": "Furniture" },
-    { "id": "clothing", "name": "Clothing" },
-    { "id": "groceries", "name": "Groceries" },
-    { "id": "cleaning", "name": "Cleaning" },
-    { "id": "kitchen", "name": "Kitchen" },
-    { "id": "bathroom", "name": "Bathroom" },
-    { "id": "office", "name": "Office" },
-    { "id": "health", "name": "Health & Beauty" },
-    { "id": "automotive", "name": "Automotive" }
-  ],
   "products": [
     {
       "id": "prod_001",
       "name": "Wireless Bluetooth Headphones",
-      "description": "Noise-cancelling over-ear headphones with 30-hour battery",
-      "price": 24999,
-      "originalPrice": 29999,
-      "currency": "₦",
+      "description": "Noise cancelling headphones with 30-hour battery life",
       "category": "electronics",
+      "price": 24999,
+      "originalPrice": 34999,
+      "currency": "₦",
       "images": [
         "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop",
         "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=300&fit=crop"
@@ -27,203 +15,23 @@
       "rating": 4.5,
       "reviews": 128,
       "stock": 25,
-      "brand": "SoundMax",
-      "features": ["Noise Cancelling", "Bluetooth 5.0", "30-hour Battery", "Foldable"],
-      "tags": ["audio", "wireless", "premium"]
+      "features": ["Noise cancellation", "30-hour battery", "Bluetooth 5.0"]
     },
     {
       "id": "prod_002",
-      "name": "Ergonomic Office Chair",
-      "description": "Adjustable height office chair with lumbar support",
-      "price": 45000,
-      "originalPrice": 55000,
-      "currency": "₦",
-      "category": "furniture",
-      "images": [
-        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop"
-      ],
-      "rating": 4.2,
-      "reviews": 56,
-      "stock": 12,
-      "brand": "ComfortPro",
-      "features": ["Adjustable Height", "Lumbar Support", "360° Swivel", "Breathable Mesh"],
-      "tags": ["office", "chair", "ergonomic"]
-    },
-    {
-      "id": "prod_003",
       "name": "Premium Cotton T-Shirt",
       "description": "100% cotton t-shirt with premium finish",
-      "price": 3500,
-      "originalPrice": 4500,
+      "category": "fashion",
+      "price": 4999,
+      "originalPrice": 6999,
       "currency": "₦",
-      "category": "clothing",
       "images": [
         "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=300&fit=crop"
       ],
-      "rating": 4.0,
-      "reviews": 89,
-      "stock": 150,
-      "brand": "StyleWear",
-      "features": ["100% Cotton", "Preshrunk", "Premium Finish", "Multiple Colors"],
-      "tags": ["clothing", "tshirt", "cotton"]
-    },
-    {
-      "id": "prod_004",
-      "name": "Organic Rice 5kg",
-      "description": "Premium quality organic rice",
-      "price": 6500,
-      "currency": "₦",
-      "category": "groceries",
-      "images": [
-        "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=300&fit=crop"
-      ],
-      "rating": 4.3,
-      "reviews": 45,
-      "stock": 200,
-      "brand": "OrganicFarm",
-      "features": ["Organic Certified", "No Preservatives", "High Quality", "5kg Pack"],
-      "tags": ["groceries", "rice", "organic"]
-    },
-    {
-      "id": "prod_005",
-      "name": "Multi-surface Cleaner",
-      "description": "All-purpose cleaner for kitchen, bathroom, and floors",
-      "price": 1800,
-      "originalPrice": 2200,
-      "currency": "₦",
-      "category": "cleaning",
-      "images": [
-        "https://images.unsplash.com/photo-1584068951406-178dd8f3c54f?w=400&h=300&fit=crop"
-      ],
-      "rating": 4.1,
-      "reviews": 78,
-      "stock": 300,
-      "brand": "CleanHome",
-      "features": ["All-purpose", "Non-toxic", "Pleasant Scent", "1L Bottle"],
-      "tags": ["cleaning", "cleaner", "home"]
-    },
-    {
-      "id": "prod_006",
-      "name": "Non-stick Cookware Set",
-      "description": "5-piece non-stick cookware set with glass lids",
-      "price": 32000,
-      "originalPrice": 38000,
-      "currency": "₦",
-      "category": "kitchen",
-      "images": [
-        "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop"
-      ],
-      "rating": 4.4,
-      "reviews": 34,
-      "stock": 18,
-      "brand": "KitchenPro",
-      "features": ["Non-stick Coating", "Heat Resistant", "Glass Lids", "5 Pieces"],
-      "tags": ["kitchen", "cookware", "utensils"]
-    },
-    {
-      "id": "prod_007",
-      "name": "Bath Towel Set",
-      "description": "Set of 4 premium cotton bath towels",
-      "price": 8500,
-      "currency": "₦",
-      "category": "bathroom",
-      "images": [
-        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&h=300&fit=crop"
-      ],
-      "rating": 4.6,
-      "reviews": 112,
-      "stock": 65,
-      "brand": "SoftTouch",
-      "features": ["100% Cotton", "Quick Dry", "Soft & Absorbent", "Set of 4"],
-      "tags": ["bathroom", "towels", "cotton"]
-    },
-    {
-      "id": "prod_008",
-      "name": "Desk Organizer Set",
-      "description": "Multi-compartment desk organizer for office supplies",
-      "price": 4500,
-      "originalPrice": 5500,
-      "currency": "₦",
-      "category": "office",
-      "images": [
-        "https://images.unsplash.com/photo-1545235617-9465d2a55698?w=400&h=300&fit=crop"
-      ],
-      "rating": 4.0,
-      "reviews": 23,
-      "stock": 42,
-      "brand": "OfficeEssentials",
-      "features": ["Multiple Compartments", "Durable Material", "Modern Design", "Easy Assembly"],
-      "tags": ["office", "organizer", "desk"]
-    },
-    {
-      "id": "prod_009",
-      "name": "Vitamin C Serum",
-      "description": "Skin brightening serum with vitamin C and hyaluronic acid",
-      "price": 12000,
-      "currency": "₦",
-      "category": "health",
-      "images": [
-        "https://images.unsplash.com/photo-1556228578-9c360e1d8d34?w=400&h=300&fit=crop"
-      ],
-      "rating": 4.7,
-      "reviews": 156,
-      "stock": 28,
-      "brand": "SkinGlow",
-      "features": ["Vitamin C", "Hyaluronic Acid", "Brightening", "30ml Bottle"],
-      "tags": ["beauty", "skincare", "serum"]
-    },
-    {
-      "id": "prod_010",
-      "name": "Car Air Freshener",
-      "description": "Long-lasting car air freshener with multiple scents",
-      "price": 800,
-      "currency": "₦",
-      "category": "automotive",
-      "images": [
-        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop"
-      ],
-      "rating": 3.9,
-      "reviews": 67,
-      "stock": 500,
-      "brand": "FreshAir",
-      "features": ["Long-lasting", "Multiple Scents", "Easy to Install", "Non-toxic"],
-      "tags": ["automotive", "air freshener", "car"]
-    },
-    {
-      "id": "prod_011",
-      "name": "Smartphone Stand",
-      "description": "Adjustable smartphone stand for desk use",
-      "price": 2500,
-      "originalPrice": 3000,
-      "currency": "₦",
-      "category": "electronics",
-      "images": [
-        "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400&h=300&fit=crop"
-      ],
       "rating": 4.2,
-      "reviews": 41,
-      "stock": 85,
-      "brand": "TechGear",
-      "features": ["Adjustable Angle", "Universal Fit", "Compact Design", "Non-slip Base"],
-      "tags": ["electronics", "accessory", "smartphone"]
-    },
-    {
-      "id": "prod_012",
-      "name": "Coffee Maker",
-      "description": "Automatic drip coffee maker with programmable timer",
-      "price": 18500,
-      "originalPrice": 22000,
-      "currency": "₦",
-      "category": "kitchen",
-      "images": [
-        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300&fit=crop"
-      ],
-      "rating": 4.5,
-      "reviews": 92,
-      "stock": 22,
-      "brand": "BrewMaster",
-      "features": ["Programmable", "12-cup Capacity", "Auto Shut-off", "Pause & Serve"],
-      "tags": ["kitchen", "appliance", "coffee"]
+      "reviews": 56,
+      "stock": 100,
+      "features": ["100% Cotton", "Premium finish", "Machine washable"]
     }
   ]
 }
