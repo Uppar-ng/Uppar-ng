@@ -1,0 +1,54 @@
+{
+  "banners": [
+    {
+      "id": "banner1",
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&h=400&fit=crop",
+      "title": "Summer Sale",
+      "subtitle": "Up to 50% off on selected items",
+      "cta": "Shop Now",
+      "backgroundColor": "#0066FF",
+      "textColor": "#FFFFFF",
+      "link": "#summer-sale"
+    },
+    {
+      "id": "banner2",
+      "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=400&fit=crop",
+      "title": "New Arrivals",
+      "subtitle": "Discover our latest collection",
+      "cta": "Explore",
+      "backgroundColor": "#10B981",
+      "textColor": "#FFFFFF",
+      "link": "#new-arrivals"
+    },
+    {
+      "id": "banner3",
+      "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop",
+      "title": "Free Delivery",
+      "subtitle": "On orders above ₦50,000",
+      "cta": "Learn More",
+      "backgroundColor": "#F59E0B",
+      "textColor": "#FFFFFF",
+      "link": "#free-delivery"
+    },
+    {
+      "id": "banner4",
+      "image": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=400&fit=crop",
+      "title": "Limited Time Offer",
+      "subtitle": "Buy 1 Get 1 Free on selected items",
+      "cta": "Grab Deal",
+      "backgroundColor": "#8B5CF6",
+      "textColor": "#FFFFFF",
+      "link": "#bogo"
+    },
+    {
+      "id": "banner5",
+      "image": "https://images.unsplash.com/photo-1560393464-5c69a73c5770?w=800&h=400&fit=crop",
+      "title": "Premium Collection",
+      "subtitle": "Exclusive products for premium members",
+      "cta": "View Collection",
+      "backgroundColor": "#EC4899",
+      "textColor": "#FFFFFF",
+      "link": "#premium"
+    }
+  ]
+}
