@@ -1,6 +1,5 @@
 {
   "properties": [
-    // ==================== NORTHERN REGION PROPERTIES ====================
     {
       "id": "prop_north1",
       "title": "Maitama Luxury Apartment",
@@ -257,8 +256,6 @@
       "addedDate": "2024-01-20",
       "region": "north"
     },
-    
-    // ==================== SOUTHERN REGION PROPERTIES ====================
     {
       "id": "prop1",
       "title": "Modern Studio Apartment",
@@ -391,7 +388,6 @@
   ],
   
   "schools": [
-    // Northern Schools
     {
       "name": "University of Abuja",
       "coordinates": [9.0765, 7.3986],
@@ -452,8 +448,6 @@
       "propertiesCount": 1,
       "region": "north"
     },
-    
-    // Southern Schools
     {
       "name": "University of Lagos",
       "coordinates": [6.5244, 3.3792],
@@ -478,8 +472,6 @@
       "propertiesCount": 1,
       "region": "south"
     },
-    
-    // Schools without properties (Coming soon)
     {
       "name": "University of Nigeria, Nsukka",
       "coordinates": [6.8584, 7.3958],
@@ -510,8 +502,6 @@
       "propertiesCount": 0,
       "region": "south"
     },
-    
-    // Northern Schools without properties
     {
       "name": "Nasarawa State University",
       "coordinates": [8.5439, 7.7115],
