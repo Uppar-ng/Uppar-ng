@@ -1,0 +1,571 @@
+{
+  "banners": [
+    // ==================== NORTHERN REGION BANNERS ====================
+    {
+      "id": "banner_north1",
+      "title": "Northern Student Discount",
+      "description": "Special 25% off for students in northern universities. Valid for first booking.",
+      "icon": "percent",
+      "color": "#8B4513",
+      "region": "north",
+      "target": "students"
+    },
+    {
+      "id": "banner_north2",
+      "title": "Harmattan Special",
+      "description": "Free heater installation for northern properties during harmattan season.",
+      "icon": "snowflake",
+      "color": "#D2691E",
+      "region": "north",
+      "season": "harmattan"
+    },
+    {
+      "id": "banner_north3",
+      "title": "Northern Cultural Festival",
+      "description": "Book accommodation during Durbar Festival and get free cultural tour.",
+      "icon": "mosque",
+      "color": "#CD853F",
+      "region": "north",
+      "event": "durbar"
+    },
+    {
+      "id": "banner_north4",
+      "title": "Generator Backup Guarantee",
+      "description": "All northern properties guaranteed 24/7 power supply with backup generators.",
+      "icon": "bolt",
+      "color": "#A0522D",
+      "region": "north",
+      "amenity": "power"
+    },
+    
+    // ==================== SOUTHERN REGION BANNERS ====================
+    {
+      "id": "banner_south1",
+      "title": "Student Discount",
+      "description": "Get 20% off on your first booking. Use code: STUDENT20",
+      "icon": "percent",
+      "color": "#0066FF",
+      "region": "south",
+      "target": "students"
+    },
+    {
+      "id": "banner_south2",
+      "title": "Free Laundry Service",
+      "description": "First laundry service free for new students in southern universities.",
+      "icon": "tshirt",
+      "color": "#10b981",
+      "region": "south",
+      "service": "laundry"
+    },
+    {
+      "id": "banner_south3",
+      "title": "Rainy Season Special",
+      "description": "Free umbrella and raincoat with every booking during rainy season.",
+      "icon": "cloud-rain",
+      "color": "#3b82f6",
+      "region": "south",
+      "season": "rainy"
+    },
+    {
+      "id": "banner_south4",
+      "title": "Beach Properties",
+      "description": "Exclusive beach-view properties now available in Lagos and Port Harcourt.",
+      "icon": "umbrella-beach",
+      "color": "#0ea5e9",
+      "region": "south",
+      "feature": "beach"
+    },
+    
+    // ==================== NATIONAL BANNERS ====================
+    {
+      "id": "banner_national1",
+      "title": "Exam Season Special",
+      "description": "Quiet study spaces with 24/7 electricity. Perfect for exam preparation.",
+      "icon": "book",
+      "color": "#8b5cf6",
+      "region": "all",
+      "period": "exams"
+    },
+    {
+      "id": "banner_national2",
+      "title": "Refer & Earn",
+      "description": "Refer a friend and get ₦5,000 credit for both of you.",
+      "icon": "user-friends",
+      "color": "#f59e0b",
+      "region": "all",
+      "action": "referral"
+    },
+    {
+      "id": "banner_national3",
+      "title": "Flexible Payment Plans",
+      "description": "Pay monthly, quarterly, or per semester. Choose what works for you.",
+      "icon": "credit-card",
+      "color": "#10b981",
+      "region": "all",
+      "payment": "flexible"
+    },
+    {
+      "id": "banner_national4",
+      "title": "Verified Landlords",
+      "description": "All properties listed by verified and trusted landlords.",
+      "icon": "shield-alt",
+      "color": "#ef4444",
+      "region": "all",
+      "safety": "verified"
+    },
+    {
+      "id": "banner_national5",
+      "title": "24/7 Student Support",
+      "description": "Our support team is available round the clock to assist you.",
+      "icon": "headset",
+      "color": "#3b82f6",
+      "region": "all",
+      "support": "24/7"
+    },
+    
+    // ==================== REGION-SPECIFIC BANNERS ====================
+    {
+      "id": "banner_north_south1",
+      "title": "Cross-Region Exchange",
+      "description": "Study in a different region? Get special rates for cross-region transfers.",
+      "icon": "exchange-alt",
+      "color": "#6366f1",
+      "region": "both",
+      "program": "exchange"
+    },
+    {
+      "id": "banner_north_south2",
+      "title": "Cultural Experience Program",
+      "description": "Experience different Nigerian cultures through our student exchange program.",
+      "icon": "globe-africa",
+      "color": "#84cc16",
+      "region": "both",
+      "program": "cultural"
+    }
+  ],
+  
+  "promotions": [
+    // Northern Promotions
+    {
+      "id": "promo_north1",
+      "title": "Northern Heritage Tour",
+      "description": "Book accommodation in Kano, Sokoto, or Kaduna and get a free cultural heritage tour.",
+      "icon": "landmark",
+      "color": "#8B4513",
+      "regions": ["north"],
+      "validUntil": "2024-06-30"
+    },
+    {
+      "id": "promo_north2",
+      "title": "Sallah Special",
+      "description": "Extra discounts for bookings during Eid celebrations in northern states.",
+      "icon": "moon",
+      "color": "#D2691E",
+      "regions": ["north"],
+      "validUntil": "2024-04-10"
+    },
+    {
+      "id": "promo_north3",
+      "title": "Northern Business Hub",
+      "description": "Properties near business districts in Abuja and Kano now available.",
+      "icon": "briefcase",
+      "color": "#A0522D",
+      "regions": ["north"],
+      "validUntil": "2024-12-31"
+    },
+    
+    // Southern Promotions
+    {
+      "id": "promo_south1",
+      "title": "Coastal Living",
+      "description": "Experience beachfront living in Lagos, Port Harcourt, and Calabar.",
+      "icon": "water",
+      "color": "#0ea5e9",
+      "regions": ["south"],
+      "validUntil": "2024-08-31"
+    },
+    {
+      "id": "promo_south2",
+      "title": "Rainy Season Bundle",
+      "description": "Get free laundry service and dryer access during rainy season.",
+      "icon": "cloud-showers-heavy",
+      "color": "#3b82f6",
+      "regions": ["south"],
+      "validUntil": "2024-07-15"
+    },
+    {
+      "id": "promo_south3",
+      "title": "Southern Tech Hubs",
+      "description": "Properties near tech hubs in Lagos and Port Harcourt with high-speed internet.",
+      "icon": "laptop-code",
+      "color": "#8b5cf6",
+      "regions": ["south"],
+      "validUntil": "2024-09-30"
+    },
+    
+    // National Promotions
+    {
+      "id": "promo_national1",
+      "title": "New Semester, New Home",
+      "description": "Book for the new semester and get first month at 50% off.",
+      "icon": "graduation-cap",
+      "color": "#10b981",
+      "regions": ["all"],
+      "validUntil": "2024-02-28"
+    },
+    {
+      "id": "promo_national2",
+      "title": "Group Discount",
+      "description": "Book with 3 friends and each get 15% off your accommodation.",
+      "icon": "users",
+      "color": "#f59e0b",
+      "regions": ["all"],
+      "validUntil": "2024-03-31"
+    }
+  ],
+  
+  "seasonalContent": {
+    "harmattan": {
+      "north": [
+        {
+          "title": "Harmattan Comfort Package",
+          "description": "Special heating arrangements and skincare products for northern harmattan season.",
+          "icon": "wind",
+          "color": "#D2691E"
+        },
+        {
+          "title": "Dust Protection",
+          "description": "All northern properties equipped with air purifiers during harmattan.",
+          "icon": "air-freshener",
+          "color": "#A0522D"
+        }
+      ],
+      "south": [
+        {
+          "title": "Cool Breeze Special",
+          "description": "Enjoy the cool harmattan breeze in southern coastal areas.",
+          "icon": "fan",
+          "color": "#0ea5e9"
+        }
+      ]
+    },
+    "rainy": {
+      "south": [
+        {
+          "title": "Rainy Season Protection",
+          "description": "Free umbrellas, raincoats, and waterproof bags for southern rainy season.",
+          "icon": "umbrella",
+          "color": "#3b82f6"
+        },
+        {
+          "title": "Flood-Safe Locations",
+          "description": "All southern properties in flood-safe elevated areas.",
+          "icon": "house-flood",
+          "color": "#1d4ed8"
+        }
+      ],
+      "north": [
+        {
+          "title": "Rainy Season Farming",
+          "description": "Experience northern agriculture during the rainy season.",
+          "icon": "tractor",
+          "color": "#84cc16"
+        }
+      ]
+    },
+    "dry": {
+      "north": [
+        {
+          "title": "Dry Season Festival Tours",
+          "description": "Experience northern festivals during the dry season.",
+          "icon": "calendar-alt",
+          "color": "#f59e0b"
+        }
+      ],
+      "south": [
+        {
+          "title": "Dry Season Beach Parties",
+          "description": "Exclusive beach access during southern dry season.",
+          "icon": "cocktail",
+          "color": "#ec4899"
+        }
+      ]
+    }
+  },
+  
+  "regionalFeatures": {
+    "north": [
+      {
+        "feature": "24/7 Power Backup",
+        "description": "All northern properties have reliable generator backup",
+        "icon": "bolt"
+      },
+      {
+        "feature": "Water Reservoirs",
+        "description": "Guaranteed water supply with storage facilities",
+        "icon": "water"
+      },
+      {
+        "feature": "Cultural Proximity",
+        "description": "Close to historical and cultural sites",
+        "icon": "landmark"
+      },
+      {
+        "feature": "Security Focus",
+        "description": "Enhanced security measures in all properties",
+        "icon": "shield-alt"
+      },
+      {
+        "feature": "Cool Night Climate",
+        "description": "Enjoy naturally cool nights in northern regions",
+        "icon": "moon"
+      }
+    ],
+    "south": [
+      {
+        "feature": "Beach Access",
+        "description": "Many properties near beautiful beaches",
+        "icon": "umbrella-beach"
+      },
+      {
+        "feature": "High-speed Internet",
+        "description": "Fiber internet available in most locations",
+        "icon": "wifi"
+      },
+      {
+        "feature": "Nightlife Proximity",
+        "description": "Close to entertainment and social spots",
+        "icon": "music"
+      },
+      {
+        "feature": "Coastal Cuisine",
+        "description": "Access to fresh seafood and coastal dishes",
+        "icon": "fish"
+      },
+      {
+        "feature": "Business Hubs",
+        "description": "Proximity to commercial and tech centers",
+        "icon": "briefcase"
+      }
+    ]
+  },
+  
+  "universityEvents": {
+    "northernUniversities": [
+      {
+        "university": "Ahmadu Bello University",
+        "events": [
+          {
+            "name": "ABU Cultural Week",
+            "date": "March 15-22, 2024",
+            "description": "Annual cultural celebration with traditional performances"
+          },
+          {
+            "name": "Northern Tech Summit",
+            "date": "April 5-7, 2024",
+            "description": "Technology conference hosted at ABU Zaria"
+          }
+        ]
+      },
+      {
+        "university": "Bayero University Kano",
+        "events": [
+          {
+            "name": "Kano Trade Fair",
+            "date": "May 10-17, 2024",
+            "description": "Annual commercial exhibition at BUK"
+          }
+        ]
+      },
+      {
+        "university": "University of Maiduguri",
+        "events": [
+          {
+            "name": "Peace and Unity Conference",
+            "date": "June 1-3, 2024",
+            "description": "Academic conference on peace building"
+          }
+        ]
+      }
+    ],
+    "southernUniversities": [
+      {
+        "university": "University of Lagos",
+        "events": [
+          {
+            "name": "UNILAG Innovation Week",
+            "date": "February 20-25, 2024",
+            "description": "Annual tech and innovation festival"
+          }
+        ]
+      },
+      {
+        "university": "University of Ibadan",
+        "events": [
+          {
+            "name": "UI Literary Festival",
+            "date": "March 8-10, 2024",
+            "description": "Celebration of literature and arts"
+          }
+        ]
+      }
+    ]
+  },
+  
+  "regionalTips": {
+    "north": [
+      "Carry light woolens for cool nights",
+      "Stay hydrated during harmattan season",
+      "Learn basic Hausa greetings for better interaction",
+      "Visit historical sites during weekends",
+      "Try local northern cuisine like Tuwo Shinkafa"
+    ],
+    "south": [
+      "Carry rain gear during rainy season",
+      "Enjoy fresh seafood at coastal restaurants",
+      "Visit beaches during low tide for best experience",
+      "Try local dishes like Banga soup and Starch",
+      "Use ride-hailing apps for easy transportation"
+    ]
+  },
+  
+  "emergencyContacts": {
+    "north": {
+      "medical": "0700-ABUJA-HOSPITAL",
+      "security": "112",
+      "fire": "112",
+      "studentSupport": "0800-STUDENT-HELP",
+      "regionalOffice": "09-2900000"
+    },
+    "south": {
+      "medical": "0700-LAGOS-HOSPITAL",
+      "security": "112",
+      "fire": "112",
+      "studentSupport": "0800-STUDENT-HELP",
+      "regionalOffice": "01-2900000"
+    }
+  },
+  
+  "weatherAlerts": {
+    "current": [
+      {
+        "region": "north",
+        "alert": "Harmattan haze expected. Moderate visibility.",
+        "severity": "moderate",
+        "icon": "smog"
+      },
+      {
+        "region": "south",
+        "alert": "Light rainfall expected in coastal areas.",
+        "severity": "low",
+        "icon": "cloud-rain"
+      }
+    ],
+    "upcoming": [
+      {
+        "region": "north",
+        "alert": "Dry season approaching. Temperature rise expected.",
+        "date": "February 2024",
+        "icon": "sun"
+      },
+      {
+        "region": "south",
+        "alert": "Heavy rainfall season starting March 2024",
+        "date": "March 2024",
+        "icon": "cloud-showers-heavy"
+      }
+    ]
+  },
+  
+  "transportation": {
+    "north": {
+      "interCity": ["Trains (Kaduna-Abuja)", "Buses", "Shared taxis"],
+      "intraCity": ["Keke NAPEP", "Buses", "Taxis"],
+      "tips": "Book train tickets in advance for Abuja-Kaduna route"
+    },
+    "south": {
+      "interCity": ["Buses", "Ferries (Lagos)", "Flights"],
+      "intraCity": ["Buses", "Taxis", "Ride-hailing", "Ferries"],
+      "tips": "Use water transportation in Lagos to avoid traffic"
+    }
+  },
+  
+  "localMarkets": {
+    "north": [
+      {
+        "name": "Kurmi Market, Kano",
+        "description": "One of Africa's largest traditional markets"
+      },
+      {
+        "name": "Wuse Market, Abuja",
+        "description": "Modern market with local and international goods"
+      },
+      {
+        "name": "Kasuwar Kwari, Kano",
+        "description": "Famous textile and fabric market"
+      }
+    ],
+    "south": [
+      {
+        "name": "Balogun Market, Lagos",
+        "description": "Largest market in West Africa"
+      },
+      {
+        "name": "Ariaria Market, Aba",
+        "description": "Famous for leather works and crafts"
+      },
+      {
+        "name": "Onitsha Main Market",
+        "description": "One of the largest markets in Africa"
+      }
+    ]
+  },
+  
+  "culturalEvents": {
+    "north": [
+      {
+        "name": "Durbar Festival",
+        "location": "Kano, Katsina, Sokoto",
+        "period": "Muslim festivals",
+        "description": "Colorful horse riding parade and cultural display"
+      },
+      {
+        "name": "Argungu Fishing Festival",
+        "location": "Kebbi State",
+        "period": "February/March",
+        "description": "Annual fishing competition and cultural festival"
+      }
+    ],
+    "south": [
+      {
+        "name": "Calabar Carnival",
+        "location": "Cross River",
+        "period": "December",
+        "description": "Africa's biggest street party"
+      },
+      {
+        "name": "Eyo Festival",
+        "location": "Lagos",
+        "period": "Variable",
+        "description": "Traditional Lagos masquerade festival"
+      }
+    ]
+  },
+  
+  "stats": {
+    "totalProperties": 15,
+    "northProperties": 10,
+    "southProperties": 5,
+    "totalSchools": 24,
+    "northSchools": 15,
+    "southSchools": 9,
+    "activePromotions": 8,
+    "studentUsers": 12500,
+    "averageRating": 4.7,
+    "completionRate": 94
+  },
+  
+  "appVersion": "2.1.0",
+  "lastUpdated": "2024-01-25",
+  "nextUpdate": "2024-02-01"
+}
