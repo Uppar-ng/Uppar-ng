@@ -1,0 +1,552 @@
+{
+  "properties": [
+    // ==================== NORTHERN REGION PROPERTIES ====================
+    {
+      "id": "prop_north1",
+      "title": "Maitama Luxury Apartment",
+      "location": "Maitama, Abuja",
+      "school": "University of Abuja",
+      "type": "luxury_apartment",
+      "price": 250000,
+      "priceDisplay": "₦250,000/month",
+      "coordinates": [9.0765, 7.3986],
+      "images": [
+        "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "features": [
+        { "icon": "bed", "label": "3 Beds" },
+        { "icon": "bath", "label": "2 Baths" },
+        { "icon": "wifi", "label": "High-speed WiFi" },
+        { "icon": "square", "label": "120 m²" }
+      ],
+      "distance": "5km from University of Abuja",
+      "amenities": ["Swimming Pool", "24/7 Security", "Gym", "Parking", "Generator"],
+      "description": "Luxury apartment in prestigious Maitama district. Fully furnished with modern amenities and excellent security.",
+      "addedDate": "2024-01-10",
+      "isNew": true,
+      "region": "north"
+    },
+    {
+      "id": "prop_north2",
+      "title": "Student Hostel - ABU Zaria",
+      "location": "Samaru, Zaria",
+      "school": "Ahmadu Bello University",
+      "type": "hostel",
+      "price": 45000,
+      "priceDisplay": "₦45,000/semester",
+      "coordinates": [11.1724, 7.6574],
+      "images": [
+        "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "features": [
+        { "icon": "bed", "label": "Shared Room" },
+        { "icon": "bath", "label": "Shared Bath" },
+        { "icon": "users", "label": "4 Students" },
+        { "icon": "square", "label": "Room 25 m²" }
+      ],
+      "distance": "0.8km from ABU main campus",
+      "amenities": ["Study Area", "Common Kitchen", "Security", "24/7 Electricity", "Laundry"],
+      "description": "Affordable student hostel near ABU campus. Perfect for students looking for budget accommodation.",
+      "addedDate": "2024-01-05",
+      "isPopular": true,
+      "region": "north"
+    },
+    {
+      "id": "prop_north3",
+      "title": "Kaduna City Studio",
+      "location": "Ungwan Rimi, Kaduna",
+      "school": "Kaduna State University",
+      "type": "studio",
+      "price": 85000,
+      "priceDisplay": "₦85,000/month",
+      "coordinates": [10.5167, 7.4333],
+      "images": [
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "features": [
+        { "icon": "bed", "label": "1 Bed" },
+        { "icon": "bath", "label": "1 Bath" },
+        { "icon": "wifi", "label": "WiFi" },
+        { "icon": "square", "label": "40 m²" }
+      ],
+      "distance": "3km from KASU campus",
+      "amenities": ["Furnished", "Kitchenette", "Security", "Water Supply", "Parking"],
+      "description": "Modern studio apartment in Kaduna. Well-furnished with all essential amenities for comfortable student living.",
+      "addedDate": "2024-01-08",
+      "isNew": true,
+      "region": "north"
+    },
+    {
+      "id": "prop_north4",
+      "title": "Jos Hilltop Bungalow",
+      "location": "Rayfield, Jos",
+      "school": "University of Jos",
+      "type": "bungalow",
+      "price": 180000,
+      "priceDisplay": "₦180,000/month",
+      "coordinates": [9.8965, 8.8583],
+      "images": [
+        "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "features": [
+        { "icon": "bed", "label": "2 Beds" },
+        { "icon": "bath", "label": "2 Baths" },
+        { "icon": "tree", "label": "Garden" },
+        { "icon": "square", "label": "150 m²" }
+      ],
+      "distance": "6km from UniJos",
+      "amenities": ["Garden", "Parking", "Security", "Generator", "Water Reservoir"],
+      "description": "Beautiful bungalow with garden in peaceful Rayfield area. Cool climate and serene environment perfect for studying.",
+      "addedDate": "2024-01-12",
+      "isPopular": true,
+      "region": "north"
+    },
+    {
+      "id": "prop_north5",
+      "title": "Kano Student Quarters",
+      "location": "Nasarawa GRA, Kano",
+      "school": "Bayero University Kano",
+      "type": "apartment",
+      "price": 120000,
+      "priceDisplay": "₦120,000/month",
+      "coordinates": [12.0022, 8.5920],
+      "images": [
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "features": [
+        { "icon": "bed", "label": "2 Beds" },
+        { "icon": "bath", "label": "1 Bath" },
+        { "icon": "fan", "label": "AC" },
+        { "icon": "square", "label": "70 m²" }
+      ],
+      "distance": "8km from BUK",
+      "amenities": ["Air Conditioning", "24/7 Security", "Parking", "Water Supply", "Backup Generator"],
+      "description": "Comfortable apartment in Kano's GRA. Ideal for students who prefer a secure and well-maintained neighborhood.",
+      "addedDate": "2024-01-03",
+      "region": "north"
+    },
+    {
+      "id": "prop_north6",
+      "title": "Sokoto Shared Accommodation",
+      "location": "Gidan Dare, Sokoto",
+      "school": "Usmanu Danfodiyo University",
+      "type": "shared",
+      "price": 35000,
+      "priceDisplay": "₦35,000/month",
+      "coordinates": [13.0059, 5.2476],
+      "images": [
+        "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "features": [
+        { "icon": "bed", "label": "Shared Room" },
+        { "icon": "bath", "label": "Shared Bath" },
+        { "icon": "users", "label": "3 Roommates" },
+        { "icon": "square", "label": "90 m²" }
+      ],
+      "distance": "2km from UDUS campus",
+      "amenities": ["Common Area", "Kitchen", "Security", "24/7 Water", "Mosque Nearby"],
+      "description": "Budget-friendly shared accommodation near UDUS. Great for students looking to save on accommodation costs.",
+      "addedDate": "2024-01-15",
+      "region": "north"
+    },
+    {
+      "id": "prop_north7",
+      "title": "Minna Modern Flat",
+      "location": "Tunga, Minna",
+      "school": "Federal University of Technology Minna",
+      "type": "flat",
+      "price": 95000,
+      "priceDisplay": "₦95,000/month",
+      "coordinates": [9.6152, 6.5478],
+      "images": [
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "features": [
+        { "icon": "bed", "label": "2 Beds" },
+        { "icon": "bath", "label": "1 Bath" },
+        { "icon": "wifi", "label": "WiFi" },
+        { "icon": "square", "label": "65 m²" }
+      ],
+      "distance": "4km from FUT Minna",
+      "amenities": ["Fully Furnished", "Security", "Water Supply", "Parking", "Backup Power"],
+      "description": "Modern flat in Minna with all essential amenities. Close to markets and transportation hubs.",
+      "addedDate": "2024-01-07",
+      "isNew": true,
+      "region": "north"
+    },
+    {
+      "id": "prop_north8",
+      "title": "Maiduguri Student Lodge",
+      "location": "Gwange, Maiduguri",
+      "school": "University of Maiduguri",
+      "type": "hostel",
+      "price": 40000,
+      "priceDisplay": "₦40,000/month",
+      "coordinates": [11.8333, 13.1500],
+      "images": [
+        "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "features": [
+        { "icon": "bed", "label": "Single Room" },
+        { "icon": "bath", "label": "Shared Bath" },
+        { "icon": "fan", "label": "Ceiling Fan" },
+        { "icon": "square", "label": "20 m²" }
+      ],
+      "distance": "3km from UNIMAID",
+      "amenities": ["Security", "Study Area", "Common Kitchen", "Laundry", "24/7 Water"],
+      "description": "Secure student lodge near University of Maiduguri. Provides safe and affordable accommodation for students.",
+      "addedDate": "2024-01-18",
+      "region": "north"
+    },
+    {
+      "id": "prop_north9",
+      "title": "Yola Riverside Apartment",
+      "location": "Jimeta, Yola",
+      "school": "Modibbo Adama University",
+      "type": "apartment",
+      "price": 110000,
+      "priceDisplay": "₦110,000/month",
+      "coordinates": [9.2035, 12.4954],
+      "images": [
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "features": [
+        { "icon": "bed", "label": "2 Beds" },
+        { "icon": "bath", "label": "2 Baths" },
+        { "icon": "water", "label": "River View" },
+        { "icon": "square", "label": "85 m²" }
+      ],
+      "distance": "7km from MAUTECH",
+      "amenities": ["River View", "Security", "Parking", "Generator", "Water Supply"],
+      "description": "Beautiful apartment with river view in Yola. Peaceful environment perfect for focused study sessions.",
+      "addedDate": "2024-01-14",
+      "isPopular": true,
+      "region": "north"
+    },
+    {
+      "id": "prop_north10",
+      "title": "Katsina Student Housing",
+      "location": "Kofar Kaura, Katsina",
+      "school": "Umaru Musa Yar'adua University",
+      "type": "flat",
+      "price": 65000,
+      "priceDisplay": "₦65,000/month",
+      "coordinates": [12.9998, 7.6018],
+      "images": [
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "features": [
+        { "icon": "bed", "label": "1 Bed" },
+        { "icon": "bath", "label": "1 Bath" },
+        { "icon": "fan", "label": "Fan" },
+        { "icon": "square", "label": "45 m²" }
+      ],
+      "distance": "5km from UMYU",
+      "amenities": ["Basic Furniture", "Security", "Water Supply", "Parking", "24/7 Electricity"],
+      "description": "Affordable flat in Katsina. Ideal for students on a budget who need comfortable accommodation.",
+      "addedDate": "2024-01-20",
+      "region": "north"
+    },
+    
+    // ==================== SOUTHERN REGION PROPERTIES ====================
+    {
+      "id": "prop1",
+      "title": "Modern Studio Apartment",
+      "location": "Near University Campus",
+      "school": "University of Lagos",
+      "type": "studio",
+      "price": 120000,
+      "priceDisplay": "₦120,000/month",
+      "coordinates": [6.5244, 3.3792],
+      "images": [
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "features": [
+        { "icon": "bed", "label": "1 Bed" },
+        { "icon": "bath", "label": "1 Bath" },
+        { "icon": "wifi", "label": "WiFi" },
+        { "icon": "square", "label": "45 m²" }
+      ],
+      "distance": "0.5km from campus",
+      "amenities": ["Fully Furnished", "24/7 Security", "Study Area", "Laundry Room"],
+      "description": "Modern studio apartment perfect for students. Fully furnished with high-speed internet and secure access.",
+      "addedDate": "2024-01-01",
+      "isNew": true,
+      "region": "south"
+    },
+    {
+      "id": "prop2",
+      "title": "Shared Apartment",
+      "location": "Student Village",
+      "school": "University of Ibadan",
+      "type": "shared",
+      "price": 85000,
+      "priceDisplay": "₦85,000/month",
+      "coordinates": [7.4419, 3.8988],
+      "images": [
+        "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "features": [
+        { "icon": "bed", "label": "Shared Bed" },
+        { "icon": "bath", "label": "Shared Bath" },
+        { "icon": "users", "label": "3 Roommates" },
+        { "icon": "square", "label": "80 m²" }
+      ],
+      "distance": "1.2km from campus",
+      "amenities": ["Common Area", "Kitchen", "Study Room", "Balcony"],
+      "description": "Shared apartment in student village. Perfect for making friends and sharing expenses.",
+      "addedDate": "2023-12-15",
+      "isPopular": true,
+      "region": "south"
+    },
+    {
+      "id": "prop3",
+      "title": "Campus View Apartment",
+      "location": "University Road",
+      "school": "University of Lagos",
+      "type": "apartment",
+      "price": 150000,
+      "priceDisplay": "₦150,000/month",
+      "coordinates": [6.5250, 3.3800],
+      "images": [
+        "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "features": [
+        { "icon": "bed", "label": "2 Beds" },
+        { "icon": "bath", "label": "2 Baths" },
+        { "icon": "wifi", "label": "WiFi" },
+        { "icon": "square", "label": "65 m²" }
+      ],
+      "distance": "0.3km from campus",
+      "amenities": ["Campus View", "Balcony", "Study Area", "Parking"],
+      "description": "Beautiful apartment with stunning campus view. Perfect for serious students.",
+      "addedDate": "2024-01-05",
+      "isNew": true,
+      "region": "south"
+    },
+    {
+      "id": "prop_south4",
+      "title": "Port Harcourt Waterfront Flat",
+      "location": "GRA Phase 2, Port Harcourt",
+      "school": "University of Port Harcourt",
+      "type": "flat",
+      "price": 180000,
+      "priceDisplay": "₦180,000/month",
+      "coordinates": [4.8156, 7.0498],
+      "images": [
+        "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "features": [
+        { "icon": "bed", "label": "3 Beds" },
+        { "icon": "bath", "label": "2 Baths" },
+        { "icon": "water", "label": "Waterfront" },
+        { "icon": "square", "label": "110 m²" }
+      ],
+      "distance": "6km from UNIPORT",
+      "amenities": ["Water View", "Security", "Pool", "Gym", "Parking"],
+      "description": "Luxury waterfront flat in Port Harcourt GRA. Modern amenities and beautiful views.",
+      "addedDate": "2024-01-09",
+      "isPopular": true,
+      "region": "south"
+    },
+    {
+      "id": "prop_south5",
+      "title": "Enugu Hilltop Bungalow",
+      "location": "Independence Layout, Enugu",
+      "school": "University of Nigeria, Enugu",
+      "type": "bungalow",
+      "price": 130000,
+      "priceDisplay": "₦130,000/month",
+      "coordinates": [6.4529, 7.5063],
+      "images": [
+        "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "features": [
+        { "icon": "bed", "label": "2 Beds" },
+        { "icon": "bath", "label": "2 Baths" },
+        { "icon": "tree", "label": "Garden" },
+        { "icon": "square", "label": "140 m²" }
+      ],
+      "distance": "4km from UNEC",
+      "amenities": ["Garden", "Parking", "Security", "Generator", "Water Supply"],
+      "description": "Spacious bungalow in Enugu's serene Independence Layout. Perfect for students who value peace and quiet.",
+      "addedDate": "2024-01-11",
+      "isNew": true,
+      "region": "south"
+    }
+  ],
+  
+  "schools": [
+    // Northern Schools
+    {
+      "name": "University of Abuja",
+      "coordinates": [9.0765, 7.3986],
+      "propertiesCount": 1,
+      "region": "north"
+    },
+    {
+      "name": "Ahmadu Bello University",
+      "coordinates": [11.1724, 7.6574],
+      "propertiesCount": 1,
+      "region": "north"
+    },
+    {
+      "name": "Kaduna State University",
+      "coordinates": [10.5167, 7.4333],
+      "propertiesCount": 1,
+      "region": "north"
+    },
+    {
+      "name": "University of Jos",
+      "coordinates": [9.8965, 8.8583],
+      "propertiesCount": 1,
+      "region": "north"
+    },
+    {
+      "name": "Bayero University Kano",
+      "coordinates": [12.0022, 8.5920],
+      "propertiesCount": 1,
+      "region": "north"
+    },
+    {
+      "name": "Usmanu Danfodiyo University",
+      "coordinates": [13.0059, 5.2476],
+      "propertiesCount": 1,
+      "region": "north"
+    },
+    {
+      "name": "Federal University of Technology Minna",
+      "coordinates": [9.6152, 6.5478],
+      "propertiesCount": 1,
+      "region": "north"
+    },
+    {
+      "name": "University of Maiduguri",
+      "coordinates": [11.8333, 13.1500],
+      "propertiesCount": 1,
+      "region": "north"
+    },
+    {
+      "name": "Modibbo Adama University",
+      "coordinates": [9.2035, 12.4954],
+      "propertiesCount": 1,
+      "region": "north"
+    },
+    {
+      "name": "Umaru Musa Yar'adua University",
+      "coordinates": [12.9998, 7.6018],
+      "propertiesCount": 1,
+      "region": "north"
+    },
+    
+    // Southern Schools
+    {
+      "name": "University of Lagos",
+      "coordinates": [6.5244, 3.3792],
+      "propertiesCount": 2,
+      "region": "south"
+    },
+    {
+      "name": "University of Ibadan",
+      "coordinates": [7.4419, 3.8988],
+      "propertiesCount": 1,
+      "region": "south"
+    },
+    {
+      "name": "University of Port Harcourt",
+      "coordinates": [4.8156, 7.0498],
+      "propertiesCount": 1,
+      "region": "south"
+    },
+    {
+      "name": "University of Nigeria, Enugu",
+      "coordinates": [6.4529, 7.5063],
+      "propertiesCount": 1,
+      "region": "south"
+    },
+    
+    // Schools without properties (Coming soon)
+    {
+      "name": "University of Nigeria, Nsukka",
+      "coordinates": [6.8584, 7.3958],
+      "propertiesCount": 0,
+      "region": "south"
+    },
+    {
+      "name": "Obafemi Awolowo University",
+      "coordinates": [7.5250, 4.5204],
+      "propertiesCount": 0,
+      "region": "south"
+    },
+    {
+      "name": "University of Benin",
+      "coordinates": [6.3984, 5.6154],
+      "propertiesCount": 0,
+      "region": "south"
+    },
+    {
+      "name": "Federal University of Technology Akure",
+      "coordinates": [7.2571, 5.2058],
+      "propertiesCount": 0,
+      "region": "south"
+    },
+    {
+      "name": "Niger Delta University",
+      "coordinates": [4.7764, 6.1048],
+      "propertiesCount": 0,
+      "region": "south"
+    },
+    
+    // Northern Schools without properties
+    {
+      "name": "Nasarawa State University",
+      "coordinates": [8.5439, 7.7115],
+      "propertiesCount": 0,
+      "region": "north"
+    },
+    {
+      "name": "Kebbi State University",
+      "coordinates": [12.4508, 4.1997],
+      "propertiesCount": 0,
+      "region": "north"
+    },
+    {
+      "name": "Gombe State University",
+      "coordinates": [10.2794, 11.1670],
+      "propertiesCount": 0,
+      "region": "north"
+    },
+    {
+      "name": "Plateau State University",
+      "coordinates": [9.8965, 8.8583],
+      "propertiesCount": 0,
+      "region": "north"
+    },
+    {
+      "name": "Yobe State University",
+      "coordinates": [12.0022, 11.9645],
+      "propertiesCount": 0,
+      "region": "north"
+    },
+    {
+      "name": "Zamfara State University",
+      "coordinates": [12.1702, 6.6644],
+      "propertiesCount": 0,
+      "region": "north"
+    }
+  ]
+}
