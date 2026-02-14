@@ -7,7 +7,7 @@
       "school": "Kaduna State University (KASU)",
       "type": "luxury_apartment",
       "price": 250000,
-      "priceDisplay": "₦250,000/month",
+      "priceDisplay": "₦250,000/session",
       "coordinates": [10.5105, 7.4165],
       "images": [
         "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -59,7 +59,7 @@
       "school": "Kaduna State University (KASU)",
       "type": "studio",
       "price": 85000,
-      "priceDisplay": "₦85,000/month",
+      "priceDisplay": "₦85,000/session",
       "coordinates": [10.5167, 7.4333],
       "images": [
         "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -85,7 +85,7 @@
       "school": "Kaduna State University (KASU)",
       "type": "bungalow",
       "price": 180000,
-      "priceDisplay": "₦180,000/month",
+      "priceDisplay": "₦180,000/session",
       "coordinates": [9.8965, 8.8583],
       "images": [
         "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -111,7 +111,7 @@
       "school": "Ahmadu Bello University (ABU)",
       "type": "apartment",
       "price": 120000,
-      "priceDisplay": "₦120,000/month",
+      "priceDisplay": "₦120,000/session",
       "coordinates": [12.0022, 8.5920],
       "images": [
         "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -136,7 +136,7 @@
       "school": "Greenfield University",
       "type": "shared",
       "price": 35000,
-      "priceDisplay": "₦35,000/month",
+      "priceDisplay": "₦35,000/session",
       "coordinates": [13.0059, 5.2476],
       "images": [
         "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -161,7 +161,7 @@
       "school": "Nuhu Bamalli Polytechnic",
       "type": "flat",
       "price": 95000,
-      "priceDisplay": "₦95,000/month",
+      "priceDisplay": "₦95,000/session",
       "coordinates": [9.6152, 6.5478],
       "images": [
         "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -187,7 +187,7 @@
       "school": "Ahmadu Bello University (ABU)",
       "type": "hostel",
       "price": 40000,
-      "priceDisplay": "₦40,000/month",
+      "priceDisplay": "₦40,000/session",
       "coordinates": [11.8333, 13.1500],
       "images": [
         "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -212,7 +212,7 @@
       "school": "Kaduna State University (KASU)",
       "type": "apartment",
       "price": 110000,
-      "priceDisplay": "₦110,000/month",
+      "priceDisplay": "₦110,000/session",
       "coordinates": [9.2035, 12.4954],
       "images": [
         "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -238,7 +238,7 @@
       "school": "Kaduna State University (KASU)",
       "type": "flat",
       "price": 65000,
-      "priceDisplay": "₦65,000/month",
+      "priceDisplay": "₦65,000/session",
       "coordinates": [12.9998, 7.6018],
       "images": [
         "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -263,7 +263,7 @@
       "school": "Kaduna State University (KASU)",
       "type": "studio",
       "price": 120000,
-      "priceDisplay": "₦120,000/month",
+      "priceDisplay": "₦120,000/session",
       "coordinates": [10.5244, 7.4792],
       "images": [
         "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -290,7 +290,7 @@
       "school": "Ahmadu Bello University (ABU)",
       "type": "shared",
       "price": 85000,
-      "priceDisplay": "₦85,000/month",
+      "priceDisplay": "₦85,000/session",
       "coordinates": [11.1419, 7.6988],
       "images": [
         "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -315,7 +315,7 @@
       "school": "Kaduna State University (KASU)",
       "type": "apartment",
       "price": 150000,
-      "priceDisplay": "₦150,000/month",
+      "priceDisplay": "₦150,000/session",
       "coordinates": [10.5250, 7.4800],
       "images": [
         "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -340,7 +340,7 @@
       "school": "Kaduna State University (KASU)",
       "type": "flat",
       "price": 180000,
-      "priceDisplay": "₦180,000/month",
+      "priceDisplay": "₦180,000/session",
       "coordinates": [10.5156, 7.4498],
       "images": [
         "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -366,7 +366,7 @@
       "school": "Ahmadu Bello University (ABU)",
       "type": "bungalow",
       "price": 130000,
-      "priceDisplay": "₦130,000/month",
+      "priceDisplay": "₦130,000/session",
       "coordinates": [11.1529, 7.6063],
       "images": [
         "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
