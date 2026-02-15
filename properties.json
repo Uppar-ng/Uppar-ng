@@ -2,6 +2,7 @@
   "properties": [
     {
       "id": "prop_kaduna1",
+      "icon": "fa-building",
       "title": "Maitama Luxury Apartment",
       "location": "Maitama, Kaduna",
       "school": "Kaduna State University (KASU)",
@@ -28,6 +29,7 @@
     },
     {
       "id": "prop_kaduna2",
+      "icon": "fa-bed",
       "title": "Student Hostel - ABU Zaria",
       "location": "Samaru, Zaria, Kaduna State",
       "school": "Ahmadu Bello University (ABU)",
@@ -54,6 +56,7 @@
     },
     {
       "id": "prop_kaduna3",
+      "icon": "fa-couch",
       "title": "Kaduna City Studio",
       "location": "Ungwan Rimi, Kaduna",
       "school": "Kaduna State University (KASU)",
@@ -80,6 +83,7 @@
     },
     {
       "id": "prop_kaduna4",
+      "icon": "fa-home",
       "title": "Kagoro Hills Bungalow",
       "location": "Kagoro, Kaura, Kaduna State",
       "school": "Kaduna State University (KASU)",
@@ -106,6 +110,7 @@
     },
     {
       "id": "prop_kaduna5",
+      "icon": "fa-building",
       "title": "Zaria City Student Quarters",
       "location": "Kofar Gayan, Zaria, Kaduna State",
       "school": "Ahmadu Bello University (ABU)",
@@ -131,6 +136,7 @@
     },
     {
       "id": "prop_kaduna6",
+      "icon": "fa-users",
       "title": "Birnin Gwari Shared Accommodation",
       "location": "Birnin Gwari, Kaduna State",
       "school": "Greenfield University",
@@ -156,6 +162,7 @@
     },
     {
       "id": "prop_kaduna7",
+      "icon": "fa-building",
       "title": "Kafanchan Modern Flat",
       "location": "Kafanchan, Jema'a, Kaduna State",
       "school": "Nuhu Bamalli Polytechnic",
@@ -182,6 +189,7 @@
     },
     {
       "id": "prop_kaduna8",
+      "icon": "fa-bed",
       "title": "Sabon Gari Student Lodge",
       "location": "Sabon Gari, Zaria, Kaduna State",
       "school": "Ahmadu Bello University (ABU)",
@@ -207,6 +215,7 @@
     },
     {
       "id": "prop_kaduna9",
+      "icon": "fa-castle",
       "title": "Kajuru Castle View Apartment",
       "location": "Kajuru, Kaduna State",
       "school": "Kaduna State University (KASU)",
@@ -233,6 +242,7 @@
     },
     {
       "id": "prop_kaduna10",
+      "icon": "fa-home",
       "title": "Soba Student Housing",
       "location": "Soba, Kaduna State",
       "school": "Kaduna State University (KASU)",
@@ -258,6 +268,7 @@
     },
     {
       "id": "prop_kaduna11",
+      "icon": "fa-couch",
       "title": "Modern Studio Apartment - KASU",
       "location": "Near KASU Main Campus, Kaduna",
       "school": "Kaduna State University (KASU)",
@@ -285,6 +296,7 @@
     },
     {
       "id": "prop_kaduna12",
+      "icon": "fa-users",
       "title": "Shared Apartment - ABU",
       "location": "Student Village, Zaria, Kaduna State",
       "school": "Ahmadu Bello University (ABU)",
@@ -310,6 +322,7 @@
     },
     {
       "id": "prop_kaduna13",
+      "icon": "fa-building",
       "title": "Campus View Apartment - KASU",
       "location": "University Road, Kaduna",
       "school": "Kaduna State University (KASU)",
@@ -335,6 +348,7 @@
     },
     {
       "id": "prop_kaduna14",
+      "icon": "fa-building",
       "title": "Ungwan Rimi Luxury Flat",
       "location": "Ungwan Rimi, Kaduna",
       "school": "Kaduna State University (KASU)",
@@ -361,6 +375,7 @@
     },
     {
       "id": "prop_kaduna15",
+      "icon": "fa-home",
       "title": "Kasuwa Noma Bungalow",
       "location": "Kasuwa Noma, Zaria, Kaduna State",
       "school": "Ahmadu Bello University (ABU)",
