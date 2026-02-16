@@ -2,7 +2,9 @@
   "properties": [
     {
       "id": "prop_kaduna1",
-      "icon": "fa-building",
+      "category": "regular",
+      "listingType": "rent",
+      "propertyType": "luxury_apartment",
       "title": "Maitama Luxury Apartment",
       "location": "Maitama, Kaduna",
       "school": "Kaduna State University (KASU)",
@@ -10,6 +12,12 @@
       "price": 250000,
       "priceDisplay": "₦250,000/session",
       "coordinates": [10.5105, 7.4165],
+      "landlord": {
+        "name": "Alhaji Sani Abdullahi",
+        "phone": "+2348023456789",
+        "rating": 4.9,
+        "avatar": null
+      },
       "images": [
         "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -25,11 +33,15 @@
       "description": "Luxury apartment in prestigious Maitama district, Kaduna. Fully furnished with modern amenities and excellent security.",
       "addedDate": "2025-01-10",
       "isNew": true,
-      "region": "kaduna"
+      "region": "kaduna",
+      "bedrooms": 3,
+      "bathrooms": 2
     },
     {
       "id": "prop_kaduna2",
-      "icon": "fa-bed",
+      "category": "student",
+      "listingType": "rent",
+      "propertyType": "hostel",
       "title": "Student Hostel - ABU Zaria",
       "location": "Samaru, Zaria, Kaduna State",
       "school": "Ahmadu Bello University (ABU)",
@@ -37,6 +49,12 @@
       "price": 45000,
       "priceDisplay": "₦45,000/session",
       "coordinates": [11.1724, 7.6574],
+      "landlord": {
+        "name": "Mallam Yusuf Ibrahim",
+        "phone": "+2348034567890",
+        "rating": 4.5,
+        "avatar": null
+      },
       "images": [
         "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -52,11 +70,15 @@
       "description": "Affordable student hostel near ABU campus in Zaria. Perfect for students looking for budget accommodation.",
       "addedDate": "2025-01-05",
       "isPopular": true,
-      "region": "kaduna"
+      "region": "kaduna",
+      "bedrooms": 1,
+      "bathrooms": 2
     },
     {
       "id": "prop_kaduna3",
-      "icon": "fa-couch",
+      "category": "regular",
+      "listingType": "rent",
+      "propertyType": "studio",
       "title": "Kaduna City Studio",
       "location": "Ungwan Rimi, Kaduna",
       "school": "Kaduna State University (KASU)",
@@ -64,6 +86,12 @@
       "price": 85000,
       "priceDisplay": "₦85,000/session",
       "coordinates": [10.5167, 7.4333],
+      "landlord": {
+        "name": "Mrs. Grace Akpan",
+        "phone": "+2347045678901",
+        "rating": 4.7,
+        "avatar": null
+      },
       "images": [
         "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -79,11 +107,15 @@
       "description": "Modern studio apartment in Kaduna. Well-furnished with all essential amenities for comfortable student living.",
       "addedDate": "2025-01-08",
       "isNew": true,
-      "region": "kaduna"
+      "region": "kaduna",
+      "bedrooms": 1,
+      "bathrooms": 1
     },
     {
       "id": "prop_kaduna4",
-      "icon": "fa-home",
+      "category": "regular",
+      "listingType": "rent",
+      "propertyType": "bungalow",
       "title": "Kagoro Hills Bungalow",
       "location": "Kagoro, Kaura, Kaduna State",
       "school": "Kaduna State University (KASU)",
@@ -91,6 +123,13 @@
       "price": 180000,
       "priceDisplay": "₦180,000/session",
       "coordinates": [9.8965, 8.8583],
+      "agent": {
+        "name": "Kagoro Properties Ltd",
+        "phone": "+2348056789012",
+        "rating": 4.8,
+        "avatar": null,
+        "company": "Kagoro Real Estate"
+      },
       "images": [
         "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -106,11 +145,15 @@
       "description": "Beautiful bungalow with garden in peaceful Kagoro hills area. Cool climate and serene environment perfect for studying.",
       "addedDate": "2025-01-12",
       "isPopular": true,
-      "region": "kaduna"
+      "region": "kaduna",
+      "bedrooms": 2,
+      "bathrooms": 2
     },
     {
       "id": "prop_kaduna5",
-      "icon": "fa-building",
+      "category": "student",
+      "listingType": "rent",
+      "propertyType": "apartment",
       "title": "Zaria City Student Quarters",
       "location": "Kofar Gayan, Zaria, Kaduna State",
       "school": "Ahmadu Bello University (ABU)",
@@ -118,6 +161,12 @@
       "price": 120000,
       "priceDisplay": "₦120,000/session",
       "coordinates": [12.0022, 8.5920],
+      "landlord": {
+        "name": "Alhaji Garba Musa",
+        "phone": "+2347067890123",
+        "rating": 4.6,
+        "avatar": null
+      },
       "images": [
         "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -132,11 +181,15 @@
       "amenities": ["Air Conditioning", "24/7 Security", "Parking", "Water Supply", "Backup Generator"],
       "description": "Comfortable apartment in Zaria city. Ideal for students who prefer a secure and well-maintained neighborhood.",
       "addedDate": "2025-01-03",
-      "region": "kaduna"
+      "region": "kaduna",
+      "bedrooms": 2,
+      "bathrooms": 1
     },
     {
       "id": "prop_kaduna6",
-      "icon": "fa-users",
+      "category": "student",
+      "listingType": "rent",
+      "propertyType": "shared",
       "title": "Birnin Gwari Shared Accommodation",
       "location": "Birnin Gwari, Kaduna State",
       "school": "Greenfield University",
@@ -144,6 +197,12 @@
       "price": 35000,
       "priceDisplay": "₦35,000/session",
       "coordinates": [13.0059, 5.2476],
+      "landlord": {
+        "name": "Mallam Shehu Usman",
+        "phone": "+2348078901234",
+        "rating": 4.4,
+        "avatar": null
+      },
       "images": [
         "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -158,11 +217,15 @@
       "amenities": ["Common Area", "Kitchen", "Security", "24/7 Water", "Mosque Nearby"],
       "description": "Budget-friendly shared accommodation near Greenfield University. Great for students looking to save on accommodation costs.",
       "addedDate": "2025-01-15",
-      "region": "kaduna"
+      "region": "kaduna",
+      "bedrooms": 1,
+      "bathrooms": 1
     },
     {
       "id": "prop_kaduna7",
-      "icon": "fa-building",
+      "category": "regular",
+      "listingType": "rent",
+      "propertyType": "flat",
       "title": "Kafanchan Modern Flat",
       "location": "Kafanchan, Jema'a, Kaduna State",
       "school": "Nuhu Bamalli Polytechnic",
@@ -170,6 +233,13 @@
       "price": 95000,
       "priceDisplay": "₦95,000/session",
       "coordinates": [9.6152, 6.5478],
+      "agent": {
+        "name": "Kafanchan Realty",
+        "phone": "+2348090123456",
+        "rating": 4.7,
+        "avatar": null,
+        "company": "Kafanchan Properties"
+      },
       "images": [
         "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -185,11 +255,15 @@
       "description": "Modern flat in Kafanchan with all essential amenities. Close to markets and transportation hubs.",
       "addedDate": "2025-01-07",
       "isNew": true,
-      "region": "kaduna"
+      "region": "kaduna",
+      "bedrooms": 2,
+      "bathrooms": 1
     },
     {
       "id": "prop_kaduna8",
-      "icon": "fa-bed",
+      "category": "student",
+      "listingType": "rent",
+      "propertyType": "hostel",
       "title": "Sabon Gari Student Lodge",
       "location": "Sabon Gari, Zaria, Kaduna State",
       "school": "Ahmadu Bello University (ABU)",
@@ -197,6 +271,12 @@
       "price": 40000,
       "priceDisplay": "₦40,000/session",
       "coordinates": [11.8333, 13.1500],
+      "landlord": {
+        "name": "Mallam Idris Lawal",
+        "phone": "+2347012345678",
+        "rating": 4.5,
+        "avatar": null
+      },
       "images": [
         "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -211,11 +291,15 @@
       "amenities": ["Security", "Study Area", "Common Kitchen", "Laundry", "24/7 Water"],
       "description": "Secure student lodge near ABU in Sabon Gari, Zaria. Provides safe and affordable accommodation for students.",
       "addedDate": "2025-01-18",
-      "region": "kaduna"
+      "region": "kaduna",
+      "bedrooms": 1,
+      "bathrooms": 2
     },
     {
       "id": "prop_kaduna9",
-      "icon": "fa-castle",
+      "category": "regular",
+      "listingType": "rent",
+      "propertyType": "apartment",
       "title": "Kajuru Castle View Apartment",
       "location": "Kajuru, Kaduna State",
       "school": "Kaduna State University (KASU)",
@@ -223,6 +307,13 @@
       "price": 110000,
       "priceDisplay": "₦110,000/session",
       "coordinates": [9.2035, 12.4954],
+      "agent": {
+        "name": "Kajuru Properties Ltd",
+        "phone": "+2347023456789",
+        "rating": 4.9,
+        "avatar": null,
+        "company": "Kajuru Real Estate"
+      },
       "images": [
         "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -238,11 +329,15 @@
       "description": "Beautiful apartment with mountain view in Kajuru. Peaceful environment perfect for focused study sessions.",
       "addedDate": "2025-01-14",
       "isPopular": true,
-      "region": "kaduna"
+      "region": "kaduna",
+      "bedrooms": 2,
+      "bathrooms": 2
     },
     {
       "id": "prop_kaduna10",
-      "icon": "fa-home",
+      "category": "student",
+      "listingType": "rent",
+      "propertyType": "flat",
       "title": "Soba Student Housing",
       "location": "Soba, Kaduna State",
       "school": "Kaduna State University (KASU)",
@@ -250,6 +345,12 @@
       "price": 65000,
       "priceDisplay": "₦65,000/session",
       "coordinates": [12.9998, 7.6018],
+      "landlord": {
+        "name": "Alhaji Ahmad Tijjani",
+        "phone": "+2348034567890",
+        "rating": 4.6,
+        "avatar": null
+      },
       "images": [
         "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -264,11 +365,15 @@
       "amenities": ["Basic Furniture", "Security", "Water Supply", "Parking", "24/7 Electricity"],
       "description": "Affordable flat in Soba. Ideal for students on a budget who need comfortable accommodation.",
       "addedDate": "2025-01-20",
-      "region": "kaduna"
+      "region": "kaduna",
+      "bedrooms": 1,
+      "bathrooms": 1
     },
     {
       "id": "prop_kaduna11",
-      "icon": "fa-couch",
+      "category": "student",
+      "listingType": "rent",
+      "propertyType": "studio",
       "title": "Modern Studio Apartment - KASU",
       "location": "Near KASU Main Campus, Kaduna",
       "school": "Kaduna State University (KASU)",
@@ -276,6 +381,12 @@
       "price": 120000,
       "priceDisplay": "₦120,000/session",
       "coordinates": [10.5244, 7.4792],
+      "landlord": {
+        "name": "Dr. Amina Yusuf",
+        "phone": "+2347056789012",
+        "rating": 4.9,
+        "avatar": null
+      },
       "images": [
         "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -292,11 +403,15 @@
       "description": "Modern studio apartment perfect for KASU students. Fully furnished with high-speed internet and secure access.",
       "addedDate": "2025-01-01",
       "isNew": true,
-      "region": "kaduna"
+      "region": "kaduna",
+      "bedrooms": 1,
+      "bathrooms": 1
     },
     {
       "id": "prop_kaduna12",
-      "icon": "fa-users",
+      "category": "student",
+      "listingType": "rent",
+      "propertyType": "shared",
       "title": "Shared Apartment - ABU",
       "location": "Student Village, Zaria, Kaduna State",
       "school": "Ahmadu Bello University (ABU)",
@@ -304,6 +419,12 @@
       "price": 85000,
       "priceDisplay": "₦85,000/session",
       "coordinates": [11.1419, 7.6988],
+      "landlord": {
+        "name": "Mallam Bello Sani",
+        "phone": "+2347067890123",
+        "rating": 4.7,
+        "avatar": null
+      },
       "images": [
         "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
@@ -318,11 +439,15 @@
       "description": "Shared apartment in Zaria student village. Perfect for making friends and sharing expenses.",
       "addedDate": "2025-12-15",
       "isPopular": true,
-      "region": "kaduna"
+      "region": "kaduna",
+      "bedrooms": 1,
+      "bathrooms": 2
     },
     {
       "id": "prop_kaduna13",
-      "icon": "fa-building",
+      "category": "student",
+      "listingType": "rent",
+      "propertyType": "apartment",
       "title": "Campus View Apartment - KASU",
       "location": "University Road, Kaduna",
       "school": "Kaduna State University (KASU)",
@@ -330,6 +455,12 @@
       "price": 150000,
       "priceDisplay": "₦150,000/session",
       "coordinates": [10.5250, 7.4800],
+      "landlord": {
+        "name": "Prof. Adamu Mohammed",
+        "phone": "+2348078901234",
+        "rating": 4.8,
+        "avatar": null
+      },
       "images": [
         "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
@@ -344,11 +475,15 @@
       "description": "Beautiful apartment with stunning campus view. Perfect for serious students at KASU.",
       "addedDate": "2025-01-05",
       "isNew": true,
-      "region": "kaduna"
+      "region": "kaduna",
+      "bedrooms": 2,
+      "bathrooms": 2
     },
     {
       "id": "prop_kaduna14",
-      "icon": "fa-building",
+      "category": "regular",
+      "listingType": "rent",
+      "propertyType": "flat",
       "title": "Ungwan Rimi Luxury Flat",
       "location": "Ungwan Rimi, Kaduna",
       "school": "Kaduna State University (KASU)",
@@ -356,6 +491,13 @@
       "price": 180000,
       "priceDisplay": "₦180,000/session",
       "coordinates": [10.5156, 7.4498],
+      "agent": {
+        "name": "Rimi Properties Ltd",
+        "phone": "+2348090123456",
+        "rating": 4.8,
+        "avatar": null,
+        "company": "Rimi Real Estate"
+      },
       "images": [
         "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -371,11 +513,15 @@
       "description": "Luxury flat in Ungwan Rimi, Kaduna. Modern amenities and beautiful views of Kaduna city.",
       "addedDate": "2025-01-09",
       "isPopular": true,
-      "region": "kaduna"
+      "region": "kaduna",
+      "bedrooms": 3,
+      "bathrooms": 2
     },
     {
       "id": "prop_kaduna15",
-      "icon": "fa-home",
+      "category": "regular",
+      "listingType": "rent",
+      "propertyType": "bungalow",
       "title": "Kasuwa Noma Bungalow",
       "location": "Kasuwa Noma, Zaria, Kaduna State",
       "school": "Ahmadu Bello University (ABU)",
@@ -383,6 +529,12 @@
       "price": 130000,
       "priceDisplay": "₦130,000/session",
       "coordinates": [11.1529, 7.6063],
+      "landlord": {
+        "name": "Alhaji Musa Idris",
+        "phone": "+2347012345678",
+        "rating": 4.7,
+        "avatar": null
+      },
       "images": [
         "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -398,7 +550,9 @@
       "description": "Spacious bungalow in Zaria's serene Kasuwa Noma area. Perfect for students who value peace and quiet.",
       "addedDate": "2025-01-11",
       "isNew": true,
-      "region": "kaduna"
+      "region": "kaduna",
+      "bedrooms": 2,
+      "bathrooms": 2
     }
   ],
   
