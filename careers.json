@@ -1,0 +1,62 @@
+{
+  "jobs": [
+    {
+      "id": 1,
+      "title": "Social Media Manager",
+      "department": "Marketing",
+      "location": "Kaduna (Hybrid)",
+      "type": "Full-time",
+      "description": "We're looking for a creative Social Media Manager with graphics design skills to grow our online presence and engage with our community.",
+      "requirements": [
+        "2+ years social media management experience",
+        "Proficiency in Canva, Adobe Photoshop, or similar design tools",
+        "Experience creating content for Instagram, Twitter, LinkedIn",
+        "Strong written communication skills",
+        "Portfolio of design work",
+        "Knowledge of Nigerian real estate/tech space is a plus"
+      ],
+      "postedDate": "2026-02-20",
+      "deadline": "2026-03-20",
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "title": "Interns",
+      "department": "Multiple Departments",
+      "location": "Kaduna",
+      "type": "Internship",
+      "description": "Join our internship program and gain hands-on experience in a fast-growing tech startup. Open positions in Operations, Marketing, and Customer Support.",
+      "requirements": [
+        "Recent graduate or final-year student",
+        "Strong interest in technology and real estate",
+        "Excellent communication skills",
+        "Willingness to learn and take initiative",
+        "Basic computer skills (MS Office, Google Suite)",
+        "Must be based in Kaduna or willing to relocate"
+      ],
+      "postedDate": "2026-02-20",
+      "deadline": "2026-03-15",
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "title": "Senior Django Developer",
+      "department": "Engineering",
+      "location": "Remote",
+      "type": "Contract/Remote",
+      "description": "We're seeking an experienced Django developer to help build and scale our platform. You'll work on backend systems, APIs, and integrations.",
+      "requirements": [
+        "5+ years Python/Django experience",
+        "Strong understanding of REST APIs and database design",
+        "Experience with cloud platforms (AWS, GCP, or Azure)",
+        "Knowledge of PostgreSQL",
+        "Experience with version control (Git)",
+        "Ability to work independently in a remote environment",
+        "Previous startup experience is a plus"
+      ],
+      "postedDate": "2026-02-20",
+      "deadline": "2026-03-30",
+      "status": "active"
+    }
+  ]
+}
