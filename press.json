@@ -1,0 +1,78 @@
+{
+  "pressReleases": [
+    {
+      "date": "February 20, 2026",
+      "title": "Primer Technologies Secures $5M to Expand Student Housing Across Nigeria",
+      "excerpt": "The investment will accelerate Primer's mission to provide verified housing solutions for students in Kaduna, Lagos, and Abuja.",
+      "fullText": "The investment will accelerate Primer's mission to provide verified housing solutions for students in Kaduna, Lagos, and Abuja. The funding round was led by pan-African venture capital firms, with participation from international impact investors. This capital will be used to expand our verification teams, launch in five new cities, and develop AI-powered matching tools for students. 'We believe every student deserves safe, affordable housing near their campus,' said CEO. The expansion is expected to create over 200 local jobs and serve an additional 50,000 students by 2027."
+    },
+    {
+      "date": "February 10, 2026",
+      "title": "Primer Launches 24/7 Electricity Guarantee for All Listed Properties",
+      "excerpt": "In a first for Nigerian proptech, Primer now verifies and guarantees 24/7 power supply in over 500 properties.",
+      "fullText": "In a first for Nigerian proptech, Primer now verifies and guarantees 24/7 power supply in over 500 properties. Tenants can filter specifically for homes with reliable electricity. Each property undergoes a physical inspection to confirm grid connection, backup generator availability, or solar alternatives. 'We know that unstable power is one of the biggest frustrations for renters,' said the Head of Operations. 'Our guarantee gives tenants peace of mind.' The feature has already been used by over 10,000 tenants in the first week."
+    },
+    {
+      "date": "January 25, 2026",
+      "title": "Primer Partners with KASU to Provide Off-Campus Housing for 5,000 Students",
+      "excerpt": "The partnership ensures that Kaduna State University students have access to safe, verified accommodation within walking distance of the main campus.",
+      "fullText": "The partnership ensures that Kaduna State University students have access to safe, verified accommodation within walking distance of the main campus. Primer will onboard landlords in the surrounding communities, verify all properties, and offer students exclusive discounts. 'This is a game-changer for our students,' said the Vice Chancellor. 'Many have struggled with fraudulent agents and unsafe housing. Primer's verification solves that.' The first batch of 200 properties will be available for the upcoming semester."
+    },
+    {
+      "date": "January 5, 2026",
+      "title": "Primer Named Best PropTech Startup at Nigeria Tech Awards 2025",
+      "excerpt": "The award recognizes Primer's innovative approach to solving housing challenges through technology and rigorous verification processes.",
+      "fullText": "The award recognizes Primer's innovative approach to solving housing challenges through technology and rigorous verification processes. The Nigeria Tech Awards, now in their 8th year, celebrate companies that are driving digital transformation in the country. Primer was selected from over 150 nominees. 'This award belongs to our amazing team and the thousands of tenants who trust us every day,' said the CTO. 'We're just getting started.'"
+    },
+    {
+      "date": "December 12, 2025",
+      "title": "Primer Reaches 10,000 Verified Properties Milestone",
+      "excerpt": "Just one year after launch, Primer has verified over 10,000 properties across Nigeria, helping thousands of tenants find homes with direct landlord contact.",
+      "fullText": "Just one year after launch, Primer has verified over 10,000 properties across Nigeria, helping thousands of tenants find homes with direct landlord contact. The milestone was reached faster than anticipated, thanks to the hard work of our field agents and the trust of landlords. 'Tenants no longer have to worry about scams,' said the Head of Growth. 'We're proud to have facilitated over 5,000 successful rentals in our first year.'"
+    },
+    {
+      "date": "November 5, 2025",
+      "title": "New Feature: Virtual Tours Now Available on All Listings",
+      "excerpt": "Tenants can now take 3D virtual tours of properties before scheduling physical viewings, saving time and making remote searches easier.",
+      "fullText": "Tenants can now take 3D virtual tours of properties before scheduling physical viewings, saving time and making remote searches easier. The feature was developed in response to user feedback, especially from students and professionals relocating from other cities. 'Virtual tours give a realistic sense of space and layout,' explained the Product Manager. 'It's the next best thing to being there.' The feature is now available on both web and mobile app."
+    }
+  ],
+  "pressKit": [
+    {
+      "name": "Company Logos",
+      "icon": "fa-image",
+      "fileSize": "2.4 MB",
+      "url": "https://drive.google.com/file/d/your-logo-file-id/view?usp=sharing"
+    },
+    {
+      "name": "Brand Guidelines",
+      "icon": "fa-paint-brush",
+      "fileSize": "1.1 MB",
+      "url": "https://drive.google.com/file/d/your-guidelines-file-id/view?usp=sharing"
+    },
+    {
+      "name": "Product Screenshots",
+      "icon": "fa-mobile-alt",
+      "fileSize": "5.8 MB",
+      "url": "https://drive.google.com/file/d/your-screenshots-file-id/view?usp=sharing"
+    },
+    {
+      "name": "Executive Headshots",
+      "icon": "fa-user-tie",
+      "fileSize": "3.2 MB",
+      "url": "https://drive.google.com/file/d/your-headshots-file-id/view?usp=sharing"
+    },
+    {
+      "name": "Office Photos",
+      "icon": "fa-building",
+      "fileSize": "4.5 MB",
+      "url": "https://drive.google.com/file/d/your-office-photos-file-id/view?usp=sharing"
+    },
+    {
+      "name": "Media Kit (ZIP)",
+      "icon": "fa-file-archive",
+      "fileSize": "12 MB",
+      "url": "https://drive.google.com/file/d/your-media-kit-file-id/view?usp=sharing"
+    }
+  ]
+}
