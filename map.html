@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Primer • Map</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- MarkerCluster CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --primary-light: #DBEAFE;
+            --background: #F5F7FA;
+            --surface: #FFFFFF;
+            --surface-hover: #F8FAFC;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+            --shadow: 0 2px 4px rgba(0,0,0,0.02);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05);
+            --radius: 16px;
+            --header-height: 60px;
+            --safe-area: env(safe-area-inset-bottom, 0px);
+        }
+        
+        [data-theme="dark"] {
+            --primary: #3B82F6;
+            --primary-dark: #2563EB;
+            --primary-light: #1E3A8A;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --surface-hover: #334155;
+            --text-primary: #F1F5F9;
+            --text-secondary: #CBD5E1;
+            --border: #334155;
+        }
+        
+        body {
+            background: var(--background);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #app {
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--background);
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        .app-header {
+            position: relative;
+            background: var(--surface);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+        
+        .header-content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            background: var(--surface-hover);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.2s;
+            outline: none;
+        }
+        
+        .back-btn:active {
+            background: var(--surface);
+            transform: scale(0.95);
+        }
+        
+        .back-btn:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            background: var(--surface-hover);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.2s;
+            outline: none;
+        }
+        
+        .icon-btn:active {
+            background: var(--surface);
+            transform: scale(0.95);
+        }
+        
+        .icon-btn:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+        
+        /* Filter Pills */
+        .filter-pills-container {
+            padding: 12px 16px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+        
+        .filter-pills {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .filter-pills::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .filter-pill {
+            background: var(--surface-hover);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            outline: none;
+        }
+        
+        .filter-pill i {
+            color: var(--primary);
+        }
+        
+        .filter-pill.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .filter-pill.active i {
+            color: white;
+        }
+        
+        .filter-pill:active {
+            transform: scale(0.95);
+        }
+        
+        .filter-pill:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+        
+        /* Map Container */
+        #map {
+            flex: 1;
+            width: 100%;
+            z-index: 1;
+            background: #ccc;
+        }
+        
+        /* Locate Button */
+        .locate-btn {
+            position: absolute;
+            bottom: 90px;
+            right: 16px;
+            width: 48px;
+            height: 48px;
+            border-radius: 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--primary);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.2s;
+            backdrop-filter: blur(8px);
+            background: rgba(255,255,255,0.9);
+            outline: none;
+        }
+        
+        [data-theme="dark"] .locate-btn {
+            background: rgba(30,41,59,0.9);
+        }
+        
+        .locate-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .locate-btn:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+        
+        /* Stats Bar */
+        .stats-bar {
+            position: absolute;
+            bottom: 24px;
+            left: 16px;
+            right: 16px;
+            background: var(--surface);
+            border-radius: 30px;
+            padding: 12px 20px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(8px);
+            background: rgba(255,255,255,0.9);
+            pointer-events: none;
+        }
+        
+        [data-theme="dark"] .stats-bar {
+            background: rgba(30,41,59,0.9);
+        }
+        
+        .stats-text {
+            font-size: 14px;
+            font-weight:500;
+            color: var(--text-primary);
+        }
+        
+        .stats-badge {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        /* Loading Overlay */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--background);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            transition: opacity 0.3s;
+        }
+        
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 16px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 20px;
+            right: 20px;
+            max-width: 440px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-left: 4px solid var(--primary);
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 3000;
+            animation: slideUp 0.2s;
+            font-weight: 500;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Leaflet Popup Customization */
+        .leaflet-popup-content {
+            margin: 12px 16px;
+            min-width: 200px;
+        }
+        
+        .popup-provider {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .popup-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .popup-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 24px;
+            background: var(--primary-light);
+            overflow: hidden;
+            border: 2px solid var(--surface);
+        }
+        
+        .popup-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .popup-info {
+            flex: 1;
+        }
+        
+        .popup-name {
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+        
+        .popup-rating {
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .popup-rating i {
+            color: #FBBF24;
+        }
+        
+        .popup-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .popup-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .popup-btn {
+            flex: 1;
+            padding: 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+        }
+        
+        .popup-btn:active {
+            transform: scale(0.97);
+        }
+        
+        .popup-btn:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+        
+        /* Bottom Navigation - 4 tabs */
+        .bottom-nav {
+            position: relative;
+            background: var(--surface);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px 0 calc(8px + var(--safe-area));
+            z-index: 30;
+            flex-shrink: 0;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 10px;
+            gap: 2px;
+            padding: 4px 8px;
+            transition: all 0.2s;
+            outline: none;
+        }
+        
+        .nav-item i {
+            font-size: 22px;
+            font-weight: 400;
+            transition: transform 0.2s;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item.active i {
+            transform: translateY(-2px);
+        }
+        
+        .nav-item .label {
+            font-weight: 500;
+            font-size: 11px;
+        }
+        
+        .nav-item:active {
+            opacity: 0.7;
+        }
+        
+        .nav-item:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <button class="back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+                <div class="logo">Primer Map</div>
+                <div class="header-actions">
+                    <button class="icon-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Filter Pills -->
+        <div class="filter-pills-container">
+            <div class="filter-pills" id="filterPills"></div>
+        </div>
+
+        <!-- Map Container -->
+        <div id="map"></div>
+
+        <!-- Locate Button -->
+        <div class="locate-btn" id="locateBtn" onclick="locateUser()">
+            <i class="fas fa-location-arrow"></i>
+        </div>
+
+       
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="spinner"></div>
+            <div class="loading-text">Loading map...</div>
+        </div>
+
+        <!-- Bottom Navigation - 4 tabs with Map active -->
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-building"></i>
+                <span class="label">Home</span>
+            </a>
+            <a href="map.html" class="nav-item active">
+                <i class="fas fa-map"></i>
+                <span class="label">Map</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" onclick="checkAuthAndNavigate('saved.html')">
+                <i class="fas fa-heart"></i>
+                <span class="label">Favorites</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" onclick="checkAuthAndNavigate('account.html')">
+                <i class="fas fa-user"></i>
+                <span class="label">Account</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="toastContainer"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- MarkerCluster JS -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+    <script>
+        (function() {
+            // ========== CONFIG ==========
+            const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyopnxgVhZo80kdR1Rrdr_SbivRJZXrE6cAkwOB9bWB1OklMmp3jWoe9c8W6SGM4XNhHA/exec';
+            
+            // ========== GLOBAL VARS ==========
+            let map;
+            let markerClusterGroup;
+            let markers = [];
+            let providers = [];
+            let services = [];
+            let userCity = 'Kaduna';
+            let userData = null;
+            let currentFilter = 'all';
+            let geocodeCache = {};
+            let isAuthenticated = false;
+            
+            // DOM Elements - safely get
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const loadingText = document.getElementById('loadingText');
+            const statsText = document.getElementById('statsText');
+            const cityBadge = document.getElementById('cityBadge');
+            const filterPillsContainer = document.getElementById('filterPills');
+            const themeToggle = document.getElementById('themeToggle');
+            const html = document.documentElement;
+            
+            // ========== THEME ==========
+            function syncTheme() {
+                const saved = localStorage.getItem('primer_theme') || 'light';
+                html.setAttribute('data-theme', saved);
+                if (themeToggle) {
+                    themeToggle.innerHTML = saved === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                }
+            }
+            syncTheme();
+            
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const current = html.getAttribute('data-theme') || 'light';
+                    const next = current === 'light' ? 'dark' : 'light';
+                    html.setAttribute('data-theme', next);
+                    localStorage.setItem('primer_theme', next);
+                    themeToggle.innerHTML = next === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                });
+            }
+
+            // ========== UTILS ==========
+            function showToast(message) {
+                const container = document.getElementById('toastContainer');
+                if (!container) return;
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = `<i class="fas fa-info-circle" style="color: var(--primary);"></i><span>${message}</span>`;
+                container.appendChild(toast);
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 200);
+                }, 2500);
+            }
+
+            window.goBack = function() {
+                window.location.href = 'index.html';
+            };
+
+            window.checkAuthAndNavigate = function(url) {
+                if (!isAuthenticated) {
+                    showToast('Please sign up to continue');
+                    return false;
+                }
+                window.location.href = url;
+                return true;
+            };
+
+            // ========== LOAD USER SESSION ==========
+            function loadUserSession() {
+                try {
+                    const saved = localStorage.getItem('primer_user');
+                    const accountDeleted = localStorage.getItem('primer_account_deleted');
+                    
+                    if (saved && !accountDeleted) {
+                        userData = JSON.parse(saved);
+                        isAuthenticated = true;
+                        userCity = userData.city || 'Kaduna';
+                    } else {
+                        isAuthenticated = false;
+                        userCity = 'Kaduna';
+                    }
+                    if (cityBadge) cityBadge.textContent = userCity;
+                } catch (e) {
+                    isAuthenticated = false;
+                }
+            }
+
+            // ========== GEOCODING ==========
+            function loadGeocodeCache() {
+                try {
+                    const saved = localStorage.getItem('primer_geocode_cache');
+                    if (saved) geocodeCache = JSON.parse(saved);
+                } catch(e) {}
+            }
+
+            async function geocodeLocation(locationName, cityContext = '') {
+                const cacheKey = `${locationName}, ${cityContext}`.trim();
+                if (geocodeCache[cacheKey]) return geocodeCache[cacheKey];
+                
+                try {
+                    let query = locationName;
+                    if (cityContext && !locationName.toLowerCase().includes(cityContext.toLowerCase())) {
+                        query += `, ${cityContext}`;
+                    }
+                    query += ', Nigeria';
+                    
+                    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`;
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    
+                    if (data && data.length > 0) {
+                        const result = { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+                        geocodeCache[cacheKey] = result;
+                        try {
+                            const saved = JSON.parse(localStorage.getItem('primer_geocode_cache') || '{}');
+                            saved[cacheKey] = result;
+                            localStorage.setItem('primer_geocode_cache', JSON.stringify(saved));
+                        } catch(e) {}
+                        return result;
+                    }
+                } catch (e) {
+                    console.warn('Geocoding failed for:', locationName);
+                }
+                return null;
+            }
+
+            // ========== LOAD DATA & INIT MAP ==========
+            async function loadData() {
+                try {
+                    if (loadingText) loadingText.textContent = 'Loading services...';
+                    const [providersRes, servicesRes] = await Promise.all([
+                        fetch('providers.json').then(r => r.json()),
+                        fetch('services.json').then(r => r.json())
+                    ]);
+                    
+                    providers = providersRes.providers || [];
+                    services = servicesRes.services || [];
+                    
+                    const cityProviders = providers.filter(p => 
+                        p.serviceAreas && p.serviceAreas.includes(userCity)
+                    );
+                    
+                    if (statsText) {
+                        statsText.textContent = cityProviders.length 
+                            ? `${cityProviders.length} providers in ${userCity}` 
+                            : `No providers in ${userCity}`;
+                    }
+                    
+                    await initializeMap();
+                    
+                    if (cityProviders.length) {
+                        addMarkersProgressively(cityProviders);
+                    }
+                    
+                    renderFilterPills();
+                    if (loadingOverlay) loadingOverlay.classList.add('hidden');
+                    
+                } catch (error) {
+                    console.error('Error:', error);
+                    showToast('Failed to load map data');
+                    if (loadingText) loadingText.textContent = 'Error loading data';
+                }
+            }
+
+            async function initializeMap() {
+                let centerLat = 10.5105, centerLng = 7.4165;
+                try {
+                    const cityCoords = await geocodeLocation(userCity);
+                    if (cityCoords) {
+                        centerLat = cityCoords.lat;
+                        centerLng = cityCoords.lng;
+                    }
+                } catch(e) {}
+                
+                map = L.map('map').setView([centerLat, centerLng], 13);
+                
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    maxZoom: 19
+                }).addTo(map);
+                
+                markerClusterGroup = L.markerClusterGroup({
+                    showCoverageOnHover: false,
+                    maxClusterRadius: 40
+                });
+                map.addLayer(markerClusterGroup);
+            }
+
+            async function addMarkersProgressively(providersList) {
+                markers = [];
+                markerClusterGroup.clearLayers();
+                
+                for (const provider of providersList) {
+                    const coords = await geocodeLocation(provider.currentLocation, userCity);
+                    
+                    let markerLat, markerLng;
+                    if (coords) {
+                        markerLat = coords.lat;
+                        markerLng = coords.lng;
+                    } else {
+                        const cityCoords = await geocodeLocation(userCity);
+                        const base = cityCoords || { lat: 10.5105, lng: 7.4165 };
+                        markerLat = base.lat + (Math.random() - 0.5) * 0.02;
+                        markerLng = base.lng + (Math.random() - 0.5) * 0.02;
+                    }
+                    
+                    const isPremium = provider.isPrimerOwned || false;
+                    const iconHtml = isPremium 
+                        ? `<div class="custom-marker marker-premium"><i class="fas fa-map-marker-alt" style="font-size: 32px; color: #2563EB;"></i></div>`
+                        : `<div class="custom-marker"><i class="fas fa-map-marker-alt" style="font-size: 28px; color: #EF4444;"></i></div>`;
+                    
+                    const icon = L.divIcon({
+                        html: iconHtml,
+                        className: 'custom-marker-icon',
+                        iconSize: [32, 32],
+                        iconAnchor: [16, 32],
+                        popupAnchor: [0, -32]
+                    });
+                    
+                    const marker = L.marker([markerLat, markerLng], { icon });
+                    marker.bindPopup(createPopupContent(provider));
+                    marker.providerData = provider;
+                    
+                    markers.push(marker);
+                    markerClusterGroup.addLayer(marker);
+                }
+                
+                if (markers.length) {
+                    const group = new L.featureGroup(markers);
+                    map.fitBounds(group.getBounds().pad(0.1));
+                }
+            }
+
+            function createPopupContent(provider) {
+                const div = document.createElement('div');
+                div.className = 'popup-provider';
+                const avatarUrl = provider.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(provider.name)}&background=2563EB&color=fff`;
+                
+                div.innerHTML = `
+                    <div class="popup-header">
+                        <div class="popup-avatar">
+                            <img src="${avatarUrl}" alt="${provider.name}" onerror="this.src='https://ui-avatars.com/api/?name=${provider.name}&background=2563EB&color=fff'">
+                        </div>
+                        <div class="popup-info">
+                            <div class="popup-name">${provider.name}</div>
+                            <div class="popup-rating">
+                                <i class="fas fa-star"></i> ${provider.rating || '4.5'} (${provider.completedJobs || 0} jobs)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup-details">
+                        <div><i class="fas fa-map-marker-alt" style="width: 16px; color: var(--primary);"></i> ${provider.currentLocation}</div>
+                        <div><i class="fas fa-clock" style="width: 16px; color: var(--primary);"></i> Response: ${provider.responseTime || 15} min</div>
+                        <div><i class="fas fa-tools" style="width: 16px; color: var(--primary);"></i> ${provider.services.slice(0,3).join(', ')}</div>
+                    </div>
+                    <div class="popup-actions">
+                        <a href="provider-detail.html?id=${provider.id}" class="popup-btn">View Profile</a>
+                    </div>
+                `;
+                return div;
+            }
+
+            // ========== FILTER PILLS ==========
+            function renderFilterPills() {
+                if (!filterPillsContainer) return;
+                const filters = [
+                    { id: 'all', name: 'All', icon: 'fa-globe' },
+                    ...services.slice(0, 6).map(s => ({ id: s.id, name: s.name, icon: s.icon || 'fa-tools' }))
+                ];
+                
+                filterPillsContainer.innerHTML = filters.map(f => `
+                    <div class="filter-pill ${currentFilter === f.id ? 'active' : ''}" onclick="filterMarkers('${f.id}')">
+                        <i class="fas ${f.icon}"></i>
+                        <span>${f.name}</span>
+                    </div>
+                `).join('');
+            }
+
+            window.filterMarkers = function(serviceId) {
+                currentFilter = serviceId;
+                renderFilterPills();
+                
+                markerClusterGroup.clearLayers();
+                let visibleCount = 0;
+                
+                markers.forEach(marker => {
+                    const provider = marker.providerData;
+                    if (serviceId === 'all' || (provider.services && provider.services.includes(serviceId))) {
+                        markerClusterGroup.addLayer(marker);
+                        visibleCount++;
+                    }
+                });
+                
+                if (statsText) statsText.textContent = `${visibleCount} provider${visibleCount !== 1 ? 's' : ''} shown`;
+                
+                if (visibleCount) {
+                    const visibleMarkers = markers.filter(m => 
+                        serviceId === 'all' || (m.providerData.services && m.providerData.services.includes(serviceId))
+                    );
+                    const group = new L.featureGroup(visibleMarkers);
+                    map.fitBounds(group.getBounds().pad(0.1));
+                }
+            };
+
+            // ========== LOCATE USER ==========
+            window.locateUser = function() {
+                if (!map) return;
+                map.locate({ setView: true, maxZoom: 16, timeout: 10000, enableHighAccuracy: true });
+                
+                map.on('locationfound', function(e) {
+                    L.circle(e.latlng, { radius: e.accuracy / 2, color: '#2563EB', weight: 1, fillOpacity: 0.1 }).addTo(map);
+                    L.marker(e.latlng, {
+                        icon: L.divIcon({
+                            html: '<div style="background: #2563EB; width: 16px; height: 16px; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.3);"></div>',
+                            className: 'user-location-marker',
+                            iconSize: [16, 16],
+                            iconAnchor: [8, 8]
+                        })
+                    }).addTo(map).bindPopup('You are here').openPopup();
+                    showToast('Location found');
+                });
+                
+                map.on('locationerror', () => showToast('Could not find your location'));
+            };
+
+            // ========== INIT ==========
+            loadGeocodeCache();
+            loadUserSession();
+            loadData();
+
+            // Auth change listener
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'primer_user' && e.newValue) {
+                    loadUserSession();
+                    window.location.reload();
+                }
+                if (e.key === 'primer_account_deleted' && e.newValue === 'true') {
+                    localStorage.removeItem('primer_account_deleted');
+                    window.location.href = 'index.html';
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

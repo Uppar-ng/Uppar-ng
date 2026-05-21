@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Primer • Service Providers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --primary-light: #DBEAFE;
+            --background: #F5F7FA;
+            --surface: #FFFFFF;
+            --surface-hover: #F8FAFC;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --text-tertiary: #94A3B8;
+            --border: #E2E8F0;
+            --shadow: 0 2px 4px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.03);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.02);
+            --radius: 16px;
+            --radius-sm: 12px;
+            --header-height: 60px;
+            --safe-area: env(safe-area-inset-bottom, 0px);
+        }
+        
+        [data-theme="dark"] {
+            --primary: #3B82F6;
+            --primary-dark: #2563EB;
+            --primary-light: #1E3A8A;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --surface-hover: #334155;
+            --text-primary: #F1F5F9;
+            --text-secondary: #CBD5E1;
+            --text-tertiary: #94A3B8;
+            --border: #334155;
+        }
+        
+        body {
+            background: var(--background);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+        
+        #app {
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--background);
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: calc(16px + var(--safe-area));
+        }
+        
+        .app-header {
+            background: rgba(var(--surface-rgb), 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+        }
+        
+        .header-content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 18px;
+            box-shadow: var(--shadow);
+        }
+        
+        .back-btn:active {
+            background: var(--surface-hover);
+            transform: scale(0.95);
+        }
+        
+        .header-title {
+            flex: 1;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: var(--shadow);
+        }
+        
+        .theme-btn:active {
+            background: var(--surface-hover);
+            transform: scale(0.95);
+        }
+        
+        .page-info {
+            padding: 20px 16px 8px;
+        }
+        
+        .service-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .location-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .location-info i {
+            color: var(--primary);
+        }
+        
+        .provider-count {
+            margin-left: auto;
+            color: var(--primary);
+            font-weight: 600;
+            background: var(--primary-light);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        
+        .company-banner {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: var(--radius);
+            margin: 16px;
+            padding: 16px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            border: none;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .company-banner:active {
+            transform: scale(0.98);
+        }
+        
+        .company-banner-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .company-banner-content {
+            flex: 1;
+        }
+        
+        .company-banner-title {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+        
+        .company-banner-subtitle {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .filter-bar {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 12px 16px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .filter-bar::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .filter-chip {
+            padding: 8px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            font-size: 13px;
+            white-space: nowrap;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+        
+        .filter-chip:active {
+            transform: scale(0.95);
+        }
+        
+        .filter-chip.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .providers-container {
+            padding: 8px 16px 24px;
+        }
+        
+        .primer-owned-section {
+            margin: 24px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary-light), white);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        [data-theme="dark"] .primer-owned-section {
+            background: linear-gradient(135deg, var(--primary-dark), var(--surface));
+        }
+        
+        .primer-owned-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: var(--primary);
+            opacity: 0.1;
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+        
+        .section-header-premium {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-header-premium i {
+            font-size: 24px;
+            color: var(--primary);
+            background: white;
+            padding: 8px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.2);
+        }
+        
+        .section-header-premium h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            flex: 1;
+        }
+        
+        .premium-tag {
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .provider-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .provider-card:active {
+            background: var(--surface-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .provider-card.premium {
+            border: 2px solid var(--primary);
+        }
+        
+        .provider-header {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        
+        .provider-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            background: var(--primary-light);
+            overflow: hidden;
+            position: relative;
+            border: 2px solid var(--surface);
+            box-shadow: var(--shadow);
+        }
+        
+        .provider-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .verified-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--surface);
+            z-index: 2;
+        }
+        
+        .premium-crown {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            border: 2px solid var(--surface);
+            z-index: 2;
+        }
+        
+        .provider-info {
+            flex: 1;
+        }
+        
+        .provider-name-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        
+        .provider-name {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+        
+        .favorite-btn {
+            background: none;
+            border: none;
+            color: #EF4444;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .favorite-btn:active {
+            transform: scale(1.2);
+        }
+        
+        .favorite-btn.active i {
+            font-weight: 900;
+        }
+        
+        .primer-badge {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-left: 4px;
+        }
+        
+        .provider-rating {
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .provider-rating i {
+            color: #FBBF24;
+            font-size: 12px;
+        }
+        
+        .availability-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .availability-badge.available {
+            background: #DCFCE7;
+            color: #166534;
+        }
+        
+        .availability-badge.busy {
+            background: #FEE2E2;
+            color: #991B1B;
+        }
+        
+        .provider-details {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            padding: 12px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .detail-item i {
+            color: var(--primary);
+            font-size: 12px;
+            width: 16px;
+        }
+        
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0;
+        }
+        
+        .badge {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .services-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0;
+        }
+        
+        .service-tag {
+            background: var(--surface-hover);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+        
+        .provider-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .btn-view {
+            flex: 1;
+            padding: 14px;
+            background: var(--surface-hover);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        
+        .btn-view:active {
+            background: var(--border);
+        }
+        
+        .btn-call {
+            flex: 1;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        
+        .btn-call:active {
+            background: var(--primary-dark);
+            transform: scale(0.98);
+        }
+        
+        .btn-whatsapp {
+            width: 52px;
+            height: 52px;
+            border-radius: 26px;
+            background: #25D366;
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .btn-whatsapp:active {
+            transform: scale(0.95);
+        }
+        
+        .similar-section {
+            margin-top: 24px;
+            padding: 0 16px;
+        }
+        
+        .similar-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+        }
+        
+        .loading-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-tertiary);
+        }
+        
+        .loading-state i {
+            font-size: 32px;
+            margin-bottom: 16px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-tertiary);
+        }
+        
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+        
+        .error-message {
+            text-align: center;
+            padding: 20px;
+            color: #ef4444;
+            background: #FEE2E2;
+            border-radius: 8px;
+            margin: 16px;
+        }
+        
+        .retry-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            max-width: 440px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-left: 4px solid var(--primary);
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 2000;
+            animation: slideUp 0.2s;
+            font-weight: 500;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        input, textarea, button, select, a {
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header class="app-header">
+            <div class="header-content">
+                <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+                <span class="header-title" id="headerTitle">Service Providers</span>
+                <button class="theme-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
+            </div>
+        </header>
+
+        <div class="page-info">
+            <h1 class="service-title" id="serviceTitle">Loading...</h1>
+            <div class="location-info">
+                <i class="fas fa-map-marker-alt"></i>
+                <span id="userLocation">Kaduna</span>
+                <span class="provider-count" id="providersCount">0 providers</span>
+            </div>
+        </div>
+
+        <div class="company-banner" id="companyBanner" style="display: none;" onclick="window.location.href='provider-detail.html?id=primer_moving'">
+            <div class="company-banner-icon">
+                <i class="fas fa-crown"></i>
+            </div>
+            <div class="company-banner-content">
+                <div class="company-banner-title">Primer Moving Services</div>
+                <div class="company-banner-subtitle">Premium • Fully vetted • 24/7</div>
+            </div>
+            <i class="fas fa-chevron-right"></i>
+        </div>
+
+        <div class="filter-bar" id="filterBar">
+            <div class="filter-chip active" data-filter="all">All</div>
+            <div class="filter-chip" data-filter="available">Available</div>
+            <div class="filter-chip" data-filter="verified">Verified</div>
+            <div class="filter-chip" data-filter="rating">Top Rated</div>
+            <div class="filter-chip" data-filter="primer">Premium</div>
+        </div>
+
+        <div class="providers-container">
+            <div id="loadingProviders" class="loading-state">
+                <i class="fas fa-spinner fa-pulse"></i>
+                <p>Loading providers...</p>
+            </div>
+            <div id="primerOwnedSection" style="display: none;"></div>
+            <div id="providersList"></div>
+            
+            <div id="similarProvidersSection" class="similar-section" style="display: none;">
+                <div class="similar-title">
+                    <i class="fas fa-users"></i> Similar Providers
+                </div>
+                <div id="similarProvidersList"></div>
+            </div>
+            
+            <div id="noProviders" class="empty-state" style="display: none;">
+                <i class="fas fa-users-slash"></i>
+                <p>No providers available in your area</p>
+                <p style="font-size: 13px; margin-top: 8px;">Try changing your location</p>
+            </div>
+            
+            <div id="providersError" class="error-message" style="display: none;">
+                <i class="fas fa-exclamation-circle"></i>
+                <p>Failed to load providers</p>
+                <button class="retry-btn" onclick="location.reload()">Retry</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastContainer"></div>
+    
+    <script>
+        (function() {
+            // Theme
+            const themeToggle = document.getElementById('themeToggle');
+            const html = document.documentElement;
+            
+            function syncTheme() {
+                const saved = localStorage.getItem('primer_theme') || 'light';
+                html.setAttribute('data-theme', saved);
+                themeToggle.innerHTML = saved === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            }
+            syncTheme();
+            
+            themeToggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme') || 'light';
+                const next = current === 'light' ? 'dark' : 'light';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem('primer_theme', next);
+                themeToggle.innerHTML = next === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            });
+
+            // User data
+            function loadUser() {
+                try {
+                    const saved = localStorage.getItem('primer_user');
+                    return saved ? JSON.parse(saved) : { 
+                        name: '', 
+                        phone: '', 
+                        city: 'Kaduna'
+                    };
+                } catch {
+                    return { 
+                        name: '', 
+                        phone: '', 
+                        city: 'Kaduna'
+                    };
+                }
+            }
+            
+            const userData = loadUser();
+            document.getElementById('userLocation').textContent = userData.city || 'Kaduna';
+
+            // URL params
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceId = urlParams.get('service') || 'moving';
+            
+            const serviceNames = {
+                moving: 'Moving Services',
+                repair: 'Repair Services',
+                handyman: 'Handyman Services',
+                laundry: 'Laundry Services',
+                photography: 'Photography Services',
+                cleaning: 'Cleaning Services',
+                painting: 'Painting Services',
+                plumbing: 'Plumbing Services',
+                electrical: 'Electrical Services',
+                carpentry: 'Carpentry Services',
+                gardening: 'Gardening Services',
+                'pest-control': 'Pest Control Services'
+            };
+            
+            document.getElementById('serviceTitle').textContent = serviceNames[serviceId] || 'Service Providers';
+            document.getElementById('headerTitle').textContent = serviceNames[serviceId] || 'Service Providers';
+
+            // Show company banner only for moving
+            if (serviceId === 'moving') {
+                document.getElementById('companyBanner').style.display = 'flex';
+            }
+
+            // Favorites - sync with index.html
+            let favorites = [];
+            function loadFavorites() {
+                try {
+                    const saved = localStorage.getItem('primer_favorites');
+                    favorites = saved ? JSON.parse(saved) : [];
+                } catch {
+                    favorites = [];
+                }
+            }
+            loadFavorites();
+
+            function saveFavorites() {
+                localStorage.setItem('primer_favorites', JSON.stringify(favorites));
+                // Dispatch event for index.html to listen
+                window.dispatchEvent(new CustomEvent('favoritesUpdated', { detail: favorites }));
+            }
+
+            // Make toggleFavorite globally available
+            window.toggleFavorite = function(providerId, event) {
+                if (event) event.stopPropagation();
+                const index = favorites.indexOf(providerId);
+                if (index === -1) {
+                    favorites.push(providerId);
+                    showToast('Added to favorites');
+                } else {
+                    favorites.splice(index, 1);
+                    showToast('Removed from favorites');
+                }
+                saveFavorites();
+                
+                // Update UI
+                const btn = event?.currentTarget;
+                if (btn) {
+                    const icon = btn.querySelector('i');
+                    if (favorites.includes(providerId)) {
+                        btn.classList.add('active');
+                        icon.className = 'fas fa-heart';
+                    } else {
+                        btn.classList.remove('active');
+                        icon.className = 'far fa-heart';
+                    }
+                }
+            };
+
+            function isFavorite(providerId) {
+                return favorites.includes(providerId);
+            }
+
+            // Toast
+            function showToast(message) {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = `<i class="fas fa-info-circle" style="color: var(--primary);"></i><span>${message}</span>`;
+                container.appendChild(toast);
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 200);
+                }, 2000);
+            }
+
+            // Save booking
+            function saveBooking(provider, service) {
+                try {
+                    const bookings = JSON.parse(localStorage.getItem('primer_bookings') || '[]');
+                    bookings.unshift({
+                        id: 'BK' + Date.now(),
+                        providerId: provider.id,
+                        providerName: provider.name,
+                        service: service || (provider.services && provider.services[0]) || 'Service',
+                        city: userData.city || 'Kaduna',
+                        timestamp: new Date().toISOString()
+                    });
+                    localStorage.setItem('primer_bookings', JSON.stringify(bookings.slice(0, 20)));
+                } catch (e) {}
+            }
+
+            // Enhanced Call with full data tracking
+            window.callProvider = function(provider, e) {
+                if (e) e.stopPropagation();
+                if (provider && provider.phone) {
+                    saveBooking(provider);
+                    
+                    const data = {
+                        _subject: `Call Click: ${provider.name}`,
+                        user_name: userData.name || 'Guest',
+                        user_phone: userData.phone || 'Not provided',
+                        user_city: userData.city || 'Kaduna',
+                        provider_name: provider.name,
+                        provider_phone: provider.phone,
+                        provider_id: provider.id,
+                        service: provider.services?.[0] || 'Service',
+                        action: 'call_click',
+                        isPrimerOwned: provider.isPrimerOwned || false,
+                        timestamp: new Date().toISOString()
+                    };
+                    
+                    fetch('https://script.google.com/macros/s/AKfycbyopnxgVhZo80kdR1Rrdr_SbivRJZXrE6cAkwOB9bWB1OklMmp3jWoe9c8W6SGM4XNhHA/exec', {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        body: JSON.stringify(data),
+                        headers: { 
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        }
+                    }).catch(() => {});
+                    
+                    window.location.href = `tel:${provider.phone}`;
+                    showToast(`Calling ${provider.name}...`);
+                }
+            };
+
+            // Enhanced WhatsApp with full data tracking
+            window.openWhatsApp = function(provider, e) {
+                if (e) e.stopPropagation();
+                saveBooking(provider);
+                
+                const data = {
+                    _subject: `WhatsApp Click: ${provider.name}`,
+                    user_name: userData.name || 'Guest',
+                    user_phone: userData.phone || 'Not provided',
+                    user_city: userData.city || 'Kaduna',
+                    provider_name: provider.name,
+                    provider_phone: provider.phone,
+                    provider_id: provider.id,
+                    service: provider.services?.[0] || 'Service',
+                    action: 'whatsapp_click',
+                    isPrimerOwned: provider.isPrimerOwned || false,
+                    timestamp: new Date().toISOString()
+                };
+                
+                fetch('https://script.google.com/macros/s/AKfycbyopnxgVhZo80kdR1Rrdr_SbivRJZXrE6cAkwOB9bWB1OklMmp3jWoe9c8W6SGM4XNhHA/exec', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify(data),
+                    headers: { 
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                }).catch(() => {});
+                
+                const phone = provider.phone.replace(/\D/g, '');
+                const text = `Hello ${provider.name}, I need ${provider.services?.[0] || 'service'} service.\n\nName: ${userData.name || 'Guest'}\nLocation: ${userData.city || 'Kaduna'}`;
+                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+                
+                showToast(`Opening WhatsApp...`);
+            };
+
+            // Load providers
+            let allProviders = [];
+            let currentFilter = 'all';
+
+            function loadProviders() {
+                const loading = document.getElementById('loadingProviders');
+                const list = document.getElementById('providersList');
+                const primerSection = document.getElementById('primerOwnedSection');
+                const noProv = document.getElementById('noProviders');
+                const errorDiv = document.getElementById('providersError');
+                
+                loading.style.display = 'block';
+                list.innerHTML = '';
+                primerSection.style.display = 'none';
+                noProv.style.display = 'none';
+                errorDiv.style.display = 'none';
+
+                fetch('providers.json')
+                    .then(res => {
+                        if (!res.ok) throw new Error('Failed to load providers');
+                        return res.json();
+                    })
+                    .then(data => {
+                        loading.style.display = 'none';
+                        
+                        const providersData = data.providers || data;
+                        
+                        if (!Array.isArray(providersData)) {
+                            throw new Error('Invalid providers data format');
+                        }
+                        
+                        allProviders = providersData.filter(p => 
+                            p && p.services && Array.isArray(p.services) && p.services.includes(serviceId)
+                        );
+                        
+                        console.log(`Found ${allProviders.length} providers for ${serviceId}`);
+                        
+                        const city = userData.city || 'Kaduna';
+                        
+                        const primerOwned = allProviders.filter(p => p.isPrimerOwned === true);
+                        const independent = allProviders.filter(p => !p.isPrimerOwned);
+                        
+                        const primerInCity = primerOwned.filter(p => 
+                            p && p.serviceAreas && Array.isArray(p.serviceAreas) && p.serviceAreas.includes(city)
+                        );
+                        
+                        const independentInCity = independent.filter(p => 
+                            p && p.serviceAreas && Array.isArray(p.serviceAreas) && p.serviceAreas.includes(city)
+                        );
+                        
+                        document.getElementById('providersCount').textContent = 
+                            `${independentInCity.length + primerInCity.length} ${(independentInCity.length + primerInCity.length) === 1 ? 'provider' : 'providers'}`;
+                        
+                        // Show Primer-owned section if any
+                        if (primerInCity.length > 0) {
+                            primerSection.style.display = 'block';
+                            primerSection.innerHTML = `
+                                <div class="primer-owned-section">
+                                    <div class="section-header-premium">
+                                        <i class="fas fa-crown"></i>
+                                        <h3>Primer Premium Services</h3>
+                                        <span class="premium-tag">OFFICIAL</span>
+                                    </div>
+                                    ${renderProviderCards(primerInCity)}
+                                </div>
+                            `;
+                        }
+                        
+                        if (independentInCity.length === 0 && primerInCity.length === 0) {
+                            if (allProviders.length > 0) {
+                                document.getElementById('similarProvidersSection').style.display = 'block';
+                                document.getElementById('similarProvidersList').innerHTML = renderProviderCards(allProviders.slice(0, 3));
+                            }
+                            noProv.style.display = 'block';
+                        }
+                        
+                        renderProviders(independentInCity);
+                    })
+                    .catch(error => {
+                        console.error('Error loading providers:', error);
+                        loading.style.display = 'none';
+                        errorDiv.style.display = 'block';
+                        showToast('Failed to load providers');
+                    });
+            }
+
+            function renderProviders(providers) {
+                const list = document.getElementById('providersList');
+                const noProv = document.getElementById('noProviders');
+
+                if (!providers || providers.length === 0) {
+                    if (document.getElementById('primerOwnedSection').style.display === 'none') {
+                        noProv.style.display = 'block';
+                    }
+                    list.innerHTML = '';
+                    return;
+                }
+
+                const sorted = [...providers].sort((a, b) => {
+                    if (a.availability === 'available' && b.availability !== 'available') return -1;
+                    if (a.availability !== 'available' && b.availability === 'available') return 1;
+                    return 0;
+                });
+
+                list.innerHTML = renderProviderCards(sorted);
+                noProv.style.display = 'none';
+            }
+
+            function renderProviderCards(providers) {
+                if (!providers || providers.length === 0) return '';
+                
+                return providers.map(p => {
+                    const name = p.name || 'Provider';
+                    const rating = p.rating || '4.5';
+                    const jobs = p.completedJobs || 0;
+                    const location = p.currentLocation || 'Unknown location';
+                    const responseTime = p.responseTime || '15';
+                    const verified = p.verified || false;
+                    const isPrimerOwned = p.isPrimerOwned || false;
+                    const isFav = isFavorite(p.id);
+                    
+                    const avatar = p.avatar || `https://ui-avatars.com/api/?name=${name}&background=2563EB&color=fff`;
+                    
+                    const badges = p.badges ? p.badges.map(b => 
+                        `<span class="badge">${b}</span>`
+                    ).join('') : '';
+                    
+                    return `
+                    <div class="provider-card ${isPrimerOwned ? 'premium' : ''}" onclick="window.location.href='provider-detail.html?id=${p.id}'">
+                        <div class="provider-header">
+                            <div class="provider-avatar">
+                                <img src="${avatar}" alt="${name}" 
+                                     onerror="this.src='https://ui-avatars.com/api/?name=${name}&background=2563EB&color=fff'">
+                                ${verified ? '<span class="verified-badge"><i class="fas fa-check"></i></span>' : ''}
+                                ${isPrimerOwned ? '<span class="premium-crown"><i class="fas fa-crown"></i></span>' : ''}
+                            </div>
+                            <div class="provider-info">
+                                <div class="provider-name-row">
+                                    <span class="provider-name">${name}</span>
+                                    ${isPrimerOwned ? '<span class="primer-badge">PRIMER</span>' : ''}
+                                    <button class="favorite-btn ${isFav ? 'active' : ''}" onclick="event.stopPropagation(); toggleFavorite('${p.id}', event)">
+                                        <i class="${isFav ? 'fas' : 'far'} fa-heart"></i>
+                                    </button>
+                                </div>
+                                <div class="provider-rating">
+                                    <i class="fas fa-star"></i> ${rating} (${jobs} jobs)
+                                </div>
+                            </div>
+                            <div class="availability-badge ${p.availability || 'busy'}">
+                                ${p.availability === 'available' ? 'Available' : 'Busy'}
+                            </div>
+                        </div>
+                        
+                        <div class="provider-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i> ${location}
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i> ${responseTime} min response
+                            </div>
+                        </div>
+                        
+                        ${badges ? `<div class="badges-container">${badges}</div>` : ''}
+                        
+                        <div class="services-list">
+                            ${(p.services || []).map(s => `<span class="service-tag">${s}</span>`).join('')}
+                        </div>
+                        
+                        <div class="provider-actions">
+                            <span class="btn-view" onclick="event.stopPropagation(); window.location.href='provider-detail.html?id=${p.id}'">View</span>
+                            <span class="btn-call" onclick="window.callProvider(${JSON.stringify(p).replace(/"/g, '&quot;')}, event)">
+                                <i class="fas fa-phone-alt"></i> Call
+                            </span>
+                            <span class="btn-whatsapp" onclick="window.openWhatsApp(${JSON.stringify(p).replace(/"/g, '&quot;')}, event)">
+                                <i class="fab fa-whatsapp"></i>
+                            </span>
+                        </div>
+                    </div>
+                `}).join('');
+            }
+
+            // Filter functionality
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.dataset.filter;
+                    const city = userData.city || 'Kaduna';
+                    
+                    let filtered = allProviders.filter(p => 
+                        p && p.serviceAreas && Array.isArray(p.serviceAreas) && p.serviceAreas.includes(city)
+                    );
+                    
+                    switch(filter) {
+                        case 'available':
+                            filtered = filtered.filter(p => p.availability === 'available');
+                            break;
+                        case 'verified':
+                            filtered = filtered.filter(p => p.verified);
+                            break;
+                        case 'rating':
+                            filtered = [...filtered].sort((a, b) => (b.rating || 0) - (a.rating || 0));
+                            break;
+                        case 'primer':
+                            filtered = filtered.filter(p => p.isPrimerOwned === true);
+                            break;
+                    }
+                    
+                    // Hide primer section when filtering
+                    document.getElementById('primerOwnedSection').style.display = 'none';
+                    
+                    if (filtered.length) {
+                        document.getElementById('providersList').innerHTML = renderProviderCards(filtered);
+                        document.getElementById('noProviders').style.display = 'none';
+                    } else {
+                        document.getElementById('providersList').innerHTML = '';
+                        document.getElementById('noProviders').style.display = 'block';
+                    }
+                    
+                    document.getElementById('providersCount').textContent = 
+                        `${filtered.length} ${filtered.length === 1 ? 'provider' : 'providers'}`;
+                });
+            });
+
+            // Initialize
+            loadProviders();
+
+            // Listen for favorite updates from index.html
+            window.addEventListener('favoritesUpdated', (e) => {
+                favorites = e.detail;
+                // Refresh current view to update favorite buttons
+                const activeFilter = document.querySelector('.filter-chip.active')?.dataset.filter || 'all';
+                const city = userData.city || 'Kaduna';
+                let filtered = allProviders.filter(p => 
+                    p && p.serviceAreas?.includes(city)
+                );
+                
+                if (activeFilter !== 'all') {
+                    switch(activeFilter) {
+                        case 'available':
+                            filtered = filtered.filter(p => p.availability === 'available');
+                            break;
+                        case 'verified':
+                            filtered = filtered.filter(p => p.verified);
+                            break;
+                        case 'primer':
+                            filtered = filtered.filter(p => p.isPrimerOwned === true);
+                            break;
+                    }
+                }
+                
+                if (filtered.length) {
+                    document.getElementById('providersList').innerHTML = renderProviderCards(filtered);
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
