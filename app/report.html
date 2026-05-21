@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Primer • Report Issue</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --primary-light: #DBEAFE;
+            --background: #F5F7FA;
+            --surface: #FFFFFF;
+            --surface-hover: #F8FAFC;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --text-tertiary: #94A3B8;
+            --border: #E2E8F0;
+            --danger: #EF4444;
+            --danger-light: #FEE2E2;
+            --warning: #F59E0B;
+            --warning-light: #FEF3C7;
+            --success: #10B981;
+            --success-light: #D1FAE5;
+            --shadow: 0 2px 4px rgba(0,0,0,0.02);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05);
+            --header-height: 60px;
+            --safe-area: env(safe-area-inset-bottom, 0px);
+        }
+
+        [data-theme="dark"] {
+            --primary: #3B82F6;
+            --primary-dark: #2563EB;
+            --primary-light: #1E3A8A;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --surface-hover: #334155;
+            --text-primary: #F1F5F9;
+            --text-secondary: #CBD5E1;
+            --text-tertiary: #94A3B8;
+            --border: #334155;
+            --danger: #F87171;
+            --danger-light: #451A1A;
+            --warning: #FBBF24;
+            --warning-light: #451A1A;
+            --success: #34D399;
+            --success-light: #064E3B;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        #app {
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--background);
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+        }
+
+        /* Header */
+        .app-header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .back-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .back-btn:active {
+            background: var(--surface-hover);
+            transform: scale(0.95);
+        }
+
+        /* Page content */
+        .page-content {
+            padding: 20px;
+        }
+
+        /* Info Card - Professional styling */
+        .info-card {
+            background: linear-gradient(135deg, var(--primary-light), var(--surface));
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .info-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .info-header i {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .info-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .info-content {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .info-content p {
+            margin-bottom: 12px;
+        }
+
+        .info-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .info-badge {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .info-badge i {
+            color: var(--primary);
+            font-size: 12px;
+        }
+
+        /* Stats Bar - Professional */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px 12px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            margin-bottom: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-title {
+            padding: 18px 20px;
+            background: var(--surface-hover);
+            border-bottom: 1px solid var(--border);
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        .form-group {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-group:last-child {
+            border-bottom: none;
+        }
+
+        .form-label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            letter-spacing: 0.3px;
+        }
+
+        .required {
+            color: var(--danger);
+            font-size: 12px;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--surface-hover);
+            border: 2px solid transparent;
+            border-radius: 14px;
+            color: var(--text-primary);
+            font-size: 15px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            border-color: var(--primary);
+            background: var(--surface);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* Dropdown */
+        .custom-dropdown {
+            position: relative;
+            width: 100%;
+        }
+
+        .dropdown-selected {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--surface-hover);
+            border: 2px solid transparent;
+            border-radius: 14px;
+            color: var(--text-primary);
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s;
+        }
+
+        .dropdown-selected:hover {
+            background: var(--surface);
+        }
+
+        .dropdown-selected i {
+            color: var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .dropdown-selected.active i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-options {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            max-height: 280px;
+            overflow-y: auto;
+            z-index: 30;
+            box-shadow: var(--shadow-lg);
+            display: none;
+        }
+
+        .dropdown-options.show {
+            display: block;
+            animation: slideDown 0.2s;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-option {
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dropdown-option:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-option:hover {
+            background: var(--primary-light);
+        }
+
+        .dropdown-option.selected {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .dropdown-option i {
+            color: var(--primary);
+            width: 20px;
+        }
+
+        /* Severity indicators */
+        .severity-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .severity-high {
+            background: var(--danger-light);
+            color: var(--danger);
+        }
+
+        .severity-medium {
+            background: var(--warning-light);
+            color: var(--warning);
+        }
+
+        .severity-low {
+            background: var(--success-light);
+            color: var(--success);
+        }
+
+        /* Grid for two columns */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 0 20px;
+        }
+
+        .form-row .form-group {
+            padding: 16px 0;
+        }
+
+        /* Submit Button */
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 17px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 20px 0 16px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-submit:active:not(:disabled) {
+            transform: scale(0.98);
+            opacity: 0.9;
+        }
+
+        .btn-submit:disabled {
+            background: var(--text-tertiary);
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        /* Trust indicators */
+        .trust-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin: 24px 0;
+            padding: 16px;
+            background: var(--surface);
+            border-radius: 40px;
+            border: 1px solid var(--border);
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .trust-item i {
+            color: var(--success);
+            font-size: 16px;
+        }
+
+        /* Loading overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            max-width: 440px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 16px 20px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 2000;
+            animation: slideUp 0.3s;
+            font-weight: 500;
+            border-left: 4px solid var(--success);
+        }
+
+        .toast.error {
+            border-left-color: var(--danger);
+        }
+
+        .toast.warning {
+            border-left-color: var(--warning);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Footer note */
+        .footer-note {
+            text-align: center;
+            font-size: 11px;
+            color: var(--text-tertiary);
+            margin: 24px 0 16px;
+            padding: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-note i {
+            color: var(--primary);
+            margin: 0 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <a href="javascript:history.back()" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+                <div class="logo">Report Issue</div>
+                <div style="width: 44px;"></div>
+            </div>
+        </header>
+
+        <div class="page-content">
+            <!-- Professional Info Card -->
+            <div class="info-card">
+                <div class="info-header">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Safety & Integrity</h3>
+                </div>
+                <div class="info-content">
+                    <p>Help maintain a trusted community by reporting concerns. All reports are handled confidentially and reviewed within 24 hours.</p>
+                </div>
+                <div class="info-badges">
+                    <span class="info-badge"><i class="fas fa-lock"></i> Encrypted</span>
+                    <span class="info-badge"><i class="fas fa-user-secret"></i> Anonymous</span>
+                    <span class="info-badge"><i class="fas fa-clock"></i> 24h Response</span>
+                    <span class="info-badge"><i class="fas fa-gavel"></i> Verified</span>
+                </div>
+            </div>
+
+            <!-- Professional Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalReportsStat">127</div>
+                    <div class="stat-label">Reports Processed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="resolvedStat">98</div>
+                    <div class="stat-label">Resolved</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="communityStat">99%</div>
+                    <div class="stat-label">Satisfaction</div>
+                </div>
+            </div>
+
+            <!-- Report Form Section -->
+            <form id="reportForm" class="form-section">
+                <div class="section-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Submit a Report
+                </div>
+                
+                <!-- Hidden fields for user data -->
+                <input type="hidden" name="_subject" value="New Report from Primer App">
+                <input type="hidden" name="_replyto" id="replyto" value="">
+                <input type="hidden" name="_format" value="plain">
+                
+                <!-- User Info (hidden but included) -->
+                <input type="hidden" id="userName" name="user_name" value="">
+                <input type="hidden" id="userPhone" name="user_phone" value="">
+                <input type="hidden" id="userCity" name="user_city" value="">
+
+                <!-- Report Type Dropdown -->
+                <div class="form-group">
+                    <div class="form-label">
+                        Issue Type <span class="required">*</span>
+                    </div>
+                    <div class="custom-dropdown" id="typeDropdown">
+                        <div class="dropdown-selected" onclick="toggleDropdown('typeOptions', this)">
+                            <span id="selectedType">Select issue type</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="dropdown-options" id="typeOptions">
+                            <div class="dropdown-option" onclick="selectType('Scam / Fraud')">
+                                <i class="fas fa-skull-crossbones"></i>
+                                <span>Scam / Fraud</span>
+                                <span class="severity-badge severity-high">Urgent</span>
+                            </div>
+                            <div class="dropdown-option" onclick="selectType('Theft / Security')">
+                                <i class="fas fa-hand-holding-heart"></i>
+                                <span>Theft / Security</span>
+                                <span class="severity-badge severity-high">Urgent</span>
+                            </div>
+                            <div class="dropdown-option" onclick="selectType('Inactive / No Response')">
+                                <i class="fas fa-clock"></i>
+                                <span>Inactive / No Response</span>
+                                <span class="severity-badge severity-medium">Follow-up</span>
+                            </div>
+                            <div class="dropdown-option" onclick="selectType('Unprofessional Conduct')">
+                                <i class="fas fa-user-slash"></i>
+                                <span>Unprofessional Conduct</span>
+                                <span class="severity-badge severity-low">Moderate</span>
+                            </div>
+                            <div class="dropdown-option" onclick="selectType('Incorrect Information')">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Incorrect Information</span>
+                                <span class="severity-badge severity-low">Minor</span>
+                            </div>
+                            <div class="dropdown-option" onclick="selectType('Other')">
+                                <i class="fas fa-ellipsis-h"></i>
+                                <span>Other</span>
+                            </div>
+                        </div>
+                        <input type="hidden" name="report_type" id="reportTypeInput" value="">
+                    </div>
+                </div>
+
+                <!-- Provider Name -->
+                <div class="form-group">
+                    <div class="form-label">
+                        Provider Name <span class="required">*</span>
+                    </div>
+                    <input type="text" class="form-input" name="provider_name" id="providerName" placeholder="Full name or business name" autocomplete="off" required>
+                </div>
+
+                <!-- Two Column Fields -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-label">
+                            Location <span class="required">*</span>
+                        </div>
+                        <input type="text" class="form-input" name="provider_location" id="providerLocation" placeholder="City/Area" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label">
+                            Phone <span class="required">*</span>
+                        </div>
+                        <input type="tel" class="form-input" name="provider_phone" id="providerPhone" placeholder="Phone number" required>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="form-group">
+                    <div class="form-label">Description of Incident</div>
+                    <textarea class="form-textarea" name="description" id="description" placeholder="Please provide details about the issue..."></textarea>
+                </div>
+
+                <!-- Additional Info -->
+                <div class="form-group">
+                    <div class="form-label">Additional Information</div>
+                    <input type="text" class="form-input" name="additional_info" id="additionalInfo" placeholder="Reference number, date, etc.">
+                </div>
+            </form>
+
+            <!-- Trust Indicators -->
+            <div class="trust-indicators">
+                <div class="trust-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Confidential</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-clock"></i>
+                    <span>24h Response</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Verified</span>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button class="btn-submit" id="submitBtn" onclick="submitReport()" disabled>
+                <i class="fas fa-paper-plane"></i>
+                Submit Report
+            </button>
+
+            <!-- Professional Footer -->
+            <div class="footer-note">
+                <i class="fas fa-balance-scale"></i> False reports may result in account restrictions. All reports are investigated thoroughly.
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-pulse"></i>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
+    <script>
+        // ========== FORMSpREE ENDPOINT ==========
+        const FORMSPREE_URL = 'https://formspree.io/f/mdalqqyq';
+
+        // ========== GLOBAL VARIABLES ==========
+        let currentUser = null;
+
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load theme
+            const savedTheme = localStorage.getItem('primer_theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            // Load user data
+            loadUserData();
+            
+            // Setup event listeners
+            setupEventListeners();
+        });
+
+        // ========== USER DATA LOADING ==========
+        function loadUserData() {
+            try {
+                const saved = localStorage.getItem('primer_user');
+                if (saved) {
+                    currentUser = JSON.parse(saved);
+                    document.getElementById('userName').value = currentUser.name || '';
+                    document.getElementById('userPhone').value = currentUser.phone || '';
+                    document.getElementById('userCity').value = currentUser.city || '';
+                    document.getElementById('replyto').value = currentUser.email || '';
+                } else {
+                    showToast('Please sign up to report an issue', 'warning');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 2000);
+                }
+            } catch (e) {
+                console.error('Error loading user:', e);
+            }
+        }
+
+        // ========== EVENT LISTENERS ==========
+        function setupEventListeners() {
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.custom-dropdown')) {
+                    document.querySelectorAll('.dropdown-options').forEach(d => d.classList.remove('show'));
+                    document.querySelectorAll('.dropdown-selected').forEach(el => el.classList.remove('active'));
+                }
+            });
+
+            // Real-time validation
+            const inputs = ['providerName', 'providerLocation', 'providerPhone'];
+            inputs.forEach(id => {
+                document.getElementById(id)?.addEventListener('input', validateForm);
+            });
+        }
+
+        // ========== DROPDOWN FUNCTIONS ==========
+        window.toggleDropdown = function(optionsId, triggerEl) {
+            const options = document.getElementById(optionsId);
+            const allDropdowns = document.querySelectorAll('.dropdown-options');
+            allDropdowns.forEach(d => { 
+                if (d.id !== optionsId) d.classList.remove('show'); 
+            });
+            
+            options.classList.toggle('show');
+            
+            const selectedDivs = document.querySelectorAll('.dropdown-selected');
+            selectedDivs.forEach(el => el.classList.remove('active'));
+            if (options.classList.contains('show')) {
+                triggerEl.classList.add('active');
+            }
+        };
+
+        window.selectType = function(type) {
+            document.getElementById('selectedType').innerText = type;
+            document.getElementById('reportTypeInput').value = type;
+            
+            // Close all dropdowns
+            document.querySelectorAll('.dropdown-options').forEach(d => d.classList.remove('show'));
+            document.querySelectorAll('.dropdown-selected').forEach(el => el.classList.remove('active'));
+            
+            validateForm();
+        };
+
+        // ========== FORM VALIDATION ==========
+        function validateForm() {
+            const type = document.getElementById('selectedType').innerText;
+            const providerName = document.getElementById('providerName').value.trim();
+            const providerLocation = document.getElementById('providerLocation').value.trim();
+            const providerPhone = document.getElementById('providerPhone').value.trim();
+            
+            const isValid = type !== 'Select issue type' && providerName && providerLocation && providerPhone;
+            
+            document.getElementById('submitBtn').disabled = !isValid;
+            return isValid;
+        }
+
+        // ========== SUBMIT REPORT TO FORMSPREE ==========
+        window.submitReport = async function() {
+            if (!validateForm()) {
+                showToast('Please fill all required fields', 'warning');
+                return;
+            }
+
+            if (!currentUser) {
+                showToast('Please sign up first', 'error');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loadingOverlay').classList.add('active');
+
+            // Get form data
+            const form = document.getElementById('reportForm');
+            const formData = new FormData(form);
+            
+            // Add metadata
+            formData.append('timestamp', new Date().toISOString());
+            formData.append('report_id', 'RPT' + Date.now());
+            formData.append('user_agent', navigator.userAgent);
+            formData.append('page', window.location.href);
+
+            try {
+                // Send to Formspree
+                const response = await fetch(FORMSPREE_URL, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Success
+                    document.getElementById('loadingOverlay').classList.remove('active');
+                    showToast('Report submitted successfully! Thank you for helping keep our community safe.', 'success');
+                    
+                    // Reset form
+                    resetForm();
+                    
+                    // Update stats
+                    updateStats();
+                    
+                    // Optional: Redirect after delay
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 3000);
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                console.error('Submission error:', error);
+                document.getElementById('loadingOverlay').classList.remove('active');
+                
+                // Save locally as backup
+                saveReportLocally(formData);
+                showToast('Report saved locally. Will sync when connection resumes.', 'warning');
+            }
+        };
+
+        // ========== LOCAL BACKUP ==========
+        function saveReportLocally(formData) {
+            try {
+                const reports = JSON.parse(localStorage.getItem('primer_reports') || '[]');
+                const report = {};
+                formData.forEach((value, key) => { report[key] = value; });
+                
+                reports.unshift({
+                    ...report,
+                    localTimestamp: new Date().toISOString(),
+                    synced: false
+                });
+                
+                localStorage.setItem('primer_reports', JSON.stringify(reports.slice(0, 20)));
+            } catch (e) {
+                console.error('Error saving locally:', e);
+            }
+        }
+
+        // ========== RESET FORM ==========
+        function resetForm() {
+            document.getElementById('selectedType').innerText = 'Select issue type';
+            document.getElementById('reportTypeInput').value = '';
+            document.getElementById('providerName').value = '';
+            document.getElementById('providerLocation').value = '';
+            document.getElementById('providerPhone').value = '';
+            document.getElementById('description').value = '';
+            document.getElementById('additionalInfo').value = '';
+            document.getElementById('submitBtn').disabled = true;
+        }
+
+        // ========== UPDATE STATS ==========
+        function updateStats() {
+            const current = parseInt(document.getElementById('totalReportsStat').textContent) || 0;
+            document.getElementById('totalReportsStat').textContent = current + 1;
+        }
+
+        // ========== TOAST ==========
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            let icon = 'fa-check-circle';
+            if (type === 'error') icon = 'fa-exclamation-circle';
+            if (type === 'warning') icon = 'fa-exclamation-triangle';
+            
+            toast.innerHTML = `<i class="fas ${icon}" style="color: var(--${type === 'success' ? 'success' : type === 'error' ? 'danger' : 'warning'});"></i><span>${message}</span>`;
+            
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 200);
+            }, 3000);
+        }
+
+        // ========== SYNC OFFLINE REPORTS ==========
+        setInterval(async function() {
+            if (!navigator.onLine) return;
+            
+            try {
+                const reports = JSON.parse(localStorage.getItem('primer_reports') || '[]');
+                const unsynced = reports.filter(r => !r.synced);
+                
+                for (const report of unsynced) {
+                    const formData = new FormData();
+                    Object.keys(report).forEach(key => {
+                        if (key !== 'synced' && key !== 'localTimestamp') {
+                            formData.append(key, report[key]);
+                        }
+                    });
+                    
+                    const response = await fetch(FORMSPREE_URL, {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        report.synced = true;
+                    }
+                }
+                
+                localStorage.setItem('primer_reports', JSON.stringify(reports));
+            } catch (e) {
+                console.log('Sync attempt failed:', e);
+            }
+        }, 30000); // Check every 30 seconds
+    </script>
+</body>
+</html>

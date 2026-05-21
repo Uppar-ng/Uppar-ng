@@ -1,0 +1,242 @@
+[
+  {
+    "icon": "fa-crown",
+    "title": "🔷 OFFICIAL PRIMER SERVICES",
+    "description": "Company-owned & operated • Fully insured • 24/7 availability",
+    "button": "View Services",
+    "link": "provider-detail.html?id=primer_services",
+    "image": "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-truck",
+    "title": "PRIMER MOVING",
+    "description": "Professional moving team • Packing materials included • Insurance covered",
+    "button": "Get Moving Quote",
+    "link": "provider-detail.html?id=primer_services&service=moving",
+    "image": "https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-broom",
+    "title": "PRIMER CLEANING",
+    "description": "Deep cleaning • Eco-friendly products • Trained professionals",
+    "button": "Book Cleaners",
+    "link": "provider-detail.html?id=primer_services&service=cleaning",
+    "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-wrench",
+    "title": "PRIMER HANDYMAN",
+    "description": "All-in-one home repairs • Skilled trades • Same-day service",
+    "button": "Request Handyman",
+    "link": "provider-detail.html?id=primer_services&service=handyman",
+    "image": "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-shield-alt",
+    "title": "⚠️ IMPORTANT: VERIFY YOUR PHONE",
+    "description": "Please ensure your phone number is correct. Primer will only contact you via 07000000001 for official communications.",
+    "button": "Check Account",
+    "link": "account.html",
+    "image": "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-phone-alt",
+    "title": "📞 PRIMER OFFICIAL CONTACT",
+    "description": "Save our number: 07000000001 • All official communications come from this number only",
+    "button": "Save Contact",
+    "link": "#",
+    "image": "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-user-check",
+    "title": "🔔 SIGNUP REMINDER",
+    "description": "Create an account to save favorites, track bookings, and receive important updates about your services.",
+    "button": "Sign Up Now",
+    "link": "index.html",
+    "image": "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-tshirt",
+    "title": "Express Laundry Services",
+    "description": "Pickup & delivery • 24hr turnaround • Professional cleaning",
+    "button": "Book Laundry",
+    "link": "providers-list.html?service=laundry",
+    "image": "https://images.unsplash.com/photo-1545173168-9f1947eebb7f?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-camera",
+    "title": "Professional Photography",
+    "description": "Events • Portraits • Real estate • Starting at ₦25,000",
+    "button": "View Photographers",
+    "link": "providers-list.html?service=photography",
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-paint-roller",
+    "title": "Interior Painting",
+    "description": "Residential & commercial • Quality paints • Free estimate",
+    "button": "Get Quote",
+    "link": "providers-list.html?service=painting",
+    "image": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-bolt",
+    "title": "Emergency Electrical",
+    "description": "24/7 licensed electricians • Immediate response • Safety guaranteed",
+    "button": "Call Electrician",
+    "link": "providers-list.html?service=electrical",
+    "image": "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-wrench",
+    "title": "Plumbing Services",
+    "description": "Leaks • Installations • Repairs • Emergency available",
+    "button": "Find Plumber",
+    "link": "providers-list.html?service=plumbing",
+    "image": "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-seedling",
+    "title": "Garden & Landscaping",
+    "description": "Lawn care • Garden design • Maintenance",
+    "button": "Transform Garden",
+    "link": "providers-list.html?service=gardening",
+    "image": "https://images.unsplash.com/photo-1557429287-b2e26467fc2b?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-tags",
+    "title": "🎉 WEEKEND SPECIAL",
+    "description": "20% off all moving & cleaning services this weekend. Limited slots available!",
+    "button": "Claim Discount",
+    "link": "providers-list.html?service=moving",
+    "image": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-star",
+    "title": "🆕 FIRST TIME ON PRIMER?",
+    "description": "New users get ₦2,000 off their first booking. Sign up and save today!",
+    "button": "Join Now",
+    "link": "index.html",
+    "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-clock",
+    "title": "⏰ 24/7 EMERGENCY",
+    "description": "Plumbing, electrical & handyman available now. Call our emergency line.",
+    "button": "Emergency Help",
+    "link": "tel:07000000001",
+    "image": "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-tools",
+    "title": "Furniture Assembly",
+    "description": "IKEA & flat-pack experts • Quick & professional • Starting at ₦10,000",
+    "button": "Book Assembler",
+    "link": "providers-list.html?service=handyman",
+    "image": "https://images.unsplash.com/photo-1616628188559-8e3417f00f1c?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-snowflake",
+    "title": "AC Installation & Repair",
+    "description": "All brands • Gas refill • Maintenance • 6 months warranty",
+    "button": "Fix AC Now",
+    "link": "providers-list.html?service=electrical",
+    "image": "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-lock",
+    "title": "🔐 SECURITY ALERT",
+    "description": "Primer will never ask for your password or OTP. Report suspicious calls to 07000000001.",
+    "button": "Learn About Scams",
+    "link": "report.html",
+    "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-shield-virus",
+    "title": "COVID-19 Safety",
+    "description": "All providers follow safety protocols • Mask required • Contactless options",
+    "button": "Safety Guidelines",
+    "link": "#",
+    "image": "https://images.unsplash.com/photo-1584634731339-252c581abfc5?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-hand-sparkles",
+    "title": "Disinfection Services",
+    "description": "Commercial & residential • Hospital-grade • Safe for families",
+    "button": "Sanitize Now",
+    "link": "providers-list.html?service=cleaning",
+    "image": "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-trophy",
+    "title": "🏆 PRIMER PREMIUM",
+    "description": "Get priority service, dedicated support, and exclusive discounts with Primer Premium.",
+    "button": "Upgrade Now",
+    "link": "#",
+    "image": "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?f=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-gift",
+    "title": "🎁 REFER A FRIEND",
+    "description": "Earn ₦1,000 for every friend who signs up and books a service. Share your referral code!",
+    "button": "Refer Now",
+    "link": "account.html",
+    "image": "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-headset",
+    "title": "📞 CUSTOMER SUPPORT",
+    "description": "Questions? Call 07000000001 or chat with us. Available 24/7 for your convenience.",
+    "button": "Contact Support",
+    "link": "tel:07000000001",
+    "image": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-bug",
+    "title": "Pest Control Services",
+    "description": "Rodents • Insects • Termites • Safe & effective treatment",
+    "button": "Exterminate Now",
+    "link": "providers-list.html?service=pest-control",
+    "image": "https://images.unsplash.com/photo-1586449477421-32e293f4c8b4?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-water",
+    "title": "Waterproofing Solutions",
+    "description": "Leak repair • Roof coating • Basement waterproofing • 5yr warranty",
+    "button": "Protect Home",
+    "link": "providers-list.html?service=handyman",
+    "image": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-solar-panel",
+    "title": "Solar Installation",
+    "description": "Save on electricity • Professional installation • Financing available",
+    "button": "Go Solar",
+    "link": "providers-list.html?service=electrical",
+    "image": "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-tv",
+    "title": "TV Mounting Service",
+    "description": "Secure wall mounting • Hidden wires • All wall types • Starting at ₦8,000",
+    "button": "Mount TV",
+    "link": "providers-list.html?service=handyman",
+    "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-truck-moving",
+    "title": "Office Relocation",
+    "description": "Business moving specialists • Minimal downtime • IT equipment handling",
+    "button": "Move Office",
+    "link": "providers-list.html?service=moving",
+    "image": "https://images.unsplash.com/photo-1600607686527-6fb886090705?w=600&auto=format&fit=crop"
+  },
+  {
+    "icon": "fa-store",
+    "title": "Become a Provider",
+    "description": "Join Primer's network of trusted professionals. Set your own schedule and rates.",
+    "button": "Apply Now",
+    "link": "#",
+    "image": "https://images.unsplash.com/photo-1556740714-a8395b3bf30f?w=600&auto=format&fit=crop"
+  }
+]

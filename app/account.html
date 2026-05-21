@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Primer • Account</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --primary-light: #DBEAFE;
+            --background: #F5F7FA;
+            --surface: #FFFFFF;
+            --surface-hover: #F8FAFC;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --text-tertiary: #94A3B8;
+            --border: #E2E8F0;
+            --danger: #EF4444;
+            --danger-light: #FEE2E2;
+            --shadow: 0 2px 4px rgba(0,0,0,0.02);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05);
+            --header-height: 60px;
+            --safe-area: env(safe-area-inset-bottom, 0px);
+            --bottom-nav-height: 70px;
+        }
+
+        [data-theme="dark"] {
+            --primary: #3B82F6;
+            --primary-dark: #2563EB;
+            --primary-light: #1E3A8A;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --surface-hover: #334155;
+            --text-primary: #F1F5F9;
+            --text-secondary: #CBD5E1;
+            --text-tertiary: #94A3B8;
+            --border: #334155;
+            --danger: #F87171;
+            --danger-light: #451A1A;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        #app {
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--background);
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: calc(var(--bottom-nav-height) + 16px);
+        }
+
+        /* Remove tap highlight on mobile */
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+        }
+
+        /* Header */
+        .app-header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .back-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .back-btn:active {
+            background: var(--surface-hover);
+            transform: scale(0.95);
+        }
+
+        /* Profile Header */
+        .profile-header {
+            padding: 24px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .profile-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 35px;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--primary);
+            border: 3px solid var(--surface);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .profile-info h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .profile-info p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .profile-info p i {
+            color: var(--primary);
+            font-size: 12px;
+        }
+
+        /* Account Sections */
+        .account-sections {
+            padding: 20px;
+        }
+
+        .section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .section-header {
+            padding: 16px 20px;
+            background: var(--surface-hover);
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .section-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            color: var(--text-primary);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .section-item:last-child {
+            border-bottom: none;
+        }
+
+        .section-item:active {
+            background: var(--surface-hover);
+        }
+
+        .item-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .item-left i {
+            width: 20px;
+            color: var(--primary);
+            font-size: 16px;
+        }
+
+        .item-left span {
+            font-weight: 500;
+        }
+
+        .item-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-tertiary);
+            font-size: 14px;
+        }
+
+        .item-right i {
+            font-size: 12px;
+        }
+
+        /* Toggle switch for dark mode */
+        .toggle-switch {
+            width: 48px;
+            height: 24px;
+            background: var(--text-tertiary);
+            border-radius: 12px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: var(--primary);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(24px);
+        }
+
+        /* Contact info preview */
+        .contact-info-preview {
+            font-size: 13px;
+            color: var(--text-secondary);
+            max-width: 150px;
+            text-align: right;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Contact & Support section */
+        .social-links {
+            display: flex;
+            gap: 8px;
+            padding: 0;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .social-link {
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            padding: 8px 12px;
+            background: var(--surface-hover);
+            border-radius: 20px;
+            transition: all 0.2s;
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .social-link:active {
+            background: var(--primary-light);
+            transform: scale(0.95);
+        }
+
+        .social-link i {
+            font-size: 14px;
+        }
+
+        /* Danger zone */
+        .danger-item {
+            color: var(--danger);
+        }
+
+        .danger-item i {
+            color: var(--danger);
+        }
+
+        /* Modal */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-backdrop.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            z-index: 1001;
+            transform: translateY(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal.active {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            background: var(--surface);
+            z-index: 2;
+        }
+
+        .modal-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            background: var(--surface-hover);
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .modal-content {
+            padding: 24px;
+        }
+
+        /* Form styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--surface-hover);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 15px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        /* Custom Dropdown */
+        .custom-dropdown {
+            position: relative;
+            width: 100%;
+        }
+
+        .dropdown-selected {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--surface-hover);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s;
+        }
+
+        .dropdown-selected:hover {
+            background: var(--surface);
+        }
+
+        .dropdown-selected i {
+            color: var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .dropdown-selected.active i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-options {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            max-height: 250px;
+            overflow-y: auto;
+            z-index: 10;
+            box-shadow: var(--shadow-lg);
+            display: none;
+        }
+
+        .dropdown-options.show {
+            display: block;
+        }
+
+        .dropdown-option {
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dropdown-option:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-option:hover {
+            background: var(--primary-light);
+        }
+
+        .dropdown-option.selected {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .dropdown-option i {
+            color: var(--primary);
+            width: 20px;
+            font-size: 14px;
+        }
+
+        .btn-save {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 16px;
+        }
+
+        .btn-save:active {
+            background: var(--primary-dark);
+            transform: scale(0.98);
+        }
+
+        /* Delete confirmation */
+        .delete-confirm {
+            text-align: center;
+            padding: 16px 0;
+        }
+
+        .delete-confirm p {
+            margin-bottom: 24px;
+            color: var(--text-secondary);
+        }
+
+        .btn-delete {
+            width: 100%;
+            padding: 16px;
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-delete:active {
+            background: #DC2626;
+            transform: scale(0.98);
+        }
+
+        .btn-cancel {
+            width: 100%;
+            padding: 16px;
+            background: var(--surface-hover);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 12px;
+        }
+
+        .btn-cancel:active {
+            background: var(--border);
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: calc(var(--bottom-nav-height) + 20px);
+            left: 20px;
+            right: 20px;
+            max-width: 440px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-left: 4px solid var(--primary);
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 2000;
+            animation: slideUp 0.2s;
+            font-weight: 500;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Bottom Navigation - 4 items */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            right: 0;
+            background: var(--surface);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px 0 calc(8px + var(--safe-area));
+            z-index: 30;
+            height: var(--bottom-nav-height);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 10px;
+            gap: 2px;
+            padding: 4px 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-item i {
+            font-size: 22px;
+            font-weight: 400;
+            transition: transform 0.2s;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-item.active i {
+            transform: translateY(-2px);
+        }
+
+        .nav-item .label {
+            font-weight: 500;
+            font-size: 11px;
+        }
+
+        /* Share options inside modal */
+        .share-option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 12px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            background: var(--surface-hover);
+            border: 1px solid transparent;
+        }
+
+        .share-option:hover {
+            border-color: var(--border);
+            background: var(--surface);
+        }
+
+        .share-option:active {
+            background: var(--primary-light);
+            transform: scale(0.98);
+        }
+
+        .share-option i {
+            font-size: 22px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .share-option .option-text {
+            font-weight: 500;
+        }
+
+        /* Specific brand colors (optional) */
+        .share-option.whatsapp i { color: #25D366; }
+        .share-option.messages i { color: #0A84FF; }
+        .share-option.email i { color: var(--primary); }
+        .share-option.telegram i { color: #0088cc; }
+        .share-option.copy i { color: var(--text-secondary); }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Header with back button and share button -->
+        <header class="app-header">
+            <div class="header-content">
+                <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+                <div class="logo">Account</div>
+                <button class="back-btn" id="shareAppBtn" aria-label="Share app" style="border:1px solid var(--border); background: var(--surface);">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Profile Header -->
+        <div class="profile-header" id="profileHeader">
+            <div class="profile-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="profile-info">
+                <h2 id="displayName">Loading...</h2>
+                <p><i class="fas fa-map-marker-alt"></i> <span id="displayLocation">Kaduna</span></p>
+            </div>
+        </div>
+
+        <!-- Account Sections (unchanged) -->
+        <div class="account-sections">
+            <!-- PREFERENCES Section -->
+            <div class="section">
+                <div class="section-header">PREFERENCES</div>
+                <div class="section-item" id="darkModeBtn">
+                    <div class="item-left">
+                        <i class="fas fa-moon"></i>
+                        <span>Dark Mode</span>
+                    </div>
+                    <div class="item-right">
+                        <div class="toggle-switch" id="darkModeToggle"></div>
+                    </div>
+                </div>
+                <div class="section-item" id="notificationsBtn">
+                    <div class="item-left">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </div>
+                    <div class="item-right">
+                        <span>On</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACCOUNT Section -->
+            <div class="section">
+                <div class="section-header">ACCOUNT</div>
+                <div class="section-item" id="contactInfoBtn">
+                    <div class="item-left">
+                        <i class="fas fa-address-card"></i>
+                        <span>Contact Info</span>
+                    </div>
+                    <div class="item-right">
+                        <span class="contact-info-preview" id="contactPreview">Set up</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTACT & SUPPORT Section -->
+            <div class="section">
+                <div class="section-header">CONTACT & SUPPORT</div>
+                <div class="section-item" onclick="window.location.href='tel:07000000001'">
+                    <div class="item-left">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>07000000001</span>
+                    </div>
+                    <div class="item-right">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="section-item" onclick="window.location.href='mailto:get.primer@proton.me'">
+                    <div class="item-left">
+                        <i class="fas fa-envelope"></i>
+                        <span>get.primer@proton.me</span>
+                    </div>
+                    <div class="item-right">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                
+                <!-- Social Links -->
+                <div class="section-item" style="flex-wrap: wrap; cursor: default; background: transparent; padding: 12px 20px;">
+                    <div class="item-left" style="margin-bottom: 8px;">
+                        <i class="fas fa-hashtag"></i>
+                        <span>Follow us</span>
+                    </div>
+                    <div class="item-right" style="width: 100%; justify-content: flex-end;">
+                        <div class="social-links">
+                            <a href="#" onclick="openSocialApp('youtube', 'primertech0'); return false;" class="social-link">
+                                <i class="fab fa-youtube"></i> @primertech0
+                            </a>
+                            <a href="#" onclick="openSocialApp('facebook', 'primertech1'); return false;" class="social-link">
+                                <i class="fab fa-facebook"></i> primertech1
+                            </a>
+                            <a href="#" onclick="openSocialApp('instagram', 'primertech0'); return false;" class="social-link">
+                                <i class="fab fa-instagram"></i> @primertech0
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">REPORT PROVIDERS</div>
+                <a href="report.html" class="section-item">
+                    <div class="item-left">
+                        <i class="fas fa-file-contract"></i>
+                        <span>Report</span>
+                    </div>
+                    <div class="item-right">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </a>
+            </div>
+                
+            <!-- LEGAL Section -->
+            <div class="section">
+                <div class="section-header">LEGAL</div>
+                <a href="https://primert.vercel.app/privacy.html" class="section-item">
+                    <div class="item-left">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Privacy Policy</span>
+                    </div>
+                    <div class="item-right">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </a>
+                <a href="https://primert.vercel.app/terms.html" class="section-item">
+                    <div class="item-left">
+                        <i class="fas fa-file-contract"></i>
+                        <span>Terms of Service</span>
+                    </div>
+                    <div class="item-right">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </a>
+            </div>
+
+            <!-- DANGER ZONE Section -->
+            <div class="section">
+                <div class="section-header">DANGER ZONE</div>
+                <div class="section-item danger-item" id="deleteAccountBtn">
+                    <div class="item-left">
+                        <i class="fas fa-trash-alt"></i>
+                        <span>Delete Account</span>
+                    </div>
+                    <div class="item-right">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-building"></i>
+                <span class="label">Home</span>
+            </a>
+            <a href="map.html" class="nav-item">
+                <i class="fas fa-map"></i>
+                <span class="label">Map</span>
+            </a>
+            <a href="saved.html" class="nav-item">
+                <i class="fas fa-heart"></i>
+                <span class="label">Favorites</span>
+            </a>
+            <a href="account.html" class="nav-item active">
+                <i class="fas fa-user"></i>
+                <span class="label">Account</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    
+    <!-- Contact Info Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-header">
+            <h3>Contact Info</h3>
+            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-content">
+            <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input" id="inputName" placeholder="Your name">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-input" id="inputPhone" placeholder="+234...">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Location</label>
+                <div class="custom-dropdown" id="locationDropdown">
+                    <div class="dropdown-selected" onclick="toggleDropdown(event)">
+                        <span id="selectedLocation">Select city</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="dropdown-options" id="dropdownOptions">
+                        <!-- Cities loaded from locations.json -->
+                    </div>
+                </div>
+            </div>
+            <button class="btn-save" onclick="saveContactInfo()">Save Changes</button>
+        </div>
+    </div>
+
+    <!-- Delete Account Confirmation Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-header">
+            <h3>Delete Account</h3>
+            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-content">
+            <div class="delete-confirm">
+                <p style="color: var(--danger);">This action cannot be undone.</p>
+                <p>Are you sure you want to delete your account?</p>
+                <button class="btn-delete" onclick="deleteAccount()">Yes, delete</button>
+                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share App Modal (NEW) -->
+    <div class="modal" id="shareModal">
+        <div class="modal-header">
+            <h3>Share App</h3>
+            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-content">
+            <!-- Educational instruction added here -->
+            <p style="margin-bottom: 16px; color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
+                Share Primer with friends and family. Choose an app below and the link will be added automatically.
+            </p>
+            <div class="share-option whatsapp" onclick="shareViaWhatsApp()">
+                <i class="fab fa-whatsapp"></i>
+                <span class="option-text">WhatsApp</span>
+            </div>
+            <div class="share-option messages" onclick="shareViaSMS()">
+                <i class="fas fa-comment-dots"></i>
+                <span class="option-text">Messages (SMS)</span>
+            </div>
+            <div class="share-option telegram" onclick="shareViaTelegram()">
+                <i class="fab fa-telegram-plane"></i>
+                <span class="option-text">Telegram</span>
+            </div>
+            <div class="share-option email" onclick="shareViaEmail()">
+                <i class="fas fa-envelope"></i>
+                <span class="option-text">Email</span>
+            </div>
+            <div class="share-option copy" onclick="copyAppLink()">
+                <i class="fas fa-copy"></i>
+                <span class="option-text">Copy Link</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
+    <script>
+        (function() {
+            // ========== THEME MANAGEMENT ==========
+            const html = document.documentElement;
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            
+            function syncTheme() {
+                const saved = localStorage.getItem('primer_theme') || 'light';
+                html.setAttribute('data-theme', saved);
+                if (saved === 'dark') {
+                    darkModeToggle.classList.add('active');
+                } else {
+                    darkModeToggle.classList.remove('active');
+                }
+            }
+            syncTheme();
+            
+            document.getElementById('darkModeBtn').addEventListener('click', () => {
+                const current = html.getAttribute('data-theme') || 'light';
+                const next = current === 'light' ? 'dark' : 'light';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem('primer_theme', next);
+                if (next === 'dark') {
+                    darkModeToggle.classList.add('active');
+                } else {
+                    darkModeToggle.classList.remove('active');
+                }
+                showToast(`${next === 'dark' ? 'Dark' : 'Light'} mode enabled`);
+            });
+
+            // ========== LOAD CITIES FROM locations.json ==========
+            let cities = [];
+            
+            async function loadCities() {
+                try {
+                    const response = await fetch('locations.json');
+                    const data = await response.json();
+                    cities = data.cities || ["Abuja", "Kaduna", "Kano", "Lagos"];
+                    return cities;
+                } catch (error) {
+                    console.error('Error loading cities:', error);
+                    cities = ["Abuja", "Kaduna", "Kano", "Lagos"];
+                    return cities;
+                }
+            }
+
+            // ========== USER DATA MANAGEMENT ==========
+            let userData = {
+                name: '',
+                phone: '',
+                city: 'Kaduna'
+            };
+
+            function loadUserData() {
+                try {
+                    const saved = localStorage.getItem('primer_user');
+                    if (saved) {
+                        userData = JSON.parse(saved);
+                    } else {
+                        userData = { name: '', phone: '', city: 'Kaduna' };
+                        localStorage.setItem('primer_user', JSON.stringify(userData));
+                    }
+                } catch (e) {
+                    console.error('Error loading user data:', e);
+                }
+                updateDisplay();
+            }
+
+            function saveUserData(data) {
+                userData = { ...userData, ...data };
+                localStorage.setItem('primer_user', JSON.stringify(userData));
+                updateDisplay();
+                showToast('Profile updated successfully');
+            }
+
+            function updateDisplay() {
+                document.getElementById('displayName').textContent = userData.name || 'Guest User';
+                document.getElementById('displayLocation').textContent = userData.city || 'Kaduna';
+                
+                const preview = document.getElementById('contactPreview');
+                if (userData.name && userData.phone) {
+                    preview.textContent = `${userData.name} • ${userData.phone}`;
+                } else if (userData.name) {
+                    preview.textContent = userData.name;
+                } else {
+                    preview.textContent = 'Set up';
+                }
+            }
+
+            // ========== FIXED SOCIAL MEDIA APP OPENER ==========
+            window.openSocialApp = function(platform, username) {
+                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+                const isAndroid = /android/i.test(userAgent);
+                const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+                
+                let appUrl = '';
+                let webUrl = '';
+                
+                switch(platform) {
+                    case 'youtube':
+                        appUrl = isAndroid 
+                            ? `intent://www.youtube.com/@${username}#Intent;package=com.google.android.youtube;scheme=https;end;` 
+                            : `youtube://www.youtube.com/@${username}`;
+                        webUrl = `https://youtube.com/@${username}`;
+                        break;
+                        
+                    case 'facebook':
+                        if (isAndroid) {
+                            appUrl = `fb://profile/${username}`;
+                            setTimeout(() => {
+                                window.location.href = `https://facebook.com/${username}`;
+                            }, 500);
+                        } else if (isIOS) {
+                            appUrl = `fb://profile/${username}`;
+                        }
+                        webUrl = `https://facebook.com/${username}`;
+                        break;
+                        
+                    case 'instagram':
+                        appUrl = isAndroid 
+                            ? `intent://instagram.com/_u/${username}#Intent;package=com.instagram.android;scheme=https;end;` 
+                            : `instagram://user?username=${username}`;
+                        webUrl = `https://instagram.com/${username}`;
+                        break;
+                        
+                    default:
+                        return;
+                }
+                
+                showToast(`Opening ${platform}...`);
+                
+                if (isAndroid && (platform === 'youtube' || platform === 'instagram')) {
+                    window.location.href = appUrl;
+                    
+                    setTimeout(() => {
+                        const hidden = document.createElement('iframe');
+                        hidden.style.display = 'none';
+                        document.body.appendChild(hidden);
+                        hidden.src = webUrl;
+                        setTimeout(() => document.body.removeChild(hidden), 2000);
+                    }, 500);
+                } else {
+                    const appWindow = window.open(appUrl, '_blank');
+                    
+                    setTimeout(() => {
+                        try {
+                            if (!appWindow || appWindow.closed || typeof appWindow.closed === 'undefined') {
+                                window.location.href = webUrl;
+                            }
+                        } catch (e) {
+                            console.log('App opened');
+                        }
+                    }, 500);
+                }
+                
+                setTimeout(() => {
+                    window.open(webUrl, '_blank');
+                }, 1000);
+            };
+
+            // ========== MODAL FUNCTIONS ==========
+            const backdrop = document.getElementById('modalBackdrop');
+            const contactModal = document.getElementById('contactModal');
+            const deleteModal = document.getElementById('deleteModal');
+            const shareModal = document.getElementById('shareModal'); // NEW
+
+            window.openModal = function(modal) {
+                backdrop.classList.add('active');
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            };
+
+            window.closeModal = function() {
+                backdrop.classList.remove('active');
+                contactModal.classList.remove('active');
+                deleteModal.classList.remove('active');
+                shareModal.classList.remove('active'); // NEW
+                document.body.style.overflow = '';
+            };
+
+            backdrop.addEventListener('click', closeModal);
+
+            // ========== CONTACT INFO MODAL ==========
+            document.getElementById('contactInfoBtn').addEventListener('click', async () => {
+                if (cities.length === 0) {
+                    await loadCities();
+                }
+                
+                const optionsContainer = document.getElementById('dropdownOptions');
+                optionsContainer.innerHTML = cities.map(city => `
+                    <div class="dropdown-option ${city === userData.city ? 'selected' : ''}" onclick="selectCity('${city}')">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>${city}</span>
+                    </div>
+                `).join('');
+                
+                document.getElementById('selectedLocation').textContent = userData.city || 'Kaduna';
+                document.getElementById('inputName').value = userData.name || '';
+                document.getElementById('inputPhone').value = userData.phone || '';
+                
+                openModal(contactModal);
+            });
+
+            window.toggleDropdown = function(event) {
+                event.stopPropagation();
+                const options = document.getElementById('dropdownOptions');
+                const selected = document.querySelector('.dropdown-selected');
+                options.classList.toggle('show');
+                selected.classList.toggle('active');
+            };
+
+            window.selectCity = function(city) {
+                document.getElementById('selectedLocation').textContent = city;
+                document.querySelectorAll('.dropdown-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                    if (opt.querySelector('span').textContent === city) {
+                        opt.classList.add('selected');
+                    }
+                });
+                toggleDropdown(event);
+            };
+
+            document.addEventListener('click', function(e) {
+                const dropdown = document.getElementById('locationDropdown');
+                const options = document.getElementById('dropdownOptions');
+                const selected = document.querySelector('.dropdown-selected');
+                
+                if (dropdown && !dropdown.contains(e.target)) {
+                    options.classList.remove('show');
+                    selected.classList.remove('active');
+                }
+            });
+
+            window.saveContactInfo = function() {
+                const name = document.getElementById('inputName').value.trim();
+                const phone = document.getElementById('inputPhone').value.trim();
+                const city = document.getElementById('selectedLocation').textContent;
+
+                if (!name || !phone) {
+                    showToast('Please fill in all fields');
+                    return;
+                }
+
+                if (city === 'Select city') {
+                    showToast('Please select a city');
+                    return;
+                }
+
+                saveUserData({ name, phone, city });
+                closeModal();
+            };
+
+            // ========== NOTIFICATIONS ==========
+            document.getElementById('notificationsBtn').addEventListener('click', () => {
+                showToast('Notifications settings coming soon');
+            });
+
+            // ========== DELETE ACCOUNT ==========
+            document.getElementById('deleteAccountBtn').addEventListener('click', () => {
+                openModal(deleteModal);
+            });
+
+            window.deleteAccount = function() {
+                localStorage.removeItem('primer_user');
+                localStorage.removeItem('primer_favorites');
+                localStorage.removeItem('primer_bookings');
+                
+                userData = { name: '', phone: '', city: 'Kaduna' };
+                updateDisplay();
+                
+                closeModal();
+                showToast('Account deleted');
+                
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            };
+
+            // ========== TOAST ==========
+            function showToast(message) {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = `<i class="fas fa-check-circle" style="color: var(--primary);"></i><span>${message}</span>`;
+                container.appendChild(toast);
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 200);
+                }, 2500);
+            }
+            window.showToast = showToast;
+
+            // ========== SHARE FUNCTIONS (NEW) ==========
+            // Common share message and link
+            function getShareMessageAndLink() {
+                const appUrl = window.location.origin + '/';
+                const message = `Check out Primer – find lodging and services easily. ${appUrl}`;
+                return { message, url: appUrl };
+            }
+
+            // Open the share modal (instead of using Web Share API)
+            document.getElementById('shareAppBtn').addEventListener('click', () => {
+                openModal(shareModal);
+            });
+
+            // Individual share methods
+            window.shareViaWhatsApp = function() {
+                const { message } = getShareMessageAndLink();
+                const encoded = encodeURIComponent(message);
+                window.open(`https://wa.me/?text=${encoded}`, '_blank');
+                closeModal();
+            };
+
+            window.shareViaSMS = function() {
+                const { message } = getShareMessageAndLink();
+                const encoded = encodeURIComponent(message);
+                window.open(`sms:?body=${encoded}`, '_blank');
+                closeModal();
+            };
+
+            window.shareViaTelegram = function() {
+                const { message, url } = getShareMessageAndLink();
+                const encodedUrl = encodeURIComponent(url);
+                const encodedText = encodeURIComponent('Check out Primer – find lodging and services easily.');
+                // Use Telegram share URL
+                window.open(`https://t.me/share/url?url=${encodedUrl}&text=${encodedText}`, '_blank');
+                closeModal();
+            };
+
+            window.shareViaEmail = function() {
+                const { message, url } = getShareMessageAndLink();
+                const subject = encodeURIComponent('Check out Primer');
+                const body = encodeURIComponent(`${message}`);
+                window.open(`mailto:?subject=${subject}&body=${body}`, '_self');
+                closeModal();
+            };
+
+            window.copyAppLink = function() {
+                const { url } = getShareMessageAndLink();
+                navigator.clipboard.writeText(url).then(() => {
+                    showToast('Link copied to clipboard!');
+                }).catch(() => {
+                    showToast('Could not copy. Link: ' + url);
+                });
+                closeModal();
+            };
+
+            // ========== INIT ==========
+            loadCities();
+            loadUserData();
+
+            // Handle escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal();
+            });
+        })();
+    </script>
+</body>
+</html>

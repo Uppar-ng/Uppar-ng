@@ -1,0 +1,11 @@
+{
+  "services": [
+    { "id": "moving", "name": "Moving", "icon": "truck", "type": "company", "primerOwned": true, "featured": true },
+    { "id": "satellite-installer", "name": "Satellite Installer", "icon": "satellite-dish", "type": "independent" },
+    { "id": "funiture", "name": "Funiture", "icon": "camera", "type": "independent" },
+    { "id": "painting", "name": "Painting", "icon": "paint-roller", "type": "independent" },
+    { "id": "plumbing", "name": "Plumbing", "icon": "wrench", "type": "independent", "featured": true},
+    { "id": "electrical", "name": "Electrical", "icon": "bolt", "type": "independent", "featured": true},
+    { "id": "carpentry", "name": "Carpentry", "icon": "hammer", "type": "independent" }
+  ]
+}
