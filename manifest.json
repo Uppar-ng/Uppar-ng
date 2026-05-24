@@ -55,8 +55,8 @@
       "url": "./index.html",
       "icons": [
         {
-          "src": "icon/home.png",
-          "sizes": "96x96"
+          "src": "icon/100.png",
+          "sizes": "100x100"
         }
       ]
     },
@@ -67,8 +67,8 @@
       "url": "./saved.html",
       "icons": [
         {
-          "src": "icon/map.png",
-          "sizes": "96x96"
+          "src": "icon/100.png",
+          "sizes": "100x100"
         }
       ]
     },
@@ -79,8 +79,8 @@
       "url": "./report.html",
       "icons": [
         {
-          "src": "icon/favorite.png",
-          "sizes": "96x96"
+          "src": "icon/100.png",
+          "sizes": "100x100"
         }
       ]
     }
