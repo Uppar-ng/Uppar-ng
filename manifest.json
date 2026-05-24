@@ -112,7 +112,6 @@
   "related_applications": [],
   "lang": "en",
   "dir": "ltr",
-  "display_override": ["window-controls-overlay", "standalone"],
   "launch_handler": {
     "client_mode": "auto"
   },
