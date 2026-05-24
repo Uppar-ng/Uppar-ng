@@ -4,7 +4,7 @@
   "description": "Connect with verified local service providers for moving, cleaning, repairs, and more.",
   "start_url": "./index.html",
   "scope": "./",
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation": "portrait",
   "theme_color": "#2563EB",
   "background_color": "#F5F7FA",
