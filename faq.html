@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>FAQ – Frequently Asked Questions | Zaure</title>
+    <meta name="description" content="Find answers to common questions about Zaure: how to list, search, verify, and stay safe on our direct connection platform.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1A1F2E;
+            --primary-soft: #2E3548;
+            --accent: #B49450;
+            --accent-soft: #D4B87A;
+            --bg: #FBFBFB;
+            --surface: #FFFFFF;
+            --surface-alt: #F6F6F6;
+            --text: #1E1E1E;
+            --text-secondary: #6B7280;
+            --border: #E5E7EB;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 24px -8px rgba(0,0,0,0.06);
+            --radius: 16px;
+            --radius-sm: 12px;
+            --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+        }
+        [data-theme="dark"] {
+            --primary: #D4B87A;
+            --accent: #D4B87A;
+            --bg: #0B1120;
+            --surface: #131C31;
+            --surface-alt: #1A2540;
+            --text: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --border: #2A3550;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height:1.6;
+            transition: background var(--transition), color var(--transition);
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width:1280px; margin:0 auto; padding:0 2rem; }
+        .main-header {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top:0; z-index:100;
+        }
+        [data-theme="dark"] .main-header { background: rgba(19,28,49,0.8); }
+        .main-header .container { display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; }
+        .logo a {
+            text-decoration:none; font-family:'Playfair Display',serif; font-size:2rem; font-weight:800;
+            color: var(--primary); letter-spacing:-0.5px; display:flex; align-items:baseline;
+        }
+        .logo a .dot { width:6px; height:6px; background:var(--accent); border-radius:50%; margin-left:4px; }
+        .desktop-nav { display:flex; gap:2.2rem; }
+        .desktop-nav a {
+            text-decoration:none; color:var(--text); font-weight:500; font-size:0.95rem;
+            transition:color 0.2s; position:relative;
+        }
+        .desktop-nav a::after {
+            content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px;
+            background:var(--accent); border-radius:2px; transition:width 0.25s;
+        }
+        .desktop-nav a:hover, .desktop-nav a.active { color:var(--primary); }
+        .desktop-nav a:hover::after, .desktop-nav a.active::after { width:100%; }
+        .header-actions { display:flex; gap:0.8rem; }
+        .icon-btn {
+            background:transparent; border:1px solid var(--border); font-size:1.1rem; cursor:pointer;
+            color:var(--text); padding:0.5rem; border-radius:50%; width:38px; height:38px;
+            display:flex; align-items:center; justify-content:center; transition:0.2s;
+        }
+        .icon-btn:hover { background:var(--primary); color:white; border-color:var(--primary); }
+        .mobile-only { display:none; }
+        .mobile-menu {
+            position:fixed; top:0; left:-100%; width:80%; max-width:320px; height:100%;
+            background:var(--surface); z-index:200; transition:left 0.35s; padding:2.5rem 2rem;
+            display:flex; flex-direction:column; gap:1.5rem; box-shadow:var(--shadow-lg);
+        }
+        .mobile-menu.open { left:0; }
+        .mobile-menu a { text-decoration:none; font-size:1.2rem; color:var(--text); font-weight:500; padding:0.5rem 0; border-bottom:1px solid var(--border); }
+
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-soft) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 1rem; }
+        .page-hero p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+        .faq-section {
+            padding: 5rem 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: background 0.2s;
+        }
+        .faq-question:hover {
+            background: var(--surface-alt);
+        }
+        .faq-question i {
+            font-size: 1.2rem;
+            color: var(--accent);
+            transition: transform 0.2s;
+        }
+        .faq-item.open .faq-question i {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-secondary);
+            display: none;
+            line-height: 1.7;
+        }
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+        footer { background:#1A1F2E; color:#CBD5E1; padding:4rem 0 1.5rem; margin-top:3rem; }
+        footer a { color:#94A3B8; text-decoration:none; }
+        footer a:hover { color:var(--accent-soft); }
+        .footer-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:2rem; margin-bottom:2rem; }
+        .social i { font-size:1.2rem; margin-right:1rem; }
+        @media (max-width:768px) {
+            .desktop-nav { display:none; }
+            .mobile-only { display:block; }
+            .page-hero h1 { font-size:2.2rem; }
+        }
+    </style>
+</head>
+<body>
+<header class="main-header">
+    <div class="container">
+        <div class="logo"><a href="/">Zaure<span class="dot"></span></a></div>
+        <nav class="desktop-nav">
+            <a href="/">Home</a>
+            <a href="/browse?type=sale">Buy</a>
+            <a href="/browse?type=rent">Rent</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <a href="/post" class="btn-outline" style="padding:0.4rem 1.2rem; border-color:var(--accent); color:var(--accent);">List Property</a>
+        </nav>
+        <div class="header-actions">
+            <button id="themeToggle" class="icon-btn"><i class="fas fa-moon"></i></button>
+            <button id="mobileMenuToggle" class="icon-btn mobile-only"><i class="fas fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+    <button id="closeMenu" class="close-btn"><i class="fas fa-times"></i></button>
+    <a href="/">Home</a><a href="/browse?type=sale">Buy</a><a href="/browse?type=rent">Rent</a>
+    <a href="/how-it-works">How It Works</a><a href="/about">About</a><a href="/contact">Contact</a>
+    <a href="/post">List Property</a>
+</div>
+
+<main>
+    <section class="page-hero">
+        <div class="container">
+            <h1>Frequently Asked Questions</h1>
+            <p>Everything you need to know about using Zaure safely and effectively.</p>
+        </div>
+    </section>
+
+    <section class="faq-section container">
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What is Zaure?</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Zaure is a free classifieds platform that connects property owners directly with seekers. We don't employ agents, charge commissions, or insert ourselves into transactions. Think of us as a digital entrance hall (that's what "zaure" means in Hausa) — we provide the space for you to meet and make your own deal.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Is Zaure really free?</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Yes. Listing a property is completely free. Browsing and searching are free. Contacting an owner is free. We do not charge any fees or commissions on transactions. In the future we may introduce optional premium features (like boosting a listing), but we will never charge per transaction.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How do I list my property?</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Go to the <a href="/post">List Property</a> page, fill in the details (title, location, price, photos, etc.), and submit. Your listing will be reviewed and published within a few hours. You can also request identity verification to earn a "Verified" badge, which makes seekers more likely to contact you.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What does the "Verified" badge mean?</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>A Verified badge means the owner has completed identity verification (NIN or BVN) through our third-party KYC provider. It confirms that the person's government ID is real and matches their name. It does NOT mean we have inspected the property or vouch for the person's character. Always do your own due diligence.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How do I stay safe when dealing with an owner or seeker?</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>We recommend the following:</p>
+                <ul style="margin-top:0.5rem; padding-left:1.5rem;">
+                    <li>Always view the property in person before paying any money.</li>
+                    <li>Never send money to someone you haven't met.</li>
+                    <li>Ask to see proof of ownership (C-of-O, deed, etc.) before making a payment.</li>
+                    <li>Bring someone with you to viewings.</li>
+                    <li>Trust your instincts — if something feels off, walk away and report the listing.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Does Zaure handle payments?</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>No. All financial transactions happen directly between the owner and the seeker. We do not collect rent, sale proceeds, or deposits. We recommend using traceable payment methods and documenting everything.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How do I report a fake listing or suspicious behaviour?</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Please email us at <a href="mailto:hello@zaure.com">hello@zaure.com</a> with the property link and details of what happened. We review reports within 12 hours and will remove fraudulent listings immediately. If you feel threatened or have been scammed, please also contact the local authorities.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How do I edit or remove my listing?</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Currently, contact us at <a href="mailto:hello@zaure.com">hello@zaure.com</a> with your property ID and the changes you need. We're building a self-service dashboard that will be available soon.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Which cities does Zaure cover?</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Zaure is focused on Northern Nigeria, with properties currently in Kaduna, Kano, Zaria, Abuja, Sokoto, Maiduguri, Jos, and more. We are expanding steadily. If your city isn't listed yet, you can still post a property — we'll make it visible.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How can I contact Zaure?</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Visit our <a href="/contact">Contact page</a>, email us at <a href="mailto:hello@zaure.com">hello@zaure.com</a>, or WhatsApp us at +234 801 234 5678. We respond within 24 hours.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div><h4 style="color:white;">Zaure</h4><p>Your digital entrance hall – connecting owners and seekers directly.</p></div>
+            <div><h4>Explore</h4><a href="/browse?type=sale">Buy</a><br><a href="/browse?type=rent">Rent</a><br><a href="/how-it-works">How It Works</a></div>
+            <div><h4>Support</h4><a href="/contact">Contact</a><br><a href="/faq">FAQ</a><br><a href="/privacy">Privacy</a><br><a href="/terms">Terms</a></div>
+            <div><h4>Connect</h4><div class="social"><i class="fab fa-facebook-f"></i><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i></div></div>
+        </div>
+        <div style="text-align:center; padding-top:1.5rem; border-top:1px solid #2E3548; font-size:0.8rem;">© 2026 Zaure. All rights reserved.</div>
+    </div>
+</footer>
+
+<script>
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const stored = localStorage.getItem('zaure_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', stored);
+    themeToggle.innerHTML = stored === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    themeToggle.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme');
+        const next = cur === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('zaure_theme', next);
+        themeToggle.innerHTML = next === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // Mobile menu
+    document.getElementById('mobileMenuToggle').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+    document.getElementById('closeMenu').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const faqItem = question.parentElement;
+            const isOpen = faqItem.classList.contains('open');
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('open'));
+            // Open clicked (unless it was already open)
+            if (!isOpen) {
+                faqItem.classList.add('open');
+            }
+        });
+    });
+</script>
+</body>
+</html>

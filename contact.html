@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Contact Us | Zaure</title>
+    <meta name="description" content="Get in touch with Zaure for questions, support, or to learn more about our platform.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ... same CSS as before, no changes needed ... */
+        :root {
+            --primary: #1A1F2E;
+            --primary-soft: #2E3548;
+            --accent: #B49450;
+            --accent-soft: #D4B87A;
+            --bg: #FBFBFB;
+            --surface: #FFFFFF;
+            --surface-alt: #F6F6F6;
+            --text: #1E1E1E;
+            --text-secondary: #6B7280;
+            --border: #E5E7EB;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 24px -8px rgba(0,0,0,0.06);
+            --radius: 16px;
+            --radius-sm: 12px;
+            --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+        }
+        [data-theme="dark"] {
+            --primary: #D4B87A;
+            --accent: #D4B87A;
+            --bg: #0B1120;
+            --surface: #131C31;
+            --surface-alt: #1A2540;
+            --text: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --border: #2A3550;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height:1.6;
+            transition: background var(--transition), color var(--transition);
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width:1280px; margin:0 auto; padding:0 2rem; }
+        .main-header {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top:0; z-index:100;
+        }
+        [data-theme="dark"] .main-header { background: rgba(19,28,49,0.8); }
+        .main-header .container { display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; }
+        .logo a {
+            text-decoration:none; font-family:'Playfair Display',serif; font-size:2rem; font-weight:800;
+            color: var(--primary); letter-spacing:-0.5px; display:flex; align-items:baseline;
+        }
+        .logo a .dot { width:6px; height:6px; background:var(--accent); border-radius:50%; margin-left:4px; }
+        .desktop-nav { display:flex; gap:2.2rem; }
+        .desktop-nav a {
+            text-decoration:none; color:var(--text); font-weight:500; font-size:0.95rem;
+            transition:color 0.2s; position:relative;
+        }
+        .desktop-nav a::after {
+            content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px;
+            background:var(--accent); border-radius:2px; transition:width 0.25s;
+        }
+        .desktop-nav a:hover, .desktop-nav a.active { color:var(--primary); }
+        .desktop-nav a:hover::after, .desktop-nav a.active::after { width:100%; }
+        .header-actions { display:flex; gap:0.8rem; }
+        .icon-btn {
+            background:transparent; border:1px solid var(--border); font-size:1.1rem; cursor:pointer;
+            color:var(--text); padding:0.5rem; border-radius:50%; width:38px; height:38px;
+            display:flex; align-items:center; justify-content:center; transition:0.2s;
+        }
+        .icon-btn:hover { background:var(--primary); color:white; border-color:var(--primary); }
+        .mobile-only { display:none; }
+        .mobile-menu {
+            position:fixed; top:0; left:-100%; width:80%; max-width:320px; height:100%;
+            background:var(--surface); z-index:200; transition:left 0.35s; padding:2.5rem 2rem;
+            display:flex; flex-direction:column; gap:1.5rem; box-shadow:var(--shadow-lg);
+        }
+        .mobile-menu.open { left:0; }
+        .mobile-menu a { text-decoration:none; font-size:1.2rem; color:var(--text); font-weight:500; padding:0.5rem 0; border-bottom:1px solid var(--border); }
+
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-soft) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 1rem; }
+        .page-hero p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+        .contact-layout { display:grid; grid-template-columns:1fr 1fr; gap:3rem; margin:3rem 0; }
+        @media (max-width:768px) { .contact-layout { grid-template-columns:1fr; } }
+
+        .contact-form-card {
+            background:var(--surface); border-radius:var(--radius); padding:2rem;
+            box-shadow:var(--shadow-sm); border:1px solid var(--border);
+        }
+        .contact-form-card h2 { margin-bottom:1.5rem; font-family:'Playfair Display',serif; }
+        .form-group { margin-bottom:1rem; }
+        .form-group label { display:block; margin-bottom:0.3rem; font-weight:500; font-size:0.9rem; }
+        .form-group input, .form-group select, .form-group textarea {
+            width:100%; padding:0.75rem; border:1px solid var(--border);
+            border-radius:8px; background:var(--bg); font-family:inherit; font-size:0.95rem;
+        }
+        .form-group textarea { resize:vertical; }
+        .btn-submit {
+            background:var(--accent); color:#1A1F2E; border:none; padding:0.8rem 1.5rem;
+            border-radius:3rem; font-weight:700; cursor:pointer; width:100%; font-size:1rem;
+            transition:0.2s;
+        }
+        .btn-submit:hover { background:var(--accent-soft); }
+
+        .info-card {
+            background:var(--surface); border-radius:var(--radius); padding:1.5rem;
+            box-shadow:var(--shadow-sm); border:1px solid var(--border); margin-bottom:1.5rem;
+        }
+        .info-card h3 { display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem; font-size:1.1rem; }
+        .info-card p, .info-card address { color:var(--text-secondary); line-height:1.6; font-style:normal; }
+        .info-card a { color: var(--primary); text-decoration:none; }
+        .info-card a:hover { color: var(--accent); }
+
+        .social-links { display:flex; gap:1rem; margin-top:0.5rem; }
+        .social-links a { color:var(--text-secondary); font-size:1.4rem; transition:0.2s; }
+        .social-links a:hover { color:var(--accent); }
+
+        .success-message { background:#10B981; color:white; padding:1rem; border-radius:8px; margin-bottom:1rem; text-align:center; }
+        .error-message { background:#EF4444; color:white; padding:1rem; border-radius:8px; margin-bottom:1rem; text-align:center; }
+
+        footer { background:#1A1F2E; color:#CBD5E1; padding:4rem 0 1.5rem; margin-top:3rem; }
+        footer a { color:#94A3B8; text-decoration:none; }
+        footer a:hover { color:var(--accent-soft); }
+        .footer-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:2rem; margin-bottom:2rem; }
+        .social i { font-size:1.2rem; margin-right:1rem; }
+        @media (max-width:768px) {
+            .desktop-nav { display:none; }
+            .mobile-only { display:block; }
+            .page-hero h1 { font-size:2.2rem; }
+        }
+    </style>
+</head>
+<body>
+<header class="main-header">
+    <div class="container">
+        <div class="logo"><a href="/">Zaure<span class="dot"></span></a></div>
+        <nav class="desktop-nav">
+            <a href="/">Home</a>
+            <a href="/browse?type=sale">Buy</a>
+            <a href="/browse?type=rent">Rent</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/about">About</a>
+            <a href="/contact" class="active">Contact</a>
+            <!-- Now a plain nav link, not a button -->
+            <a href="/post">List Property</a>
+        </nav>
+        <div class="header-actions">
+            <button id="themeToggle" class="icon-btn"><i class="fas fa-moon"></i></button>
+            <button id="mobileMenuToggle" class="icon-btn mobile-only"><i class="fas fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+    <button id="closeMenu" class="close-btn"><i class="fas fa-times"></i></button>
+    <a href="/">Home</a><a href="/browse?type=sale">Buy</a><a href="/browse?type=rent">Rent</a>
+    <a href="/how-it-works">How It Works</a><a href="/about">About</a><a href="/contact">Contact</a>
+    <a href="/post">List Property</a>
+</div>
+
+<main>
+    <!-- ... same main content as before ... -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you. Send us a message and we'll respond within 24 hours.</p>
+        </div>
+    </section>
+    <div class="container">
+        <div class="contact-layout">
+            <div class="contact-form-card">
+                <h2>Send a Message</h2>
+                <div id="formStatus"></div>
+                <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST">
+                    <!-- ... same form fields ... -->
+                    <div class="form-group"><label for="name">Full Name *</label><input type="text" id="name" name="name" required></div>
+                    <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" name="email" required></div>
+                    <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone"></div>
+                    <div class="form-group"><label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="support">Support</option>
+                            <option value="listing">Listing Help</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="partnership">Partnership</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label for="message">Message *</label><textarea id="message" name="message" rows="5" required></textarea></div>
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
+            <div>
+                <div class="info-card"><h3><i class="fas fa-map-marker-alt"></i> Location</h3><address>Kaduna, Nigeria<br>(Remote-first — serving all Northern Nigeria)</address></div>
+                <div class="info-card"><h3><i class="fas fa-envelope"></i> Email</h3><p><a href="mailto:get.zaure@proton.me">get.zaure@proton.me</a></p></div>
+                <div class="info-card"><h3><i class="fas fa-phone"></i> Phone / WhatsApp</h3><p><a href="https://wa.me/2348012345678">+234 801 234 5678</a></p></div>
+                <div class="info-card"><h3><i class="fas fa-clock"></i> Response Time</h3><p>We aim to reply to all messages within 24 hours.</p></div>
+                <div class="info-card">
+                    <h3><i class="fas fa-share-alt"></i> Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://facebook.com/zaure" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/zaure" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com/zaure" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com/company/zaure" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div><h4 style="color:white;">Zaure</h4><p>Your digital entrance hall – connecting owners and seekers directly.</p></div>
+            <div><h4>Explore</h4><a href="/browse?type=sale">Buy</a><br><a href="/browse?type=rent">Rent</a><br><a href="/how-it-works">How It Works</a></div>
+            <div><h4>Support</h4><a href="/contact">Contact</a><br><a href="/faq">FAQ</a><br><a href="/privacy">Privacy</a><br><a href="/terms">Terms</a></div>
+            <div><h4>Connect</h4><div class="social"><i class="fab fa-facebook-f"></i><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i></div></div>
+        </div>
+        <div style="text-align:center; padding-top:1.5rem; border-top:1px solid #2E3548; font-size:0.8rem;">© 2026 Zaure Technologies. All rights reserved.</div>
+    </div>
+</footer>
+
+<script>
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const stored = localStorage.getItem('zaure_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', stored);
+    themeToggle.innerHTML = stored === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    themeToggle.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme');
+        const next = cur === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('zaure_theme', next);
+        themeToggle.innerHTML = next === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenuBtn = document.getElementById('closeMenu');
+
+    mobileToggle.addEventListener('click', () => {
+        mobileMenu.classList.add('open');
+    });
+    closeMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+    });
+    // Close menu when any link inside is clicked
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+        });
+    });
+
+    // Form submission via fetch (Formspree AJAX)
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const submitBtn = form.querySelector('.btn-submit');
+        const originalText = submitBtn.innerText;
+        submitBtn.innerText = 'Sending...';
+        submitBtn.disabled = true;
+
+        const formData = new FormData(form);
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+                formStatus.innerHTML = '<div class="success-message">Message sent successfully! We will get back to you soon.</div>';
+                form.reset();
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            formStatus.innerHTML = '<div class="error-message">Something went wrong. Please try again or contact us via WhatsApp.</div>';
+        } finally {
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+            setTimeout(() => { if (formStatus.innerHTML) formStatus.innerHTML = ''; }, 5000);
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Terms of Service | Zaure</title>
+    <meta name="description" content="Read the terms and conditions for using Zaure's direct owner–seeker platform.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1A1F2E;
+            --primary-soft: #2E3548;
+            --accent: #B49450;
+            --accent-soft: #D4B87A;
+            --bg: #FBFBFB;
+            --surface: #FFFFFF;
+            --surface-alt: #F6F6F6;
+            --text: #1E1E1E;
+            --text-secondary: #6B7280;
+            --border: #E5E7EB;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.04);
+            --radius: 16px;
+            --radius-sm: 12px;
+            --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+        }
+        [data-theme="dark"] {
+            --primary: #D4B87A;
+            --accent: #D4B87A;
+            --bg: #0B1120;
+            --surface: #131C31;
+            --surface-alt: #1A2540;
+            --text: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --border: #2A3550;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height:1.6;
+            transition: background var(--transition), color var(--transition);
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width:1280px; margin:0 auto; padding:0 2rem; }
+        .main-header {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top:0; z-index:100;
+        }
+        [data-theme="dark"] .main-header { background: rgba(19,28,49,0.8); }
+        .main-header .container { display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; }
+        .logo a {
+            text-decoration:none; font-family:'Playfair Display',serif; font-size:2rem; font-weight:800;
+            color: var(--primary); letter-spacing:-0.5px; display:flex; align-items:baseline;
+        }
+        .logo a .dot { width:6px; height:6px; background:var(--accent); border-radius:50%; margin-left:4px; }
+        .desktop-nav { display:flex; gap:2.2rem; }
+        .desktop-nav a {
+            text-decoration:none; color:var(--text); font-weight:500; font-size:0.95rem;
+            transition:color 0.2s; position:relative;
+        }
+        .desktop-nav a::after {
+            content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px;
+            background:var(--accent); border-radius:2px; transition:width 0.25s;
+        }
+        .desktop-nav a:hover, .desktop-nav a.active { color:var(--primary); }
+        .desktop-nav a:hover::after, .desktop-nav a.active::after { width:100%; }
+        .header-actions { display:flex; gap:0.8rem; }
+        .icon-btn {
+            background:transparent; border:1px solid var(--border); font-size:1.1rem; cursor:pointer;
+            color:var(--text); padding:0.5rem; border-radius:50%; width:38px; height:38px;
+            display:flex; align-items:center; justify-content:center; transition:0.2s;
+        }
+        .icon-btn:hover { background:var(--primary); color:white; border-color:var(--primary); }
+        .mobile-only { display:none; }
+        .mobile-menu {
+            position:fixed; top:0; left:-100%; width:80%; max-width:320px; height:100%;
+            background:var(--surface); z-index:200; transition:left 0.35s; padding:2.5rem 2rem;
+            display:flex; flex-direction:column; gap:1.5rem; box-shadow:var(--shadow-lg);
+        }
+        .mobile-menu.open { left:0; }
+        .mobile-menu a { text-decoration:none; font-size:1.2rem; color:var(--text); font-weight:500; padding:0.5rem 0; border-bottom:1px solid var(--border); }
+
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-soft) 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; }
+        .content-section {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+        .content-section h2 { font-family:'Playfair Display',serif; margin:2rem 0 1rem; color:var(--primary); }
+        .content-section h2:first-of-type { margin-top:0; }
+        .content-section p, .content-section ul { margin-bottom:1rem; color:var(--text-secondary); }
+        .content-section ul { padding-left:1.5rem; }
+        .content-section li { margin-bottom:0.5rem; }
+        footer { background:#1A1F2E; color:#CBD5E1; padding:4rem 0 1.5rem; margin-top:3rem; }
+        footer a { color:#94A3B8; text-decoration:none; }
+        footer a:hover { color:var(--accent-soft); }
+        .footer-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:2rem; margin-bottom:2rem; }
+        .social i { font-size:1.2rem; margin-right:1rem; }
+        @media (max-width:768px) {
+            .desktop-nav { display:none; }
+            .mobile-only { display:block; }
+            .page-hero h1 { font-size:2rem; }
+        }
+    </style>
+</head>
+<body>
+<header class="main-header">
+    <div class="container">
+        <div class="logo"><a href="/">Zaure<span class="dot"></span></a></div>
+        <nav class="desktop-nav">
+            <a href="/">Home</a>
+            <a href="/browse?type=sale">Buy</a>
+            <a href="/browse?type=rent">Rent</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <a href="/post" class="btn-outline" style="padding:0.4rem 1.2rem; border-color:var(--accent); color:var(--accent);">List Property</a>
+        </nav>
+        <div class="header-actions">
+            <button id="themeToggle" class="icon-btn"><i class="fas fa-moon"></i></button>
+            <button id="mobileMenuToggle" class="icon-btn mobile-only"><i class="fas fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+    <button id="closeMenu" class="close-btn"><i class="fas fa-times"></i></button>
+    <a href="/">Home</a><a href="/browse?type=sale">Buy</a><a href="/browse?type=rent">Rent</a>
+    <a href="/how-it-works">How It Works</a><a href="/about">About</a><a href="/contact">Contact</a>
+    <a href="/post">List Property</a>
+</div>
+
+<main>
+    <section class="page-hero">
+        <div class="container">
+            <h1>Terms of Service</h1>
+        </div>
+    </section>
+
+    <div class="content-section container">
+        <p><strong>Last Updated:</strong> June 2026</p>
+
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing or using Zaure (the "Platform"), you agree to be bound by these Terms of Service. If you do not agree, do not use the Platform.</p>
+
+        <h2>2. Description of Service</h2>
+        <p>Zaure is a classifieds marketplace that allows property owners to list properties and seekers to browse and contact owners directly. We are not a real estate agent, broker, or property manager. We do not participate in any transaction between users.</p>
+
+        <h2>3. Eligibility</h2>
+        <p>You must be at least 18 years old to use the Platform. By using Zaure, you represent that you have the legal capacity to enter into a binding agreement.</p>
+
+        <h2>4. User Accounts</h2>
+        <p>You may be required to provide a phone number or other information to access certain features. You are responsible for maintaining the confidentiality of your account and for all activities under your account.</p>
+
+        <h2>5. Listing Rules</h2>
+        <ul>
+            <li>You must own the property or have written authority to list it.</li>
+            <li>Listings must contain accurate, honest descriptions and real photos of the actual property.</li>
+            <li>Fraudulent, misleading, or duplicate listings are prohibited and will be removed.</li>
+            <li>You must not post discriminatory content or hate speech.</li>
+        </ul>
+
+        <h2>6. Prohibited Conduct</h2>
+        <ul>
+            <li>Impersonating another person or entity.</li>
+            <li>Harassing or spamming other users.</li>
+            <li>Attempting to bypass any Platform security or paywalls (if introduced).</li>
+            <li>Using the Platform to advertise services, other websites, or unrelated products.</li>
+        </ul>
+
+        <h2>7. Verified Badge</h2>
+        <p>Users may voluntarily verify their identity through a government-issued ID (NIN/BVN). A "Verified" badge indicates only that the identity document was confirmed by our third‑party KYC provider. It does not guarantee the person's honesty, the property's condition, or the success of any transaction. Always conduct your own due diligence.</p>
+
+        <h2>8. Fees</h2>
+        <p>Listing and browsing are currently free. We reserve the right to introduce optional premium features in the future, but we will never charge a commission on transactions between users.</p>
+
+        <h2>9. Intellectual Property</h2>
+        <p>The Zaure name, logo, and Platform design are our intellectual property. You may not use them without written permission. You retain ownership of the content you post, but grant us a licence to display it on the Platform.</p>
+
+        <h2>10. Limitation of Liability</h2>
+        <p>Zaure is provided "as is." We make no warranties regarding the accuracy of listings, the conduct of users, or the outcome of any transaction. To the fullest extent permitted by Nigerian law, Zaure shall not be liable for any direct, indirect, or consequential damages arising from your use of the Platform.</p>
+
+        <h2>11. Indemnification</h2>
+        <p>You agree to indemnify and hold harmless Zaure and its team from any claims, losses, or damages resulting from your violation of these Terms or your interactions with other users.</p>
+
+        <h2>12. Termination</h2>
+        <p>We reserve the right to suspend or terminate your access at any time, with or without cause, including if you violate these Terms.</p>
+
+        <h2>13. Disputes</h2>
+        <p>These Terms are governed by the laws of the Federal Republic of Nigeria. Any dispute shall first be attempted to be resolved through negotiation. If unresolved, the matter shall be referred to the courts of competent jurisdiction in Kaduna State.</p>
+
+        <h2>14. Changes to These Terms</h2>
+        <p>We may update these Terms periodically. Continued use of the Platform after changes take effect constitutes acceptance of the new Terms.</p>
+
+        <h2>15. Contact</h2>
+        <p>For questions about these Terms, contact us at <a href="mailto:hello@zaure.com">hello@zaure.com</a>.</p>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div><h4 style="color:white;">Zaure</h4><p>Your digital entrance hall – connecting owners and seekers directly.</p></div>
+            <div><h4>Explore</h4><a href="/browse?type=sale">Buy</a><br><a href="/browse?type=rent">Rent</a><br><a href="/how-it-works">How It Works</a></div>
+            <div><h4>Support</h4><a href="/contact">Contact</a><br><a href="/faq">FAQ</a><br><a href="/privacy">Privacy</a><br><a href="/terms">Terms</a></div>
+            <div><h4>Connect</h4><div class="social"><i class="fab fa-facebook-f"></i><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i></div></div>
+        </div>
+        <div style="text-align:center; padding-top:1.5rem; border-top:1px solid #2E3548; font-size:0.8rem;">© 2026 Zaure Technologies. All rights reserved.</div>
+    </div>
+</footer>
+
+<script>
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const stored = localStorage.getItem('zaure_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', stored);
+    themeToggle.innerHTML = stored === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    themeToggle.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme');
+        const next = cur === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('zaure_theme', next);
+        themeToggle.innerHTML = next === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // Mobile menu
+    document.getElementById('mobileMenuToggle').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+    document.getElementById('closeMenu').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+</script>
+</body>
+</html>

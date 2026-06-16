@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Privacy Policy | Zaure</title>
+    <meta name="description" content="Learn how Zaure collects, uses, and protects your personal data in compliance with the Nigeria Data Protection Act.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1A1F2E;
+            --primary-soft: #2E3548;
+            --accent: #B49450;
+            --accent-soft: #D4B87A;
+            --bg: #FBFBFB;
+            --surface: #FFFFFF;
+            --surface-alt: #F6F6F6;
+            --text: #1E1E1E;
+            --text-secondary: #6B7280;
+            --border: #E5E7EB;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.04);
+            --radius: 16px;
+            --radius-sm: 12px;
+            --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+        }
+        [data-theme="dark"] {
+            --primary: #D4B87A;
+            --accent: #D4B87A;
+            --bg: #0B1120;
+            --surface: #131C31;
+            --surface-alt: #1A2540;
+            --text: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --border: #2A3550;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height:1.6;
+            transition: background var(--transition), color var(--transition);
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width:1280px; margin:0 auto; padding:0 2rem; }
+        .main-header {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top:0; z-index:100;
+        }
+        [data-theme="dark"] .main-header { background: rgba(19,28,49,0.8); }
+        .main-header .container { display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; }
+        .logo a {
+            text-decoration:none; font-family:'Playfair Display',serif; font-size:2rem; font-weight:800;
+            color: var(--primary); letter-spacing:-0.5px; display:flex; align-items:baseline;
+        }
+        .logo a .dot { width:6px; height:6px; background:var(--accent); border-radius:50%; margin-left:4px; }
+        .desktop-nav { display:flex; gap:2.2rem; }
+        .desktop-nav a {
+            text-decoration:none; color:var(--text); font-weight:500; font-size:0.95rem;
+            transition:color 0.2s; position:relative;
+        }
+        .desktop-nav a::after {
+            content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px;
+            background:var(--accent); border-radius:2px; transition:width 0.25s;
+        }
+        .desktop-nav a:hover, .desktop-nav a.active { color:var(--primary); }
+        .desktop-nav a:hover::after, .desktop-nav a.active::after { width:100%; }
+        .header-actions { display:flex; gap:0.8rem; }
+        .icon-btn {
+            background:transparent; border:1px solid var(--border); font-size:1.1rem; cursor:pointer;
+            color:var(--text); padding:0.5rem; border-radius:50%; width:38px; height:38px;
+            display:flex; align-items:center; justify-content:center; transition:0.2s;
+        }
+        .icon-btn:hover { background:var(--primary); color:white; border-color:var(--primary); }
+        .mobile-only { display:none; }
+        .mobile-menu {
+            position:fixed; top:0; left:-100%; width:80%; max-width:320px; height:100%;
+            background:var(--surface); z-index:200; transition:left 0.35s; padding:2.5rem 2rem;
+            display:flex; flex-direction:column; gap:1.5rem; box-shadow:var(--shadow-lg);
+        }
+        .mobile-menu.open { left:0; }
+        .mobile-menu a { text-decoration:none; font-size:1.2rem; color:var(--text); font-weight:500; padding:0.5rem 0; border-bottom:1px solid var(--border); }
+
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-soft) 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; }
+        .content-section {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+        .content-section h2 { font-family:'Playfair Display',serif; margin:2rem 0 1rem; color:var(--primary); }
+        .content-section h2:first-of-type { margin-top:0; }
+        .content-section p, .content-section ul { margin-bottom:1rem; color:var(--text-secondary); }
+        .content-section ul { padding-left:1.5rem; }
+        .content-section li { margin-bottom:0.5rem; }
+        footer { background:#1A1F2E; color:#CBD5E1; padding:4rem 0 1.5rem; margin-top:3rem; }
+        footer a { color:#94A3B8; text-decoration:none; }
+        footer a:hover { color:var(--accent-soft); }
+        .footer-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:2rem; margin-bottom:2rem; }
+        .social i { font-size:1.2rem; margin-right:1rem; }
+        @media (max-width:768px) {
+            .desktop-nav { display:none; }
+            .mobile-only { display:block; }
+            .page-hero h1 { font-size:2rem; }
+        }
+    </style>
+</head>
+<body>
+<header class="main-header">
+    <div class="container">
+        <div class="logo"><a href="/">Zaure<span class="dot"></span></a></div>
+        <nav class="desktop-nav">
+            <a href="/">Home</a>
+            <a href="/browse?type=sale">Buy</a>
+            <a href="/browse?type=rent">Rent</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <a href="/post" class="btn-outline" style="padding:0.4rem 1.2rem; border-color:var(--accent); color:var(--accent);">List Property</a>
+        </nav>
+        <div class="header-actions">
+            <button id="themeToggle" class="icon-btn"><i class="fas fa-moon"></i></button>
+            <button id="mobileMenuToggle" class="icon-btn mobile-only"><i class="fas fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+    <button id="closeMenu" class="close-btn"><i class="fas fa-times"></i></button>
+    <a href="/">Home</a><a href="/browse?type=sale">Buy</a><a href="/browse?type=rent">Rent</a>
+    <a href="/how-it-works">How It Works</a><a href="/about">About</a><a href="/contact">Contact</a>
+    <a href="/post">List Property</a>
+</div>
+
+<main>
+    <section class="page-hero">
+        <div class="container">
+            <h1>Privacy Policy</h1>
+        </div>
+    </section>
+
+    <div class="content-section container">
+        <p><strong>Last Updated:</strong> June 2026</p>
+
+        <h2>1. Introduction</h2>
+        <p>Zaure ("we", "our", or "us") is committed to protecting your privacy. This policy explains how we collect, use, disclose, and safeguard your personal data when you use our website and services (the "Platform"). It complies with the Nigeria Data Protection Act (NDPA) 2023 and other applicable regulations.</p>
+
+        <h2>2. Information We Collect</h2>
+        <p><strong>a. Information you provide directly:</strong></p>
+        <ul>
+            <li>Phone number (required for account creation)</li>
+            <li>Name (when provided during verification or listing)</li>
+            <li>Email address (if provided for contact or alerts)</li>
+            <li>NIN or BVN (if you opt into identity verification)</li>
+            <li>Property details and photos (when you list a property)</li>
+            <li>Messages sent through the Platform</li>
+        </ul>
+        <p><strong>b. Information collected automatically:</strong></p>
+        <ul>
+            <li>Device type, operating system, and browser</li>
+            <li>IP address and approximate location</li>
+            <li>Pages visited, time spent, and interactions</li>
+        </ul>
+        <p><strong>c. Information from third parties:</strong></p>
+        <ul>
+            <li>Identity verification confirmation from our KYC provider (Dojah, Prembly, or similar)</li>
+            <li>Payment confirmation (if you purchase optional premium features)</li>
+        </ul>
+
+        <h2>3. How We Use Your Data</h2>
+        <p>We use your personal data to:</p>
+        <ul>
+            <li>Create and manage your account</li>
+            <li>Display your property listings to other users</li>
+            <li>Facilitate direct contact between owners and seekers</li>
+            <li>Process identity verification and issue Verified badges</li>
+            <li>Improve the Platform and analyse usage patterns</li>
+            <li>Communicate updates, security alerts, and responses to your inquiries</li>
+            <li>Prevent fraud and enforce our Terms of Service</li>
+            <li>Comply with legal obligations</li>
+        </ul>
+
+        <h2>4. Legal Basis for Processing</h2>
+        <p>We process your data based on:</p>
+        <ul>
+            <li><strong>Consent:</strong> for identity verification and optional communications</li>
+            <li><strong>Contractual necessity:</strong> to provide the Platform services you request</li>
+            <li><strong>Legitimate interest:</strong> to improve security, prevent fraud, and enhance user experience</li>
+            <li><strong>Legal obligation:</strong> to respond to lawful requests from authorities</li>
+        </ul>
+
+        <h2>5. How We Share Your Data</h2>
+        <p>We do <strong>not</strong> sell your personal data. We share it only in these circumstances:</p>
+        <ul>
+            <li><strong>With other users:</strong> your phone number (if you choose to display it), your listing content, and your Verified badge status are visible to seekers.</li>
+            <li><strong>With KYC providers:</strong> your NIN or BVN is transmitted securely to our identity verification partner solely for the purpose of confirming your identity. We do not store the raw NIN/BVN number on our servers.</li>
+            <li><strong>With service providers:</strong> trusted third parties who assist us in operating the Platform (hosting, analytics, email) and who are bound by confidentiality obligations.</li>
+            <li><strong>With law enforcement:</strong> when required by a valid court order or applicable law.</li>
+        </ul>
+
+        <h2>6. Data Retention</h2>
+        <ul>
+            <li><strong>Account data:</strong> retained for as long as your account is active, plus 12 months after deletion request.</li>
+            <li><strong>Listing data:</strong> retained until you delete the listing or your account is closed.</li>
+            <li><strong>Identity verification status:</strong> retained for the life of your account plus 24 months for audit purposes.</li>
+            <li><strong>Usage analytics:</strong> anonymised and retained indefinitely for statistical analysis.</li>
+        </ul>
+
+        <h2>7. Your Rights Under NDPA</h2>
+        <p>You have the right to:</p>
+        <ul>
+            <li>Access the personal data we hold about you</li>
+            <li>Request correction of inaccurate data</li>
+            <li>Request deletion of your data</li>
+            <li>Restrict or object to processing</li>
+            <li>Data portability</li>
+            <li>Withdraw consent at any time (this does not affect the lawfulness of processing prior to withdrawal)</li>
+            <li>Lodge a complaint with the Nigeria Data Protection Commission (NDPC)</li>
+        </ul>
+        <p>To exercise any of these rights, email us at <a href="mailto:privacy@zaure.com">privacy@zaure.com</a>. We will respond within 30 days.</p>
+
+        <h2>8. Data Security</h2>
+        <p>We implement appropriate technical and organisational measures to protect your data, including encryption in transit and at rest, access controls, and regular security reviews. However, no internet transmission is completely secure; you use the Platform at your own risk.</p>
+
+        <h2>9. Cookies</h2>
+        <p>We use essential cookies to keep the Platform functioning and analytics cookies to understand usage. You can disable cookies in your browser settings, though some features may not work properly.</p>
+
+        <h2>10. Third‑Party Links</h2>
+        <p>The Platform may contain links to external websites. We are not responsible for their privacy practices and encourage you to read their policies.</p>
+
+        <h2>11. Data Breach Notification</h2>
+        <p>In the event of a data breach that poses a risk to your rights, we will notify you and the NDPC within 72 hours as required by law.</p>
+
+        <h2>12. Changes to This Policy</h2>
+        <p>We may update this policy from time to time. Material changes will be communicated via the Platform or email. Continued use after changes take effect constitutes acceptance.</p>
+
+        <h2>13. Contact</h2>
+        <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:get.zaure@proton.me">get.zaure@proton.me</a>.</p>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div><h4 style="color:white;">Zaure</h4><p>Your digital entrance hall – connecting owners and seekers directly.</p></div>
+            <div><h4>Explore</h4><a href="/browse?type=sale">Buy</a><br><a href="/browse?type=rent">Rent</a><br><a href="/how-it-works">How It Works</a></div>
+            <div><h4>Support</h4><a href="/contact">Contact</a><br><a href="/faq">FAQ</a><br><a href="/privacy">Privacy</a><br><a href="/terms">Terms</a></div>
+            <div><h4>Connect</h4><div class="social"><i class="fab fa-facebook-f"></i><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i></div></div>
+        </div>
+        <div style="text-align:center; padding-top:1.5rem; border-top:1px solid #2E3548; font-size:0.8rem;">© 2026 Zaure Technologies. All rights reserved.</div>
+    </div>
+</footer>
+
+<script>
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const stored = localStorage.getItem('zaure_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', stored);
+    themeToggle.innerHTML = stored === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    themeToggle.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme');
+        const next = cur === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('zaure_theme', next);
+        themeToggle.innerHTML = next === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // Mobile menu
+    document.getElementById('mobileMenuToggle').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+    document.getElementById('closeMenu').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+</script>
+</body>
+</html>

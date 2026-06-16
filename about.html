@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>About Zaure – Your entrance to home</title>
+    <meta name="description" content="Learn about Zaure's mission to connect property owners directly with seekers, with no middlemen.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1A1F2E;
+            --primary-soft: #2E3548;
+            --accent: #B49450;
+            --accent-soft: #D4B87A;
+            --bg: #FBFBFB;
+            --surface: #FFFFFF;
+            --surface-alt: #F6F6F6;
+            --text: #1E1E1E;
+            --text-secondary: #6B7280;
+            --border: #E5E7EB;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 24px -8px rgba(0,0,0,0.06);
+            --radius: 16px;
+            --radius-sm: 12px;
+            --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+        }
+        [data-theme="dark"] {
+            --primary: #D4B87A;
+            --accent: #D4B87A;
+            --bg: #0B1120;
+            --surface: #131C31;
+            --surface-alt: #1A2540;
+            --text: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --border: #2A3550;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height:1.6;
+            transition: background var(--transition), color var(--transition);
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width:1280px; margin:0 auto; padding:0 2rem; }
+        .main-header {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top:0; z-index:100;
+        }
+        [data-theme="dark"] .main-header { background: rgba(19,28,49,0.8); }
+        .main-header .container { display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; }
+        .logo a {
+            text-decoration:none; font-family:'Playfair Display',serif; font-size:2rem; font-weight:800;
+            color: var(--primary); letter-spacing:-0.5px; display:flex; align-items:baseline;
+        }
+        .logo a .dot { width:6px; height:6px; background:var(--accent); border-radius:50%; margin-left:4px; }
+        .desktop-nav { display:flex; gap:2.2rem; }
+        .desktop-nav a {
+            text-decoration:none; color:var(--text); font-weight:500; font-size:0.95rem;
+            transition:color 0.2s; position:relative;
+        }
+        .desktop-nav a::after {
+            content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px;
+            background:var(--accent); border-radius:2px; transition:width 0.25s;
+        }
+        .desktop-nav a:hover, .desktop-nav a.active { color:var(--primary); }
+        .desktop-nav a:hover::after, .desktop-nav a.active::after { width:100%; }
+        .header-actions { display:flex; gap:0.8rem; }
+        .icon-btn {
+            background:transparent; border:1px solid var(--border); font-size:1.1rem; cursor:pointer;
+            color:var(--text); padding:0.5rem; border-radius:50%; width:38px; height:38px;
+            display:flex; align-items:center; justify-content:center; transition:0.2s;
+        }
+        .icon-btn:hover { background:var(--primary); color:white; border-color:var(--primary); }
+        .mobile-only { display:none; }
+        .mobile-menu {
+            position:fixed; top:0; left:-100%; width:80%; max-width:320px; height:100%;
+            background:var(--surface); z-index:200; transition:left 0.35s; padding:2.5rem 2rem;
+            display:flex; flex-direction:column; gap:1.5rem; box-shadow:var(--shadow-lg);
+        }
+        .mobile-menu.open { left:0; }
+        .mobile-menu a { text-decoration:none; font-size:1.2rem; color:var(--text); font-weight:500; padding:0.5rem 0; border-bottom:1px solid var(--border); }
+
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-soft) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 1rem; }
+        .page-hero p { font-size: 1.1rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+
+        .section { padding: 5rem 0; }
+        .section-title {
+            font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; text-align:center;
+            margin-bottom:2.5rem; color:var(--primary);
+        }
+        .story-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
+        @media (max-width:768px) { .story-grid { grid-template-columns:1fr; } }
+        .story-text p { margin-bottom:1rem; color:var(--text-secondary); }
+        .story-image img { width:100%; border-radius:var(--radius); box-shadow:var(--shadow-md); }
+
+        .values-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:2rem; }
+        .value-card {
+            background:var(--surface); padding:2rem; border-radius:var(--radius);
+            text-align:center; box-shadow:var(--shadow-sm); border:1px solid var(--border);
+            transition:0.2s;
+        }
+        .value-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+        .value-icon { font-size:2rem; color:var(--accent); margin-bottom:1rem; }
+        .value-card h3 { margin-bottom:0.75rem; }
+
+        footer { background:#1A1F2E; color:#CBD5E1; padding:4rem 0 1.5rem; }
+        footer a { color:#94A3B8; text-decoration:none; }
+        footer a:hover { color:var(--accent-soft); }
+        .footer-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:2rem; margin-bottom:2rem; }
+        .social i { font-size:1.2rem; margin-right:1rem; }
+        @media (max-width:768px) {
+            .desktop-nav { display:none; }
+            .mobile-only { display:block; }
+            .page-hero h1 { font-size:2.2rem; }
+        }
+    </style>
+</head>
+<body>
+<header class="main-header">
+    <div class="container">
+        <div class="logo"><a href="/">Zaure<span class="dot"></span></a></div>
+        <nav class="desktop-nav">
+            <a href="/">Home</a>
+            <a href="/browse?type=sale">Buy</a>
+            <a href="/browse?type=rent">Rent</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/about" class="active">About</a>
+            <a href="/contact">Contact</a>
+            <a href="/post" class="btn-outline" style="padding:0.4rem 1.2rem; border-color:var(--accent); color:var(--accent);">List Property</a>
+        </nav>
+        <div class="header-actions">
+            <button id="themeToggle" class="icon-btn"><i class="fas fa-moon"></i></button>
+            <button id="mobileMenuToggle" class="icon-btn mobile-only"><i class="fas fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+    <button id="closeMenu" class="close-btn"><i class="fas fa-times"></i></button>
+    <a href="/">Home</a><a href="/browse?type=sale">Buy</a><a href="/browse?type=rent">Rent</a>
+    <a href="/how-it-works">How It Works</a><a href="/about">About</a><a href="/contact">Contact</a>
+    <a href="/post">List Property</a>
+</div>
+
+<main>
+    <section class="page-hero">
+        <div class="container">
+            <h1>About Zaure</h1>
+            <p>We are building a trusted space where property owners and seekers meet directly — without agents, hidden fees, or middlemen.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-text">
+                    <h2 class="section-title" style="text-align:left; margin-bottom:1.5rem;">Our Story</h2>
+                    <p>Zaure was born out of a simple frustration: finding a house to rent or buy in Northern Nigeria meant dealing with agents who often lacked transparency, charged arbitrary fees, and controlled access to listings.</p>
+                    <p>We saw that property owners wanted to connect directly with tenants and buyers, but lacked a trusted platform to do so. Seekers were tired of paying "viewing fees" before even seeing a home.</p>
+                    <p>Named after the traditional Hausa entrance hall — the <em>zaure</em> — our platform is that first room where guests are welcomed and genuine connections begin. We provide the space; the transaction is yours.</p>
+                    <p>Today, Zaure is growing across Kano, Kaduna, Zaria, Abuja, and beyond — built by a team passionate about making property search honest, simple, and human.</p>
+                </div>
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop" alt="Modern Nigerian home" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background:var(--surface-alt);">
+        <div class="container">
+            <h2 class="section-title">Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Transparency</h3>
+                    <p>No hidden fees. No agent commissions. Owners and seekers deal directly.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Trust</h3>
+                    <p>Verified identity badges help you know who you're dealing with.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-clock"></i></div>
+                    <h3>Simplicity</h3>
+                    <p>List a property in minutes. Find a home without the stress.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>Local Roots</h3>
+                    <p>Built for Northern Nigeria, by people who understand the market.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container" style="text-align:center;">
+            <h2 class="section-title">Join the Movement</h2>
+            <p style="max-width:600px; margin:0 auto 2rem; color:var(--text-secondary);">Whether you're an owner tired of agent hassles, or a seeker looking for a genuine place to call home, Zaure is your entrance.</p>
+            <a href="/browse" class="btn-outline" style="padding:0.8rem 2rem; font-size:1rem;">Browse Properties</a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div><h4 style="color:white;">Zaure</h4><p>Your digital entrance hall – connecting owners and seekers directly.</p></div>
+            <div><h4>Explore</h4><a href="/browse?type=sale">Buy</a><br><a href="/browse?type=rent">Rent</a><br><a href="/how-it-works">How It Works</a></div>
+            <div><h4>Support</h4><a href="/contact">Contact</a><br><a href="/faq">FAQ</a><br><a href="/privacy">Privacy</a><br><a href="/terms">Terms</a></div>
+            <div><h4>Connect</h4><div class="social"><i class="fab fa-facebook-f"></i><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i></div></div>
+        </div>
+        <div style="text-align:center; padding-top:1.5rem; border-top:1px solid #2E3548; font-size:0.8rem;">© 2026 Zaure Technologies. All rights reserved.</div>
+    </div>
+</footer>
+
+<script>
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const stored = localStorage.getItem('zaure_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', stored);
+    themeToggle.innerHTML = stored === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    themeToggle.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme');
+        const next = cur === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('zaure_theme', next);
+        themeToggle.innerHTML = next === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // Mobile menu
+    document.getElementById('mobileMenuToggle').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+    document.getElementById('closeMenu').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+</script>
+</body>
+</html>

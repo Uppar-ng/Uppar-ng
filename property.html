@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Property Detail | Zaure</title>
+    <meta name="description" content="View full property details and contact the owner directly on Zaure.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1A1F2E;
+            --primary-soft: #2E3548;
+            --accent: #B49450;
+            --accent-soft: #D4B87A;
+            --bg: #FBFBFB;
+            --surface: #FFFFFF;
+            --surface-alt: #F6F6F6;
+            --text: #1E1E1E;
+            --text-secondary: #6B7280;
+            --border: #E5E7EB;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 24px -8px rgba(0,0,0,0.06);
+            --radius: 16px;
+            --radius-sm: 12px;
+            --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+        }
+        [data-theme="dark"] {
+            --primary: #D4B87A;
+            --accent: #D4B87A;
+            --bg: #0B1120;
+            --surface: #131C31;
+            --surface-alt: #1A2540;
+            --text: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --border: #2A3550;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height:1.6;
+            transition: background var(--transition), color var(--transition);
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width:1280px; margin:0 auto; padding:0 2rem; }
+        .main-header {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top:0; z-index:100;
+        }
+        [data-theme="dark"] .main-header { background: rgba(19,28,49,0.8); }
+        .main-header .container { display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; }
+        .logo a {
+            text-decoration:none; font-family:'Playfair Display',serif; font-size:2rem; font-weight:800;
+            color: var(--primary); letter-spacing:-0.5px; display:flex; align-items:baseline;
+        }
+        .logo a .dot { width:6px; height:6px; background:var(--accent); border-radius:50%; margin-left:4px; }
+        .desktop-nav { display:flex; gap:2.2rem; }
+        .desktop-nav a {
+            text-decoration:none; color:var(--text); font-weight:500; font-size:0.95rem;
+            transition:color 0.2s; position:relative;
+        }
+        .desktop-nav a::after {
+            content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px;
+            background:var(--accent); border-radius:2px; transition:width 0.25s;
+        }
+        .desktop-nav a:hover, .desktop-nav a.active { color:var(--primary); }
+        .desktop-nav a:hover::after, .desktop-nav a.active::after { width:100%; }
+        .header-actions { display:flex; gap:0.8rem; }
+        .icon-btn {
+            background:transparent; border:1px solid var(--border); font-size:1.1rem; cursor:pointer;
+            color:var(--text); padding:0.5rem; border-radius:50%; width:38px; height:38px;
+            display:flex; align-items:center; justify-content:center; transition:0.2s;
+        }
+        .icon-btn:hover { background:var(--primary); color:white; border-color:var(--primary); }
+        .mobile-only { display:none; }
+        .mobile-menu {
+            position:fixed; top:0; left:-100%; width:80%; max-width:320px; height:100%;
+            background:var(--surface); z-index:200; transition:left 0.35s; padding:2.5rem 2rem;
+            display:flex; flex-direction:column; gap:1.5rem; box-shadow:var(--shadow-lg);
+        }
+        .mobile-menu.open { left:0; }
+        .mobile-menu a { text-decoration:none; font-size:1.2rem; color:var(--text); font-weight:500; padding:0.5rem 0; border-bottom:1px solid var(--border); }
+
+        .property-header { background: var(--surface); padding:2rem 0; border-bottom:1px solid var(--border); }
+        .property-title { font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; margin-bottom:0.5rem; }
+        .property-address { color: var(--text-secondary); margin-bottom:0.5rem; display:flex; align-items:center; gap:0.5rem; }
+        .property-price { font-size:2rem; font-weight:800; color:var(--primary); margin-top:0.5rem; }
+        .badge-type { background:var(--primary); color:white; padding:0.25rem 1rem; border-radius:2rem; font-size:0.8rem; display:inline-block; }
+
+        .property-layout { display:grid; grid-template-columns:1fr 380px; gap:2rem; margin:2rem 0; }
+        @media (max-width:768px) { .property-layout { grid-template-columns:1fr; } }
+
+        .gallery { position:relative; }
+        .main-image-container { background:var(--surface); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm); }
+        .main-img { width:100%; height:400px; object-fit:cover; cursor:pointer; }
+        .thumbnail-strip { display:flex; gap:0.75rem; margin-top:1rem; overflow-x:auto; padding-bottom:0.5rem; }
+        .thumbnail { width:80px; height:80px; border-radius:8px; object-fit:cover; cursor:pointer; opacity:0.6; transition:opacity 0.2s; border:2px solid transparent; }
+        .thumbnail.active, .thumbnail:hover { opacity:1; border-color:var(--accent); }
+
+        .sidebar-card { background:var(--surface); border-radius:var(--radius); padding:1.5rem; box-shadow:var(--shadow-sm); position:sticky; top:5rem; border:1px solid var(--border); }
+        .owner-row { display:flex; align-items:center; gap:1rem; margin:1rem 0; }
+        .owner-avatar { width:64px; height:64px; border-radius:50%; object-fit:cover; }
+        .owner-name { font-weight:700; font-size:1.1rem; display:flex; align-items:center; gap:0.5rem; }
+        .owner-verified { color:var(--accent); font-size:0.9rem; }
+        .owner-actions { display:flex; gap:0.75rem; margin-top:1rem; }
+        .btn-call, .btn-wa {
+            display:inline-flex; align-items:center; gap:0.5rem; padding:0.75rem 1rem;
+            border-radius:2rem; text-decoration:none; font-weight:600; font-size:0.9rem; transition:0.2s;
+        }
+        .btn-call { background:var(--primary); color:white; }
+        .btn-wa { background:#25D366; color:white; }
+        .btn-call:hover, .btn-wa:hover { transform:translateY(-2px); }
+        hr { margin:1.5rem 0; border:none; border-top:1px solid var(--border); }
+        .safety-tips { background:#FEF3C7; padding:1rem; border-radius:var(--radius-sm); font-size:0.85rem; color:#1A1F2E; margin-top:1rem; }
+
+        .tabs-container { margin-top:2rem; background:var(--surface); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm); border:1px solid var(--border); }
+        .tabs-header { display:flex; border-bottom:1px solid var(--border); background:var(--surface); flex-wrap:wrap; }
+        .tab-btn-prop { padding:1rem 1.5rem; background:none; border:none; font-weight:600; cursor:pointer; transition:0.2s; color:var(--text-secondary); }
+        .tab-btn-prop.active { color:var(--primary); border-bottom:2px solid var(--accent); }
+        .tab-content { padding:1.5rem; display:none; }
+        .tab-content.active { display:block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
+
+        .info-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1rem; }
+        .info-item { display:flex; align-items:center; gap:0.75rem; padding:0.75rem; background:var(--surface-alt); border-radius:8px; }
+        .info-item i { width:24px; color:var(--accent); }
+        .amenities-list { display:flex; flex-wrap:wrap; gap:0.75rem; }
+        .amenity-tag { background:var(--surface-alt); padding:0.5rem 1rem; border-radius:2rem; font-size:0.85rem; }
+
+        .similar-section { margin:3rem 0; }
+        .similar-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.5rem; margin-top:1.5rem; }
+        .property-card {
+            background:var(--surface); border-radius:var(--radius); overflow:hidden;
+            box-shadow:var(--shadow-sm); cursor:pointer; transition:all var(--transition); border:1px solid var(--border);
+        }
+        .property-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); }
+        .property-card img { width:100%; height:160px; object-fit:cover; }
+        .property-card .price { font-size:1.1rem; font-weight:700; color:var(--primary); padding:0.75rem 0.75rem 0; }
+        .property-card h4 { padding:0 0.75rem; font-size:0.9rem; }
+        .property-card p { padding:0 0.75rem 0.75rem; font-size:0.8rem; color:var(--text-secondary); }
+
+        footer { background:#1A1F2E; color:#CBD5E1; padding:4rem 0 1.5rem; margin-top:3rem; }
+        footer a { color:#94A3B8; text-decoration:none; }
+        footer a:hover { color:var(--accent-soft); }
+        .footer-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:2rem; margin-bottom:2rem; }
+        .social i { font-size:1.2rem; margin-right:1rem; }
+        @media (max-width:768px) {
+            .desktop-nav { display:none; }
+            .mobile-only { display:block; }
+            .main-img { height:250px; }
+            .sidebar-card { position:static; margin-top:1rem; }
+            .property-title { font-size:1.6rem; }
+        }
+        .loading, .error-message { text-align:center; padding:3rem; color:var(--text-secondary); }
+    </style>
+</head>
+<body>
+<header class="main-header">
+    <div class="container">
+        <div class="logo"><a href="/">Zaure<span class="dot"></span></a></div>
+        <nav class="desktop-nav">
+            <a href="/">Home</a>
+            <a href="/browse?type=sale">Buy</a>
+            <a href="/browse?type=rent">Rent</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <a href="/post" class="btn-outline" style="padding:0.4rem 1.2rem; border-color:var(--accent); color:var(--accent);">List Property</a>
+        </nav>
+        <div class="header-actions">
+            <button id="themeToggle" class="icon-btn"><i class="fas fa-moon"></i></button>
+            <button id="mobileMenuToggle" class="icon-btn mobile-only"><i class="fas fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+    <button id="closeMenu" class="close-btn"><i class="fas fa-times"></i></button>
+    <a href="/">Home</a><a href="/browse?type=sale">Buy</a><a href="/browse?type=rent">Rent</a>
+    <a href="/how-it-works">How It Works</a><a href="/about">About</a><a href="/contact">Contact</a>
+    <a href="/post">List Property</a>
+</div>
+
+<main class="container">
+    <div id="propertyContent">
+        <div class="loading">Loading property details...</div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div><h4 style="color:white;">Zaure</h4><p>Your digital entrance hall – connecting owners and seekers directly.</p></div>
+            <div><h4>Explore</h4><a href="/browse?type=sale">Buy</a><br><a href="/browse?type=rent">Rent</a><br><a href="/how-it-works">How It Works</a></div>
+            <div><h4>Support</h4><a href="/contact">Contact</a><br><a href="/faq">FAQ</a><br><a href="/privacy">Privacy</a><br><a href="/terms">Terms</a></div>
+            <div><h4>Connect</h4><div class="social"><i class="fab fa-facebook-f"></i><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i></div></div>
+        </div>
+        <div style="text-align:center; padding-top:1.5rem; border-top:1px solid #2E3548; font-size:0.8rem;">© 2026 Zaure Technologies. All rights reserved.</div>
+    </div>
+</footer>
+
+<script>
+    (function() {
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const storedTheme = localStorage.getItem('zaure_theme') || 'light';
+        document.documentElement.setAttribute('data-theme', storedTheme);
+        themeToggle.innerHTML = storedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        themeToggle.addEventListener('click', () => {
+            const cur = document.documentElement.getAttribute('data-theme');
+            const next = cur === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('zaure_theme', next);
+            themeToggle.innerHTML = next === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        });
+
+        // Mobile menu
+        document.getElementById('mobileMenuToggle').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+        document.getElementById('closeMenu').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+
+        // Get property ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const propertyId = urlParams.get('id');
+        if (!propertyId) {
+            document.getElementById('propertyContent').innerHTML = '<div class="error-message">No property ID specified.</div>';
+        } else {
+            fetch('/data/properties.json')
+                .then(res => res.json())
+                .then(data => {
+                    const property = data.properties.find(p => p.id == propertyId);
+                    if (!property) throw new Error('Property not found');
+                    renderProperty(property);
+                    loadSimilarProperties(property, data.properties);
+                })
+                .catch(err => {
+                    console.error(err);
+                    document.getElementById('propertyContent').innerHTML = '<div class="error-message">Failed to load property. Please try again.</div>';
+                });
+        }
+
+        function formatPrice(price) {
+            return price >= 1e6 ? `₦${(price/1e6).toFixed(1)}M` : `₦${price.toLocaleString()}`;
+        }
+
+        function renderProperty(prop) {
+            const container = document.getElementById('propertyContent');
+            const priceFormatted = formatPrice(prop.price);
+            const owner = prop.owner || { name: 'Owner', phone: '', verified: false };
+            const avatar = owner.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(owner.name)}&background=B49450&color=fff&size=128`;
+
+            // Images
+            let images = prop.images && prop.images.length ? [...prop.images] : [];
+            while (images.length < 3) images.push(images[images.length-1] || 'https://placehold.co/800x500?text=Zaure');
+            images = images.slice(0,5);
+            const thumbnailsHtml = images.map((img, idx) => `<img src="${img}" class="thumbnail ${idx === 0 ? 'active' : ''}" data-index="${idx}">`).join('');
+
+            const propertyIdDisplay = prop.id || 'N/A';
+            const yearBuilt = prop.yearBuilt || 'N/A';
+            const parking = prop.parking || 'N/A';
+            const lastUpdated = prop.listedDate ? new Date(prop.listedDate).toLocaleDateString('en-GB') : 'Unknown';
+            const amenitiesHtml = prop.amenities && prop.amenities.length ? prop.amenities.map(a => `<span class="amenity-tag">${a}</span>`).join('') : '<span class="amenity-tag">None listed</span>';
+
+            container.innerHTML = `
+                <div class="property-header">
+                    <h1 class="property-title">${prop.title}</h1>
+                    <div class="property-address"><i class="fas fa-map-marker-alt"></i> ${prop.address}, ${prop.city}, ${prop.state}</div>
+                    <div class="property-price">${priceFormatted}</div>
+                    <div style="margin-top:0.5rem;"><span class="badge-type">${prop.type === 'sale' ? 'For Sale' : 'For Rent'}</span></div>
+                </div>
+
+                <div class="property-layout">
+                    <div class="gallery">
+                        <div class="main-image-container"><img src="${images[0]}" class="main-img" id="mainImage"></div>
+                        <div class="thumbnail-strip">${thumbnailsHtml}</div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3>Owner</h3>
+                        <div class="owner-row">
+                            <img src="${avatar}" class="owner-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Owner&background=B49450&color=fff&size=128'">
+                            <div>
+                                <div class="owner-name">
+                                    ${owner.name}
+                                    ${owner.verified ? '<span class="owner-verified"><i class="fas fa-check-circle"></i> Verified</span>' : ''}
+                                </div>
+                                <div style="color:var(--text-secondary); font-size:0.9rem;">${owner.phone || 'Phone not provided'}</div>
+                            </div>
+                        </div>
+                        <div class="owner-actions">
+                            ${owner.phone ? `<a href="tel:${owner.phone}" class="btn-call"><i class="fas fa-phone-alt"></i> Call</a>` : ''}
+                            <a href="#" class="btn-wa" id="ownerWhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                        <hr>
+                        <div class="safety-tips"><i class="fas fa-shield-alt"></i> Do not pay any money before viewing the property and verifying the owner's identity.</div>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs-container">
+                    <div class="tabs-header">
+                        <button class="tab-btn-prop active" data-tab="overview">Overview</button>
+                        <button class="tab-btn-prop" data-tab="description">Description</button>
+                        <button class="tab-btn-prop" data-tab="amenities">Amenities</button>
+                    </div>
+                    <div class="tab-content active" id="tab-overview">
+                        <div class="info-grid">
+                            <div class="info-item"><i class="fas fa-bed"></i> <strong>Bedrooms:</strong> ${prop.bedrooms}</div>
+                            <div class="info-item"><i class="fas fa-bath"></i> <strong>Bathrooms:</strong> ${prop.bathrooms}</div>
+                            <div class="info-item"><i class="fas fa-ruler-combined"></i> <strong>Land size:</strong> ${prop.squareFeet} sqm</div>
+                            <div class="info-item"><i class="fas fa-calendar-alt"></i> <strong>Year built:</strong> ${yearBuilt}</div>
+                            <div class="info-item"><i class="fas fa-car"></i> <strong>Parking:</strong> ${parking}</div>
+                            <div class="info-item"><i class="fas fa-tag"></i> <strong>Property ID:</strong> ${propertyIdDisplay}</div>
+                            <div class="info-item"><i class="fas fa-clock"></i> <strong>Last updated:</strong> ${lastUpdated}</div>
+                            <div class="info-item"><i class="fas fa-building"></i> <strong>Type:</strong> ${prop.propertyType}</div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="tab-description"><p>${prop.description || 'No description provided.'}</p></div>
+                    <div class="tab-content" id="tab-amenities"><div class="amenities-list">${amenitiesHtml}</div></div>
+                </div>
+
+                <div class="similar-section">
+                    <h2>Similar properties nearby</h2>
+                    <div id="similarGrid" class="similar-grid"></div>
+                </div>
+            `;
+
+            // Gallery functionality
+            const mainImg = document.getElementById('mainImage');
+            const thumbs = document.querySelectorAll('.thumbnail');
+            thumbs.forEach((thumb, idx) => {
+                thumb.addEventListener('click', () => {
+                    thumbs.forEach(t => t.classList.remove('active'));
+                    thumb.classList.add('active');
+                    mainImg.src = images[idx];
+                });
+            });
+
+            // Tabs
+            const tabBtns = document.querySelectorAll('.tab-btn-prop');
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabId = btn.dataset.tab;
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    document.getElementById(`tab-${tabId}`).classList.add('active');
+                });
+            });
+
+            // WhatsApp share for owner
+            const waBtn = document.getElementById('ownerWhatsApp');
+            if (waBtn && owner.phone) {
+                waBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const phone = owner.phone.replace(/\D/g, '');
+                    const text = `Hello, I am interested in your property "${prop.title}" on Zaure.`;
+                    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+                });
+            } else if (waBtn) {
+                waBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('Owner phone number not available.');
+                });
+            }
+        }
+
+        function loadSimilarProperties(prop, allProperties) {
+            const similar = allProperties.filter(p => p.id != prop.id && p.city === prop.city).slice(0, 4);
+            const grid = document.getElementById('similarGrid');
+            if (!grid) return;
+            if (!similar.length) {
+                grid.innerHTML = '<p>No similar properties found.</p>';
+                return;
+            }
+            grid.innerHTML = similar.map(p => `
+                <div class="property-card" onclick="window.location.href='/property?id=${p.id}'">
+                    <img src="${p.images?.[0] || 'https://placehold.co/400x300?text=Zaure'}" alt="${p.title}" loading="lazy">
+                    <div class="price">${formatPrice(p.price)}</div>
+                    <h4>${p.title}</h4>
+                    <p>${p.address}, ${p.city}</p>
+                </div>
+            `).join('');
+        }
+    })();
+</script>
+</body>
+</html>

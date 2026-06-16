@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Dashboard | Zaure</title>
+    <meta name="description" content="Request a property listing or manage your existing requests.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1A1F2E;
+            --primary-soft: #2E3548;
+            --accent: #B49450;
+            --accent-soft: #D4B87A;
+            --bg: #FBFBFB;
+            --surface: #FFFFFF;
+            --surface-alt: #F6F6F6;
+            --text: #1E1E1E;
+            --text-secondary: #6B7280;
+            --border: #E5E7EB;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 24px -8px rgba(0,0,0,0.06);
+            --radius: 16px;
+            --radius-sm: 12px;
+            --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+        }
+        [data-theme="dark"] {
+            --primary: #D4B87A;
+            --accent: #D4B87A;
+            --bg: #0B1120;
+            --surface: #131C31;
+            --surface-alt: #1A2540;
+            --text: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --border: #2A3550;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height:1.6;
+            transition: background var(--transition), color var(--transition);
+        }
+        .container { max-width:1280px; margin:0 auto; padding:0 2rem; }
+        /* Header – identical to other pages */
+        .main-header {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top:0; z-index:100;
+        }
+        [data-theme="dark"] .main-header { background: rgba(19,28,49,0.8); }
+        .main-header .container { display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; }
+        .logo a {
+            text-decoration:none; font-family:'Playfair Display',serif; font-size:2rem; font-weight:800;
+            color: var(--primary); letter-spacing:-0.5px; display:flex; align-items:baseline;
+        }
+        .logo a .dot { width:6px; height:6px; background:var(--accent); border-radius:50%; margin-left:4px; }
+        .desktop-nav { display:flex; gap:2.2rem; align-items:center; }
+        .desktop-nav a {
+            text-decoration:none; color:var(--text); font-weight:500; font-size:0.95rem;
+            transition:color 0.2s; position:relative;
+        }
+        .desktop-nav a::after {
+            content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px;
+            background:var(--accent); border-radius:2px; transition:width 0.25s;
+        }
+        .desktop-nav a:hover, .desktop-nav a.active { color:var(--primary); }
+        .desktop-nav a:hover::after, .desktop-nav a.active::after { width:100%; }
+        .header-actions { display:flex; gap:0.8rem; align-items:center; }
+        .icon-btn {
+            background:transparent; border:1px solid var(--border); font-size:1.1rem; cursor:pointer;
+            color:var(--text); padding:0.5rem; border-radius:50%; width:38px; height:38px;
+            display:flex; align-items:center; justify-content:center; transition:0.2s;
+        }
+        .icon-btn:hover { background:var(--primary); color:white; border-color:var(--primary); }
+        .mobile-only { display:none; }
+        .mobile-menu {
+            position:fixed; top:0; left:-100%; width:80%; max-width:320px; height:100%;
+            background:var(--surface); z-index:200; transition:left 0.35s; padding:2.5rem 2rem;
+            display:flex; flex-direction:column; gap:1.5rem; box-shadow:var(--shadow-lg);
+        }
+        .mobile-menu.open { left:0; }
+        .mobile-menu a { text-decoration:none; font-size:1.2rem; color:var(--text); font-weight:500; padding:0.5rem 0; border-bottom:1px solid var(--border); }
+        .user-greeting {
+            font-weight:600; color:var(--primary); background:var(--surface-alt);
+            padding:0.5rem 1rem; border-radius:2rem; border:1px solid var(--border);
+            font-size:0.9rem;
+        }
+
+        /* Dashboard layout */
+        .dashboard {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+            min-height: calc(100vh - 220px);
+        }
+        .sidebar {
+            width: 240px;
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            position: sticky;
+            top: 6rem;
+            align-self: flex-start;
+        }
+        .sidebar h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        .sidebar nav a {
+            display: block;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+        .sidebar nav a.active, .sidebar nav a:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .sidebar nav a i {
+            width: 20px;
+            margin-right: 0.5rem;
+            text-align: center;
+        }
+
+        .main-content {
+            flex: 1;
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        /* Step indicator */
+        .steps-indicator {
+            display: flex;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .step-item {
+            flex: 1;
+            text-align: center;
+            font-weight: 500;
+            color: var(--text-secondary);
+            position: relative;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .step-item.active {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .step-item.completed {
+            color: var(--accent);
+        }
+        .step-number {
+            display: block;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--surface-alt);
+            line-height: 32px;
+            margin: 0 auto 0.5rem;
+            font-size: 0.8rem;
+            transition: 0.2s;
+        }
+        .step-item.active .step-number {
+            background: var(--accent);
+            color: white;
+        }
+        .step-item.completed .step-number {
+            background: var(--accent);
+            color: white;
+        }
+
+        .form-step { display: none; }
+        .form-step.active { display: block; }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg);
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--text);
+            transition: 0.2s;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(180,148,80,0.2);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 3rem;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: #1A1F2E;
+        }
+        .btn-primary:hover { background: var(--accent-soft); transform: translateY(-1px); box-shadow: 0 10px 20px -8px rgba(180,148,80,0.4); }
+        .btn-outline {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+        .btn-outline:hover { background: var(--primary); color: white; }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        /* Request cards */
+        .request-card {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.2s;
+        }
+        .request-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+        .request-info h4 { margin-bottom: 0.25rem; font-weight: 600; }
+        .request-info p { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.25rem; }
+        .delete-btn {
+            background: #EF4444;
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .delete-btn:hover { background: #DC2626; }
+
+        /* Footer – matching site */
+        footer {
+            background: #1A1F2E;
+            color: #CBD5E1;
+            padding: 4rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        footer a { color:#94A3B8; text-decoration:none; }
+        footer a:hover { color: var(--accent-soft); }
+        .footer-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:2rem; margin-bottom:2rem; }
+        .social i { font-size:1.2rem; margin-right:1rem; }
+
+        @media (max-width: 768px) {
+            .desktop-nav { display: none; }
+            .mobile-only { display: block; }
+            .dashboard { flex-direction: column; }
+            .sidebar { width: 100%; position: static; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<header class="main-header">
+    <div class="container">
+        <div class="logo"><a href="/">Zaure<span class="dot"></span></a></div>
+        <nav class="desktop-nav">
+            <a href="/">Home</a>
+            <a href="/browse?type=sale">Buy</a>
+            <a href="/browse?type=rent">Rent</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <a href="/post" class="active">Dashboard</a>
+        </nav>
+        <div class="header-actions">
+            <span id="userGreeting" class="user-greeting"></span>
+            <button id="themeToggle" class="icon-btn"><i class="fas fa-moon"></i></button>
+            <button id="mobileMenuToggle" class="icon-btn mobile-only"><i class="fas fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+    <button id="closeMenu" class="close-btn"><i class="fas fa-times"></i></button>
+    <a href="/">Home</a><a href="/browse?type=sale">Buy</a><a href="/browse?type=rent">Rent</a>
+    <a href="/how-it-works">How It Works</a><a href="/about">About</a><a href="/contact">Contact</a>
+    <a href="/post">Dashboard</a>
+</div>
+
+<main class="container">
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Dashboard</h3>
+            <nav>
+                <a href="#" class="active" data-section="request"><i class="fas fa-plus-circle"></i> Request Listing</a>
+                <a href="#" data-section="myRequests"><i class="fas fa-list-ul"></i> My Requests</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <!-- Request form section -->
+            <div id="requestSection">
+                <h2 class="section-title">Request a Property Listing</h2>
+                <div class="steps-indicator">
+                    <div class="step-item active" data-step="1"><span class="step-number">1</span> Property Details</div>
+                    <div class="step-item" data-step="2"><span class="step-number">2</span> Description & Photos</div>
+                    <div class="step-item" data-step="3"><span class="step-number">3</span> Review & Submit</div>
+                </div>
+
+                <form id="requestForm">
+                    <!-- Step 1 -->
+                    <div class="form-step active" id="step1">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Property Type *</label>
+                                <select id="propertyType" required>
+                                    <option value="">Select</option>
+                                    <option value="house">House</option>
+                                    <option value="apartment">Apartment</option>
+                                    <option value="land">Land</option>
+                                    <option value="commercial">Commercial</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Listing Type *</label>
+                                <select id="listingType" required>
+                                    <option value="">Select</option>
+                                    <option value="sale">For Sale</option>
+                                    <option value="rent">For Rent</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Title *</label>
+                            <input type="text" id="title" placeholder="e.g., 3-Bedroom Flat in Barnawa" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>City *</label>
+                                <input type="text" id="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label>State</label>
+                                <input type="text" id="state">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Address / Area</label>
+                            <input type="text" id="address">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Price (₦) *</label>
+                                <input type="number" id="price" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Land Size (sqm)</label>
+                                <input type="number" id="squareFeet" min="0">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Bedrooms</label>
+                                <input type="number" id="bedrooms" min="0" value="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Bathrooms</label>
+                                <input type="number" id="bathrooms" min="0" value="0">
+                            </div>
+                        </div>
+                        <div class="button-group">
+                            <div></div>
+                            <button type="button" class="btn btn-primary" id="toStep2">Next <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="form-step" id="step2">
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="description" rows="4" placeholder="Describe the property, features, condition..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Amenities (comma separated)</label>
+                            <input type="text" id="amenities" placeholder="e.g., Borehole, Solar, Fenced, Security">
+                        </div>
+                        <div class="form-group">
+                            <label>Image URLs (one per line)</label>
+                            <textarea id="images" rows="3" placeholder="https://..."></textarea>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-outline" id="backStep1"><i class="fas fa-arrow-left"></i> Back</button>
+                            <button type="button" class="btn btn-primary" id="toStep3">Next <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="form-step" id="step3">
+                        <h3 style="margin-bottom:1rem;">Review Your Details</h3>
+                        <div class="request-card" style="display:block;" id="reviewSummary"></div>
+                        <div class="form-group" style="margin-top:1.5rem;">
+                            <label>
+                                <input type="checkbox" id="wantVerification" checked>
+                                I want to verify my identity (NIN/BVN) to get a Verified badge.
+                            </label>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-outline" id="backStep2"><i class="fas fa-arrow-left"></i> Back</button>
+                            <button type="submit" class="btn btn-primary">Submit Request <i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- My Requests (hidden by default) -->
+            <div id="myRequestsSection" style="display: none;">
+                <h2 class="section-title">My Requests</h2>
+                <div id="requestsList"></div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div><h4 style="color:white;">Zaure</h4><p>Your digital entrance hall – connecting owners and seekers directly.</p></div>
+            <div><h4>Explore</h4><a href="/browse?type=sale">Buy</a><br><a href="/browse?type=rent">Rent</a><br><a href="/how-it-works">How It Works</a></div>
+            <div><h4>Support</h4><a href="/contact">Contact</a><br><a href="/faq">FAQ</a><br><a href="/privacy">Privacy</a><br><a href="/terms">Terms</a></div>
+            <div><h4>Connect</h4><div class="social"><i class="fab fa-facebook-f"></i><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i></div></div>
+        </div>
+        <div style="text-align:center; padding-top:1.5rem; border-top:1px solid #2E3548; font-size:0.8rem;">© 2026 Zaure. All rights reserved.</div>
+    </div>
+</footer>
+
+<script>
+    // ---------- AUTH CHECK ----------
+    (function checkAuth() {
+        const user = JSON.parse(localStorage.getItem('zaure_user'));
+        if (!user || !user.name) {
+            window.location.href = '/?signup=required';
+            return;
+        }
+        document.getElementById('userGreeting').textContent = `Hi, ${user.name.split(' ')[0]}`;
+    })();
+
+    // ---------- THEME ----------
+    const themeToggle = document.getElementById('themeToggle');
+    const storedTheme = localStorage.getItem('zaure_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', storedTheme);
+    themeToggle.innerHTML = storedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    themeToggle.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme');
+        const next = cur === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('zaure_theme', next);
+        themeToggle.innerHTML = next === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // Mobile menu
+    document.getElementById('mobileMenuToggle').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+    document.getElementById('closeMenu').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+
+    // ---------- SIDEBAR NAVIGATION ----------
+    const sidebarLinks = document.querySelectorAll('.sidebar nav a');
+    const requestSection = document.getElementById('requestSection');
+    const myRequestsSection = document.getElementById('myRequestsSection');
+
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            sidebarLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+            const section = link.dataset.section;
+            if (section === 'request') {
+                requestSection.style.display = 'block';
+                myRequestsSection.style.display = 'none';
+            } else {
+                requestSection.style.display = 'none';
+                myRequestsSection.style.display = 'block';
+                renderMyRequests();
+            }
+        });
+    });
+
+    // ---------- MULTI-STEP FORM ----------
+    const steps = document.querySelectorAll('.step-item');
+    const formSteps = document.querySelectorAll('.form-step');
+    let currentStep = 0;
+
+    function showStep(stepIndex) {
+        formSteps.forEach((s, i) => s.classList.toggle('active', i === stepIndex));
+        steps.forEach((s, i) => {
+            s.classList.remove('active', 'completed');
+            if (i < stepIndex) s.classList.add('completed');
+            if (i === stepIndex) s.classList.add('active');
+        });
+        currentStep = stepIndex;
+    }
+
+    // Validate step 1 before moving
+    document.getElementById('toStep2').addEventListener('click', () => {
+        const requiredFields = document.querySelectorAll('#step1 [required]');
+        let valid = true;
+        requiredFields.forEach(f => { if (!f.value.trim()) valid = false; });
+        if (!valid) {
+            alert('Please fill in all required fields.');
+            return;
+        }
+        showStep(1);
+    });
+    document.getElementById('backStep1').addEventListener('click', () => showStep(0));
+    document.getElementById('toStep3').addEventListener('click', () => {
+        showStep(2);
+        const summary = `
+            <h4>${document.getElementById('title').value}</h4>
+            <p><strong>Type:</strong> ${document.getElementById('propertyType').value} (${document.getElementById('listingType').value})</p>
+            <p><strong>Location:</strong> ${document.getElementById('address').value || 'N/A'}, ${document.getElementById('city').value}, ${document.getElementById('state').value}</p>
+            <p><strong>Price:</strong> ₦${parseInt(document.getElementById('price').value).toLocaleString()}</p>
+            <p><strong>Bedrooms:</strong> ${document.getElementById('bedrooms').value} | <strong>Bathrooms:</strong> ${document.getElementById('bathrooms').value} | <strong>Land:</strong> ${document.getElementById('squareFeet').value || 'N/A'} sqm</p>
+            <p><strong>Description:</strong> ${document.getElementById('description').value || 'None'}</p>
+            <p><strong>Amenities:</strong> ${document.getElementById('amenities').value || 'None'}</p>
+            <p><strong>Images:</strong> ${document.getElementById('images').value ? 'Provided' : 'None'}</p>
+        `;
+        document.getElementById('reviewSummary').innerHTML = summary;
+    });
+    document.getElementById('backStep2').addEventListener('click', () => showStep(1));
+
+    // ---------- FORM SUBMISSION ----------
+    const requestForm = document.getElementById('requestForm');
+    requestForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const user = JSON.parse(localStorage.getItem('zaure_user'));
+        const requestData = {
+            id: Date.now(),
+            user: user,
+            title: document.getElementById('title').value,
+            propertyType: document.getElementById('propertyType').value,
+            listingType: document.getElementById('listingType').value,
+            city: document.getElementById('city').value,
+            state: document.getElementById('state').value,
+            address: document.getElementById('address').value,
+            price: document.getElementById('price').value,
+            bedrooms: document.getElementById('bedrooms').value,
+            bathrooms: document.getElementById('bathrooms').value,
+            squareFeet: document.getElementById('squareFeet').value,
+            description: document.getElementById('description').value,
+            amenities: document.getElementById('amenities').value,
+            images: document.getElementById('images').value,
+            wantVerification: document.getElementById('wantVerification').checked,
+            status: 'pending',
+            submittedAt: new Date().toISOString()
+        };
+
+        // Save locally
+        let requests = JSON.parse(localStorage.getItem('zaure_requests') || '[]');
+        requests.unshift(requestData);
+        localStorage.setItem('zaure_requests', JSON.stringify(requests));
+
+        // Send to Formspree (replace with your real form ID)
+        const formspreeUrl = 'https://formspree.io/f/your-form-id';
+        const formData = new FormData();
+        for (let key in requestData) {
+            formData.append(key, typeof requestData[key] === 'object' ? JSON.stringify(requestData[key]) : requestData[key]);
+        }
+        try {
+            const res = await fetch(formspreeUrl, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+            if (res.ok) {
+                alert('Request submitted successfully! We will review and publish it soon.');
+            } else {
+                throw new Error('Formspree error');
+            }
+        } catch (error) {
+            alert('Request saved locally. We will process it shortly.');
+        } finally {
+            requestForm.reset();
+            showStep(0);
+        }
+    });
+
+    // ---------- MY REQUESTS RENDERING ----------
+    function renderMyRequests() {
+        const requests = JSON.parse(localStorage.getItem('zaure_requests') || '[]');
+        const listDiv = document.getElementById('requestsList');
+        if (requests.length === 0) {
+            listDiv.innerHTML = '<p style="color:var(--text-secondary);">You have no requests yet.</p>';
+            return;
+        }
+        listDiv.innerHTML = requests.map(req => `
+            <div class="request-card">
+                <div class="request-info">
+                    <h4>${req.title}</h4>
+                    <p>${req.city}, ${req.state} | ${req.listingType} | ₦${parseInt(req.price).toLocaleString()}</p>
+                    <p style="font-size:0.8rem;">Status: ${req.status} · ${new Date(req.submittedAt).toLocaleDateString()}</p>
+                </div>
+                <button class="delete-btn" data-id="${req.id}"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        `).join('');
+
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(e.currentTarget.dataset.id);
+                let requests = JSON.parse(localStorage.getItem('zaure_requests') || '[]');
+                requests = requests.filter(r => r.id !== id);
+                localStorage.setItem('zaure_requests', JSON.stringify(requests));
+                renderMyRequests();
+            });
+        });
+    }
+
+    // Initialize
+    showStep(0);
+</script>
+</body>
+</html>

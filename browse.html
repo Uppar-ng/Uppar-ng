@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Browse Properties | Zaure</title>
+    <meta name="description" content="Search and filter properties for sale or rent across Northern Nigeria. Connect directly with verified owners.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1A1F2E;
+            --primary-soft: #2E3548;
+            --accent: #B49450;
+            --accent-soft: #D4B87A;
+            --bg: #FBFBFB;
+            --surface: #FFFFFF;
+            --surface-alt: #F6F6F6;
+            --text: #1E1E1E;
+            --text-secondary: #6B7280;
+            --border: #E5E7EB;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 24px -8px rgba(0,0,0,0.06);
+            --radius: 16px;
+            --radius-sm: 12px;
+            --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+        }
+        [data-theme="dark"] {
+            --primary: #D4B87A;
+            --accent: #D4B87A;
+            --bg: #0B1120;
+            --surface: #131C31;
+            --surface-alt: #1A2540;
+            --text: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --border: #2A3550;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height:1.6;
+            transition: background var(--transition), color var(--transition);
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width:1280px; margin:0 auto; padding:0 2rem; }
+        .main-header {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top:0; z-index:100;
+        }
+        [data-theme="dark"] .main-header { background: rgba(19,28,49,0.8); }
+        .main-header .container { display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; }
+        .logo a {
+            text-decoration:none; font-family:'Playfair Display',serif; font-size:2rem; font-weight:800;
+            color: var(--primary); letter-spacing:-0.5px; display:flex; align-items:baseline;
+        }
+        .logo a .dot { width:6px; height:6px; background:var(--accent); border-radius:50%; margin-left:4px; }
+        .desktop-nav { display:flex; gap:2.2rem; }
+        .desktop-nav a {
+            text-decoration:none; color:var(--text); font-weight:500; font-size:0.95rem;
+            transition:color 0.2s; position:relative;
+        }
+        .desktop-nav a::after {
+            content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px;
+            background:var(--accent); border-radius:2px; transition:width 0.25s;
+        }
+        .desktop-nav a:hover, .desktop-nav a.active { color:var(--primary); }
+        .desktop-nav a:hover::after, .desktop-nav a.active::after { width:100%; }
+        .header-actions { display:flex; gap:0.8rem; }
+        .icon-btn {
+            background:transparent; border:1px solid var(--border); font-size:1.1rem; cursor:pointer;
+            color:var(--text); padding:0.5rem; border-radius:50%; width:38px; height:38px;
+            display:flex; align-items:center; justify-content:center; transition:0.2s;
+        }
+        .icon-btn:hover { background:var(--primary); color:white; border-color:var(--primary); }
+        .mobile-only { display:none; }
+        .mobile-menu {
+            position:fixed; top:0; left:-100%; width:80%; max-width:320px; height:100%;
+            background:var(--surface); z-index:200; transition:left 0.35s; padding:2.5rem 2rem;
+            display:flex; flex-direction:column; gap:1.5rem; box-shadow:var(--shadow-lg);
+        }
+        .mobile-menu.open { left:0; }
+        .mobile-menu a { text-decoration:none; font-size:1.2rem; color:var(--text); font-weight:500; padding:0.5rem 0; border-bottom:1px solid var(--border); }
+
+        .filters-bar {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin: 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+        .filters-bar input,
+        .filters-bar .trigger-btn,
+        .filters-bar select {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 3rem;
+            background: var(--bg);
+            flex: 1;
+            min-width: 130px;
+            font-size: 0.9rem;
+            color: var(--text);
+            cursor: pointer;
+        }
+        .filters-bar .trigger-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .filters-bar .trigger-btn i { font-size: 0.8rem; color: var(--text-secondary); }
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .results-count { color: var(--text-secondary); font-size: 0.9rem; }
+        .sort-select {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            background: var(--surface);
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        .property-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:2rem; margin-bottom: 2rem; }
+        .property-card {
+            background:var(--surface); border-radius:var(--radius); overflow:hidden;
+            box-shadow:var(--shadow-sm); cursor:pointer; transition:all var(--transition);
+            border:1px solid var(--border); position:relative;
+        }
+        .property-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); }
+        .img-wrapper { position:relative; overflow:hidden; height:220px; }
+        .img-wrapper img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s; }
+        .property-card:hover .img-wrapper img { transform:scale(1.05); }
+        .badge-verified {
+            position:absolute; top:1rem; right:1rem; background:rgba(255,255,255,0.9);
+            backdrop-filter:blur(4px); color:#1E1E1E; padding:0.3rem 0.8rem; border-radius:2rem;
+            font-size:0.7rem; font-weight:600; display:flex; align-items:center; gap:0.3rem;
+            border:1px solid #E5E7EB;
+        }
+        .card-body { padding:1.3rem; }
+        .price {
+            font-size:1.3rem; font-weight:700; color:var(--primary); margin-bottom:0.5rem;
+            font-family:'Playfair Display',serif;
+        }
+        .card-body h3 { font-size:1rem; font-weight:600; margin-bottom:0.4rem; }
+        .card-body p { color:var(--text-secondary); font-size:0.85rem; margin-bottom:1rem; }
+        .features { display:flex; gap:1rem; color:var(--text-secondary); font-size:0.8rem; border-top:1px solid var(--border); padding-top:0.8rem; }
+        .card-footer { display:flex; justify-content:flex-end; align-items:center; padding:0.5rem 1rem 1rem; }
+        .share-wa {
+            background: #25D366; color: white; border: none; padding: 0.4rem 0.8rem;
+            border-radius: 1.5rem; font-size: 0.8rem; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 0.3rem;
+        }
+        .btn-primary {
+            background:var(--accent); color:#1A1F2E; border:none; padding:0.75rem 1.5rem;
+            border-radius:3rem; font-weight:700; cursor:pointer; transition:0.2s;
+            white-space:nowrap; display:flex; align-items:center; gap:0.5rem; font-size:0.95rem;
+        }
+        .btn-primary:hover { background:var(--accent-soft); }
+        .btn-outline {
+            border:1px solid var(--primary); color:var(--primary); padding:0.6rem 1.8rem;
+            border-radius:3rem; font-weight:600; text-decoration:none; transition:0.2s; display:inline-block;
+        }
+        .btn-outline:hover { background:var(--primary); color:white; }
+        .pagination { display:flex; justify-content:center; gap:0.5rem; margin:2rem 0; }
+        .pagination button {
+            padding:0.5rem 1rem; border:1px solid var(--border); background:var(--surface);
+            cursor:pointer; border-radius:8px; transition:0.2s;
+        }
+        .pagination button.active { background:var(--primary); color:white; border-color:var(--primary); }
+        .pagination button:hover:not(:disabled) { background:var(--primary); color:white; }
+        .pagination button:disabled { opacity:0.5; cursor:not-allowed; }
+        .no-results { text-align:center; padding:3rem; background:var(--surface); border-radius:var(--radius); color:var(--text-secondary); }
+
+        .modal-overlay {
+            position:fixed; top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.5); backdrop-filter:blur(4px); z-index:300;
+            display:flex; align-items:center; justify-content:center;
+            opacity:0; visibility:hidden; transition:opacity 0.3s, visibility 0.3s;
+        }
+        .modal-overlay.active { opacity:1; visibility:visible; }
+        .modal {
+            background:var(--surface); border-radius:var(--radius); padding:2rem;
+            min-width:320px; max-width:400px; box-shadow:var(--shadow-lg);
+            transform:translateY(20px); transition:transform 0.3s ease;
+        }
+        .modal-overlay.active .modal { transform:translateY(0); }
+        .modal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; }
+        .modal-header h3 { font-family:'Playfair Display',serif; font-size:1.5rem; }
+        .modal-close { background:none; border:none; font-size:1.3rem; cursor:pointer; color:var(--text); }
+        .modal-options { display:flex; flex-direction:column; gap:0.5rem; }
+        .modal-option {
+            padding:0.8rem 1rem; border:1px solid var(--border); border-radius:var(--radius-sm);
+            background:var(--surface-alt); cursor:pointer; transition:0.2s; text-align:left; font-weight:500;
+        }
+        .modal-option:hover { background:var(--primary); color:white; border-color:var(--primary); }
+
+        footer { background:#1A1F2E; color:#CBD5E1; padding:4rem 0 1.5rem; margin-top:3rem; }
+        footer a { color:#94A3B8; text-decoration:none; }
+        footer a:hover { color:var(--accent-soft); }
+        .footer-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:2rem; margin-bottom:2rem; }
+        .social i { font-size:1.2rem; margin-right:1rem; }
+        @media (max-width:768px) {
+            .desktop-nav { display:none; }
+            .mobile-only { display:block; }
+            .filters-bar { flex-direction:column; }
+            .filters-bar input, .filters-bar .trigger-btn, .filters-bar select { width:100%; }
+        }
+    </style>
+</head>
+<body>
+<header class="main-header">
+    <div class="container">
+        <div class="logo"><a href="/">Zaure<span class="dot"></span></a></div>
+        <nav class="desktop-nav">
+            <a href="/">Home</a>
+            <a href="/browse?type=sale">Buy</a>
+            <a href="/browse?type=rent">Rent</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <a href="/post" class="btn-outline" style="padding:0.4rem 1.2rem; border-color:var(--accent); color:var(--accent);">List Property</a>
+        </nav>
+        <div class="header-actions">
+            <button id="themeToggle" class="icon-btn"><i class="fas fa-moon"></i></button>
+            <button id="mobileMenuToggle" class="icon-btn mobile-only"><i class="fas fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+    <button id="closeMenu" class="close-btn"><i class="fas fa-times"></i></button>
+    <a href="/">Home</a><a href="/browse?type=sale">Buy</a><a href="/browse?type=rent">Rent</a>
+    <a href="/how-it-works">How It Works</a><a href="/about">About</a><a href="/contact">Contact</a>
+    <a href="/post">List Property</a>
+</div>
+
+<main class="container">
+    <!-- Filters bar -->
+    <div class="filters-bar">
+        <input type="text" id="locationFilter" placeholder="Location (city or area)">
+        <button type="button" class="trigger-btn" id="propertyTypeFilterBtn">Property Type <i class="fas fa-chevron-down"></i></button>
+        <select id="typeFilter">
+            <option value="">All Listings</option>
+            <option value="sale">For Sale</option>
+            <option value="rent">For Rent</option>
+        </select>
+        <button type="button" class="trigger-btn" id="bedFilterBtn">Bedrooms <i class="fas fa-chevron-down"></i></button>
+        <input type="number" id="minPriceFilter" placeholder="Min Price">
+        <input type="number" id="maxPriceFilter" placeholder="Max Price">
+        <button id="nearMeBtn" class="btn-outline"><i class="fas fa-location-arrow"></i> Near Me</button>
+        <button id="applyFiltersBtn" class="btn-primary"><i class="fas fa-search"></i> Apply</button>
+    </div>
+    <!-- Hidden inputs for modal values -->
+    <input type="hidden" id="propertyTypeValue" value="">
+    <input type="hidden" id="bedsValue" value="">
+
+    <!-- Results header -->
+    <div class="results-header">
+        <div class="results-count" id="resultsCount">Loading properties...</div>
+        <select id="sortSelect" class="sort-select">
+            <option value="price_asc">Price: Low to High</option>
+            <option value="price_desc">Price: High to Low</option>
+            <option value="newest">Newest First</option>
+        </select>
+    </div>
+
+    <!-- Property grid -->
+    <div id="propertyGrid" class="property-grid"></div>
+
+    <!-- Pagination -->
+    <div id="pagination" class="pagination"></div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div><h4 style="color:white;">Zaure</h4><p>Your digital entrance hall – connecting owners and seekers directly.</p></div>
+            <div><h4>Explore</h4><a href="/browse?type=sale">Buy</a><br><a href="/browse?type=rent">Rent</a><br><a href="/how-it-works">How It Works</a></div>
+            <div><h4>Support</h4><a href="/contact">Contact</a><br><a href="/faq">FAQ</a><br><a href="/privacy">Privacy</a><br><a href="/terms">Terms</a></div>
+            <div><h4>Connect</h4><div class="social"><i class="fab fa-facebook-f"></i><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i></div></div>
+        </div>
+        <div style="text-align:center; padding-top:1.5rem; border-top:1px solid #2E3548; font-size:0.8rem;">© 2026 Zaure Technologies. All rights reserved.</div>
+    </div>
+</footer>
+
+<!-- Modal for Property Type / Bedrooms -->
+<div class="modal-overlay" id="selectionModal">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 id="modalTitle">Select</h3>
+            <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-options" id="modalOptions"></div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // ---------- Theme ----------
+        const themeToggle = document.getElementById('themeToggle');
+        const storedTheme = localStorage.getItem('zaure_theme') || 'light';
+        document.documentElement.setAttribute('data-theme', storedTheme);
+        themeToggle.innerHTML = storedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        themeToggle.addEventListener('click', () => {
+            const cur = document.documentElement.getAttribute('data-theme');
+            const next = cur === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('zaure_theme', next);
+            themeToggle.innerHTML = next === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        });
+
+        // ---------- Mobile Menu ----------
+        document.getElementById('mobileMenuToggle').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+        document.getElementById('closeMenu').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+
+        // ---------- Modal Setup ----------
+        const modalOverlay = document.getElementById('selectionModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalOptions = document.getElementById('modalOptions');
+        const modalCloseBtn = document.getElementById('modalClose');
+        const propertyTypeBtn = document.getElementById('propertyTypeFilterBtn');
+        const bedBtn = document.getElementById('bedFilterBtn');
+        const propertyTypeHidden = document.getElementById('propertyTypeValue');
+        const bedsHidden = document.getElementById('bedsValue');
+
+        const propertyTypes = [
+            { value: 'house', label: 'House' },
+            { value: 'apartment', label: 'Apartment' },
+            { value: 'land', label: 'Land' },
+            { value: 'commercial', label: 'Commercial' }
+        ];
+        const bedOptions = [
+            { value: '1', label: '1' },
+            { value: '2', label: '2' },
+            { value: '3', label: '3' },
+            { value: '4+', label: '4+' }
+        ];
+
+        let currentModal = '';
+
+        function openModal(type) {
+            currentModal = type;
+            let options, title;
+            if (type === 'propertyType') {
+                title = 'Property Type';
+                options = propertyTypes;
+            } else {
+                title = 'Bedrooms';
+                options = bedOptions;
+            }
+            modalTitle.textContent = title;
+            modalOptions.innerHTML = options.map(opt => `<button type="button" class="modal-option" data-value="${opt.value}">${opt.label}</button>`).join('');
+            modalOverlay.classList.add('active');
+        }
+
+        propertyTypeBtn.addEventListener('click', () => openModal('propertyType'));
+        bedBtn.addEventListener('click', () => openModal('beds'));
+        modalCloseBtn.addEventListener('click', () => modalOverlay.classList.remove('active'));
+        modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) modalOverlay.classList.remove('active'); });
+        modalOptions.addEventListener('click', (e) => {
+            const option = e.target.closest('.modal-option');
+            if (!option) return;
+            const value = option.dataset.value;
+            const label = option.textContent.trim();
+            if (currentModal === 'propertyType') {
+                propertyTypeHidden.value = value;
+                propertyTypeBtn.innerHTML = `${label} <i class="fas fa-chevron-down"></i>`;
+            } else {
+                bedsHidden.value = value;
+                bedBtn.innerHTML = `${label} <i class="fas fa-chevron-down"></i>`;
+            }
+            modalOverlay.classList.remove('active');
+        });
+
+        // ---------- Global State ----------
+        let allProperties = [];
+        let filteredProperties = [];
+        let currentPage = 1;
+        const itemsPerPage = 12;
+
+        // Parse URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlLocation = urlParams.get('location') || '';
+        const urlPropertyType = urlParams.get('propertyType') || '';
+        const urlType = urlParams.get('type') || ''; // sale/rent
+        const urlBeds = urlParams.get('beds') || '';
+        const urlMin = urlParams.get('min') || '';
+        const urlMax = urlParams.get('max') || '';
+
+        // Pre-fill filters
+        document.getElementById('locationFilter').value = urlLocation;
+        if (urlType) document.getElementById('typeFilter').value = urlType;
+        document.getElementById('minPriceFilter').value = urlMin;
+        document.getElementById('maxPriceFilter').value = urlMax;
+        if (urlPropertyType) {
+            propertyTypeHidden.value = urlPropertyType;
+            const typeObj = propertyTypes.find(t => t.value === urlPropertyType);
+            if (typeObj) propertyTypeBtn.innerHTML = `${typeObj.label} <i class="fas fa-chevron-down"></i>`;
+        }
+        if (urlBeds) {
+            bedsHidden.value = urlBeds;
+            const bedObj = bedOptions.find(b => b.value === urlBeds);
+            if (bedObj) bedBtn.innerHTML = `${bedObj.label} <i class="fas fa-chevron-down"></i>`;
+        }
+
+        // ---------- Fetch Data ----------
+        fetch('/data/properties.json')
+            .then(res => res.json())
+            .then(data => {
+                allProperties = data.properties;
+                applyFiltersAndRender();
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById('propertyGrid').innerHTML = '<div class="no-results">Failed to load properties. Please refresh.</div>';
+            });
+
+        // ---------- Helper: Format Price ----------
+        function formatPrice(price) {
+            return price >= 1e6 ? `₦${(price/1e6).toFixed(1)}M` : `₦${price.toLocaleString()}`;
+        }
+
+        // ---------- Filter & Sort ----------
+        function applyFiltersAndRender() {
+            const location = document.getElementById('locationFilter').value.toLowerCase().trim();
+            const propertyType = propertyTypeHidden.value;
+            const listingType = document.getElementById('typeFilter').value;
+            const bedsRaw = bedsHidden.value;
+            const minPrice = parseInt(document.getElementById('minPriceFilter').value) || 0;
+            const maxPrice = parseInt(document.getElementById('maxPriceFilter').value) || Infinity;
+
+            filteredProperties = allProperties.filter(p => {
+                const matchesLocation = location === '' || p.city.toLowerCase().includes(location) || p.address.toLowerCase().includes(location);
+                const matchesPropertyType = propertyType === '' || p.propertyType === propertyType;
+                const matchesListingType = listingType === '' || p.type === listingType;
+                let matchesBeds = true;
+                if (bedsRaw !== '') {
+                    const needed = bedsRaw === '4+' ? 4 : parseInt(bedsRaw);
+                    matchesBeds = p.bedrooms >= needed;
+                }
+                const matchesPrice = p.price >= minPrice && p.price <= maxPrice;
+                return matchesLocation && matchesPropertyType && matchesListingType && matchesBeds && matchesPrice;
+            });
+
+            // Sort
+            const sortVal = document.getElementById('sortSelect').value;
+            if (sortVal === 'price_asc') filteredProperties.sort((a,b) => a.price - b.price);
+            else if (sortVal === 'price_desc') filteredProperties.sort((a,b) => b.price - a.price);
+            else if (sortVal === 'newest') filteredProperties.sort((a,b) => new Date(b.listedDate) - new Date(a.listedDate));
+
+            currentPage = 1;
+            renderResults();
+            renderPagination();
+        }
+
+        // ---------- Render Cards ----------
+        function renderResults() {
+            const start = (currentPage - 1) * itemsPerPage;
+            const pageItems = filteredProperties.slice(start, start + itemsPerPage);
+            const grid = document.getElementById('propertyGrid');
+            const countSpan = document.getElementById('resultsCount');
+            countSpan.textContent = `Showing ${pageItems.length} of ${filteredProperties.length} properties`;
+
+            if (pageItems.length === 0) {
+                grid.innerHTML = '<div class="no-results">No properties match your filters. Try adjusting your criteria.</div>';
+                return;
+            }
+
+            grid.innerHTML = pageItems.map(p => {
+                const price = formatPrice(p.price);
+                const img = p.images?.[0] || 'https://placehold.co/600x400?text=Zaure';
+                const verifiedBadge = p.owner?.verified ? '<div class="badge-verified"><i class="fas fa-check-circle"></i> Verified</div>' : '';
+                return `
+                    <div class="property-card" data-id="${p.id}">
+                        <div class="img-wrapper">
+                            <img src="${img}" alt="${p.title}" loading="lazy">
+                            ${verifiedBadge}
+                        </div>
+                        <div class="card-body">
+                            <div class="price">${price}</div>
+                            <h3>${p.title}</h3>
+                            <p>${p.address}, ${p.city}</p>
+                            <div class="features">
+                                ${p.propertyType !== 'land' ? `<span><i class="fas fa-bed"></i> ${p.bedrooms} Beds</span><span><i class="fas fa-bath"></i> ${p.bathrooms} Baths</span>` : '<span><i class="fas fa-map"></i> Land</span>'}
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="share-wa" data-title="${p.title}" data-id="${p.id}"><i class="fab fa-whatsapp"></i> Share</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Click card to go to detail
+            document.querySelectorAll('.property-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (!e.target.closest('.share-wa')) {
+                        const id = card.dataset.id;
+                        window.location.href = `/property?id=${id}`;
+                    }
+                });
+            });
+        }
+
+        // ---------- Pagination ----------
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredProperties.length / itemsPerPage);
+            const paginationDiv = document.getElementById('pagination');
+            if (totalPages <= 1) {
+                paginationDiv.innerHTML = '';
+                return;
+            }
+
+            let html = `<button onclick="changePage(-1)" ${currentPage === 1 ? 'disabled' : ''}>Prev</button>`;
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                    html += `<button class="${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+                } else if (i === currentPage - 2 || i === currentPage + 2) {
+                    html += `<span style="padding:0 0.5rem;">...</span>`;
+                }
+            }
+            html += `<button onclick="changePage(1)" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>`;
+            paginationDiv.innerHTML = html;
+        }
+
+        window.changePage = (delta) => {
+            const total = Math.ceil(filteredProperties.length / itemsPerPage);
+            const newPage = currentPage + delta;
+            if (newPage >= 1 && newPage <= total) {
+                currentPage = newPage;
+                renderResults();
+                renderPagination();
+                window.scrollTo({ top: 200, behavior: 'smooth' });
+            }
+        };
+        window.goToPage = (page) => {
+            currentPage = page;
+            renderResults();
+            renderPagination();
+            window.scrollTo({ top: 200, behavior: 'smooth' });
+        };
+
+        // ---------- WhatsApp Share ----------
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.share-wa')) {
+                e.stopPropagation();
+                const btn = e.target.closest('.share-wa');
+                const title = btn.dataset.title;
+                const id = btn.dataset.id;
+                const shareUrl = `${window.location.origin}/property?id=${id}`;
+                const text = `Check out this property on Zaure: ${title} - ${shareUrl}`;
+                window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+            }
+        });
+
+        // ---------- Geolocation ----------
+        document.getElementById('nearMeBtn').addEventListener('click', () => {
+            if (!navigator.geolocation) {
+                alert('Geolocation is not supported by your browser.');
+                return;
+            }
+            navigator.geolocation.getCurrentPosition(async (pos) => {
+                const { latitude, longitude } = pos.coords;
+                try {
+                    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
+                    const data = await res.json();
+                    const city = data.address.city || data.address.town || data.address.state || '';
+                    if (city) document.getElementById('locationFilter').value = city;
+                    applyFiltersAndRender();
+                } catch (err) {
+                    alert('Unable to determine your location. Please enter manually.');
+                }
+            }, () => {
+                alert('Location access denied. Please enable it in your browser settings.');
+            });
+        });
+
+        // ---------- Apply Filters Button ----------
+        document.getElementById('applyFiltersBtn').addEventListener('click', applyFiltersAndRender);
+        // Sort change auto-applies
+        document.getElementById('sortSelect').addEventListener('change', applyFiltersAndRender);
+
+        // Allow Enter key on price/location inputs
+        ['locationFilter', 'minPriceFilter', 'maxPriceFilter'].forEach(id => {
+            document.getElementById(id).addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') applyFiltersAndRender();
+            });
+        });
+    })();
+</script>
+</body>
+</html>
